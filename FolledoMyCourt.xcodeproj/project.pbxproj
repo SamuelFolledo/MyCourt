@@ -1,0 +1,751 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4A1CFDD250283CDFA7BCA09A /* Pods_FolledoMyCourtTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56B92F3BD135D294B0F8305 /* Pods_FolledoMyCourtTests.framework */; };
+		98B7EA0B563F71BF4D725AF5 /* Pods_FolledoMyCourt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5805FE4B9A211E702C18945C /* Pods_FolledoMyCourt.framework */; };
+		BE6443B9A03BA5CEF016FE57 /* Pods_FolledoMyCourtUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D1C4BB92692AAA67DAF136 /* Pods_FolledoMyCourtUITests.framework */; };
+		CD06FC7620F965D80033CB6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06FC7520F965D80033CB6F /* AppDelegate.swift */; };
+		CD06FC7820F965D80033CB6F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06FC7720F965D80033CB6F /* ViewController.swift */; };
+		CD06FC7B20F965D80033CB6F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD06FC7920F965D80033CB6F /* Main.storyboard */; };
+		CD06FC7D20F965DA0033CB6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD06FC7C20F965DA0033CB6F /* Assets.xcassets */; };
+		CD06FC8020F965DA0033CB6F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD06FC7E20F965DA0033CB6F /* LaunchScreen.storyboard */; };
+		CD06FC8B20F965DA0033CB6F /* FolledoMyCourtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06FC8A20F965DA0033CB6F /* FolledoMyCourtTests.swift */; };
+		CD06FC9620F965DA0033CB6F /* FolledoMyCourtUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06FC9520F965DA0033CB6F /* FolledoMyCourtUITests.swift */; };
+		CD06FCA620F966000033CB6F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD06FCA520F966000033CB6F /* MapKit.framework */; };
+		CD06FCA820F9661D0033CB6F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD06FCA720F9661D0033CB6F /* StoreKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CD06FC8720F965DA0033CB6F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD06FC6A20F965D80033CB6F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD06FC7120F965D80033CB6F;
+			remoteInfo = FolledoMyCourt;
+		};
+		CD06FC9220F965DA0033CB6F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD06FC6A20F965D80033CB6F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CD06FC7120F965D80033CB6F;
+			remoteInfo = FolledoMyCourt;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0D0CDD6909E0E8DEDE49F065 /* Pods-FolledoMyCourt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FolledoMyCourt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FolledoMyCourt/Pods-FolledoMyCourt.debug.xcconfig"; sourceTree = "<group>"; };
+		2515FD696902D00A242FE3A6 /* Pods-FolledoMyCourtTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FolledoMyCourtTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FolledoMyCourtTests/Pods-FolledoMyCourtTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5805FE4B9A211E702C18945C /* Pods_FolledoMyCourt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FolledoMyCourt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E3D0092BF9E150BE3BF0726 /* Pods-FolledoMyCourtTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FolledoMyCourtTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FolledoMyCourtTests/Pods-FolledoMyCourtTests.release.xcconfig"; sourceTree = "<group>"; };
+		8E5B92B9AFB4866225072873 /* Pods-FolledoMyCourt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FolledoMyCourt.release.xcconfig"; path = "Pods/Target Support Files/Pods-FolledoMyCourt/Pods-FolledoMyCourt.release.xcconfig"; sourceTree = "<group>"; };
+		B56B92F3BD135D294B0F8305 /* Pods_FolledoMyCourtTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FolledoMyCourtTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD06FC7220F965D80033CB6F /* FolledoMyCourt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FolledoMyCourt.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD06FC7520F965D80033CB6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CD06FC7720F965D80033CB6F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CD06FC7A20F965D80033CB6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CD06FC7C20F965DA0033CB6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CD06FC7F20F965DA0033CB6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CD06FC8120F965DA0033CB6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD06FC8620F965DA0033CB6F /* FolledoMyCourtTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FolledoMyCourtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD06FC8A20F965DA0033CB6F /* FolledoMyCourtTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolledoMyCourtTests.swift; sourceTree = "<group>"; };
+		CD06FC8C20F965DA0033CB6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD06FC9120F965DA0033CB6F /* FolledoMyCourtUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FolledoMyCourtUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD06FC9520F965DA0033CB6F /* FolledoMyCourtUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolledoMyCourtUITests.swift; sourceTree = "<group>"; };
+		CD06FC9720F965DA0033CB6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD06FCA320F965F20033CB6F /* FolledoMyCourt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FolledoMyCourt.entitlements; sourceTree = "<group>"; };
+		CD06FCA520F966000033CB6F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		CD06FCA720F9661D0033CB6F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		DA63BFF84DB6B257DBB7733A /* Pods-FolledoMyCourtUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FolledoMyCourtUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FolledoMyCourtUITests/Pods-FolledoMyCourtUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E4D1C4BB92692AAA67DAF136 /* Pods_FolledoMyCourtUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FolledoMyCourtUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E63052BC4A495B34BB92E0A2 /* Pods-FolledoMyCourtUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FolledoMyCourtUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FolledoMyCourtUITests/Pods-FolledoMyCourtUITests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CD06FC6F20F965D80033CB6F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD06FCA620F966000033CB6F /* MapKit.framework in Frameworks */,
+				CD06FCA820F9661D0033CB6F /* StoreKit.framework in Frameworks */,
+				98B7EA0B563F71BF4D725AF5 /* Pods_FolledoMyCourt.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD06FC8320F965DA0033CB6F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A1CFDD250283CDFA7BCA09A /* Pods_FolledoMyCourtTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD06FC8E20F965DA0033CB6F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE6443B9A03BA5CEF016FE57 /* Pods_FolledoMyCourtUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3F244F9F6EF52769DE53DC35 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0D0CDD6909E0E8DEDE49F065 /* Pods-FolledoMyCourt.debug.xcconfig */,
+				8E5B92B9AFB4866225072873 /* Pods-FolledoMyCourt.release.xcconfig */,
+				2515FD696902D00A242FE3A6 /* Pods-FolledoMyCourtTests.debug.xcconfig */,
+				7E3D0092BF9E150BE3BF0726 /* Pods-FolledoMyCourtTests.release.xcconfig */,
+				E63052BC4A495B34BB92E0A2 /* Pods-FolledoMyCourtUITests.debug.xcconfig */,
+				DA63BFF84DB6B257DBB7733A /* Pods-FolledoMyCourtUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CD06FC6920F965D80033CB6F = {
+			isa = PBXGroup;
+			children = (
+				CD06FC7420F965D80033CB6F /* FolledoMyCourt */,
+				CD06FC8920F965DA0033CB6F /* FolledoMyCourtTests */,
+				CD06FC9420F965DA0033CB6F /* FolledoMyCourtUITests */,
+				CD06FC7320F965D80033CB6F /* Products */,
+				CD06FCA420F966000033CB6F /* Frameworks */,
+				3F244F9F6EF52769DE53DC35 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		CD06FC7320F965D80033CB6F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CD06FC7220F965D80033CB6F /* FolledoMyCourt.app */,
+				CD06FC8620F965DA0033CB6F /* FolledoMyCourtTests.xctest */,
+				CD06FC9120F965DA0033CB6F /* FolledoMyCourtUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CD06FC7420F965D80033CB6F /* FolledoMyCourt */ = {
+			isa = PBXGroup;
+			children = (
+				CD06FCA320F965F20033CB6F /* FolledoMyCourt.entitlements */,
+				CD06FC7520F965D80033CB6F /* AppDelegate.swift */,
+				CD06FC7720F965D80033CB6F /* ViewController.swift */,
+				CD06FC7920F965D80033CB6F /* Main.storyboard */,
+				CD06FC7C20F965DA0033CB6F /* Assets.xcassets */,
+				CD06FC7E20F965DA0033CB6F /* LaunchScreen.storyboard */,
+				CD06FC8120F965DA0033CB6F /* Info.plist */,
+			);
+			path = FolledoMyCourt;
+			sourceTree = "<group>";
+		};
+		CD06FC8920F965DA0033CB6F /* FolledoMyCourtTests */ = {
+			isa = PBXGroup;
+			children = (
+				CD06FC8A20F965DA0033CB6F /* FolledoMyCourtTests.swift */,
+				CD06FC8C20F965DA0033CB6F /* Info.plist */,
+			);
+			path = FolledoMyCourtTests;
+			sourceTree = "<group>";
+		};
+		CD06FC9420F965DA0033CB6F /* FolledoMyCourtUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CD06FC9520F965DA0033CB6F /* FolledoMyCourtUITests.swift */,
+				CD06FC9720F965DA0033CB6F /* Info.plist */,
+			);
+			path = FolledoMyCourtUITests;
+			sourceTree = "<group>";
+		};
+		CD06FCA420F966000033CB6F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CD06FCA720F9661D0033CB6F /* StoreKit.framework */,
+				CD06FCA520F966000033CB6F /* MapKit.framework */,
+				5805FE4B9A211E702C18945C /* Pods_FolledoMyCourt.framework */,
+				B56B92F3BD135D294B0F8305 /* Pods_FolledoMyCourtTests.framework */,
+				E4D1C4BB92692AAA67DAF136 /* Pods_FolledoMyCourtUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CD06FC7120F965D80033CB6F /* FolledoMyCourt */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD06FC9A20F965DA0033CB6F /* Build configuration list for PBXNativeTarget "FolledoMyCourt" */;
+			buildPhases = (
+				E337320DFCE2E1FCB4CDD21D /* [CP] Check Pods Manifest.lock */,
+				CD06FC6E20F965D80033CB6F /* Sources */,
+				CD06FC6F20F965D80033CB6F /* Frameworks */,
+				CD06FC7020F965D80033CB6F /* Resources */,
+				8D588A9BDA37819EF36B4C0C /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FolledoMyCourt;
+			productName = FolledoMyCourt;
+			productReference = CD06FC7220F965D80033CB6F /* FolledoMyCourt.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CD06FC8520F965DA0033CB6F /* FolledoMyCourtTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD06FC9D20F965DA0033CB6F /* Build configuration list for PBXNativeTarget "FolledoMyCourtTests" */;
+			buildPhases = (
+				5A3DCA82217D86CD428ED0ED /* [CP] Check Pods Manifest.lock */,
+				CD06FC8220F965DA0033CB6F /* Sources */,
+				CD06FC8320F965DA0033CB6F /* Frameworks */,
+				CD06FC8420F965DA0033CB6F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CD06FC8820F965DA0033CB6F /* PBXTargetDependency */,
+			);
+			name = FolledoMyCourtTests;
+			productName = FolledoMyCourtTests;
+			productReference = CD06FC8620F965DA0033CB6F /* FolledoMyCourtTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CD06FC9020F965DA0033CB6F /* FolledoMyCourtUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD06FCA020F965DA0033CB6F /* Build configuration list for PBXNativeTarget "FolledoMyCourtUITests" */;
+			buildPhases = (
+				7CDB1F7BE6978BBF25EBF49F /* [CP] Check Pods Manifest.lock */,
+				CD06FC8D20F965DA0033CB6F /* Sources */,
+				CD06FC8E20F965DA0033CB6F /* Frameworks */,
+				CD06FC8F20F965DA0033CB6F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CD06FC9320F965DA0033CB6F /* PBXTargetDependency */,
+			);
+			name = FolledoMyCourtUITests;
+			productName = FolledoMyCourtUITests;
+			productReference = CD06FC9120F965DA0033CB6F /* FolledoMyCourtUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CD06FC6A20F965D80033CB6F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Samuel Folledo";
+				TargetAttributes = {
+					CD06FC7120F965D80033CB6F = {
+						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.DataProtection = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+					CD06FC8520F965DA0033CB6F = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = CD06FC7120F965D80033CB6F;
+					};
+					CD06FC9020F965DA0033CB6F = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = CD06FC7120F965D80033CB6F;
+					};
+				};
+			};
+			buildConfigurationList = CD06FC6D20F965D80033CB6F /* Build configuration list for PBXProject "FolledoMyCourt" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CD06FC6920F965D80033CB6F;
+			productRefGroup = CD06FC7320F965D80033CB6F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CD06FC7120F965D80033CB6F /* FolledoMyCourt */,
+				CD06FC8520F965DA0033CB6F /* FolledoMyCourtTests */,
+				CD06FC9020F965DA0033CB6F /* FolledoMyCourtUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CD06FC7020F965D80033CB6F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD06FC8020F965DA0033CB6F /* LaunchScreen.storyboard in Resources */,
+				CD06FC7D20F965DA0033CB6F /* Assets.xcassets in Resources */,
+				CD06FC7B20F965D80033CB6F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD06FC8420F965DA0033CB6F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD06FC8F20F965DA0033CB6F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5A3DCA82217D86CD428ED0ED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FolledoMyCourtTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7CDB1F7BE6978BBF25EBF49F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FolledoMyCourtUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D588A9BDA37819EF36B4C0C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FolledoMyCourt/Pods-FolledoMyCourt-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FolledoMyCourt/Pods-FolledoMyCourt-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E337320DFCE2E1FCB4CDD21D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FolledoMyCourt-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CD06FC6E20F965D80033CB6F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD06FC7820F965D80033CB6F /* ViewController.swift in Sources */,
+				CD06FC7620F965D80033CB6F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD06FC8220F965DA0033CB6F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD06FC8B20F965DA0033CB6F /* FolledoMyCourtTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CD06FC8D20F965DA0033CB6F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD06FC9620F965DA0033CB6F /* FolledoMyCourtUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CD06FC8820F965DA0033CB6F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD06FC7120F965D80033CB6F /* FolledoMyCourt */;
+			targetProxy = CD06FC8720F965DA0033CB6F /* PBXContainerItemProxy */;
+		};
+		CD06FC9320F965DA0033CB6F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CD06FC7120F965D80033CB6F /* FolledoMyCourt */;
+			targetProxy = CD06FC9220F965DA0033CB6F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CD06FC7920F965D80033CB6F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CD06FC7A20F965D80033CB6F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CD06FC7E20F965DA0033CB6F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CD06FC7F20F965DA0033CB6F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CD06FC9820F965DA0033CB6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CD06FC9920F965DA0033CB6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CD06FC9B20F965DA0033CB6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D0CDD6909E0E8DEDE49F065 /* Pods-FolledoMyCourt.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FolledoMyCourt/FolledoMyCourt.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8KSKUH7X29;
+				INFOPLIST_FILE = FolledoMyCourt/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.FolledoSwag.FolledoMyCourt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CD06FC9C20F965DA0033CB6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E5B92B9AFB4866225072873 /* Pods-FolledoMyCourt.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FolledoMyCourt/FolledoMyCourt.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8KSKUH7X29;
+				INFOPLIST_FILE = FolledoMyCourt/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.FolledoSwag.FolledoMyCourt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CD06FC9E20F965DA0033CB6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2515FD696902D00A242FE3A6 /* Pods-FolledoMyCourtTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8KSKUH7X29;
+				INFOPLIST_FILE = FolledoMyCourtTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.FolledoSwag.FolledoMyCourtTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FolledoMyCourt.app/FolledoMyCourt";
+			};
+			name = Debug;
+		};
+		CD06FC9F20F965DA0033CB6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E3D0092BF9E150BE3BF0726 /* Pods-FolledoMyCourtTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8KSKUH7X29;
+				INFOPLIST_FILE = FolledoMyCourtTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.FolledoSwag.FolledoMyCourtTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FolledoMyCourt.app/FolledoMyCourt";
+			};
+			name = Release;
+		};
+		CD06FCA120F965DA0033CB6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E63052BC4A495B34BB92E0A2 /* Pods-FolledoMyCourtUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8KSKUH7X29;
+				INFOPLIST_FILE = FolledoMyCourtUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.FolledoSwag.FolledoMyCourtUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FolledoMyCourt;
+			};
+			name = Debug;
+		};
+		CD06FCA220F965DA0033CB6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA63BFF84DB6B257DBB7733A /* Pods-FolledoMyCourtUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8KSKUH7X29;
+				INFOPLIST_FILE = FolledoMyCourtUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.FolledoSwag.FolledoMyCourtUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FolledoMyCourt;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CD06FC6D20F965D80033CB6F /* Build configuration list for PBXProject "FolledoMyCourt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD06FC9820F965DA0033CB6F /* Debug */,
+				CD06FC9920F965DA0033CB6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CD06FC9A20F965DA0033CB6F /* Build configuration list for PBXNativeTarget "FolledoMyCourt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD06FC9B20F965DA0033CB6F /* Debug */,
+				CD06FC9C20F965DA0033CB6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CD06FC9D20F965DA0033CB6F /* Build configuration list for PBXNativeTarget "FolledoMyCourtTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD06FC9E20F965DA0033CB6F /* Debug */,
+				CD06FC9F20F965DA0033CB6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CD06FCA020F965DA0033CB6F /* Build configuration list for PBXNativeTarget "FolledoMyCourtUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD06FCA120F965DA0033CB6F /* Debug */,
+				CD06FCA220F965DA0033CB6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CD06FC6A20F965D80033CB6F /* Project object */;
+}
