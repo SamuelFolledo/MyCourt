@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import FBSDKCoreKit
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,11 +20,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+    //for Facebook Login
+        //[[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions]; //Objective-C version
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions) //Swift 3&4 version
+        
+    //for Firebase
         FirebaseApp.configure() //1
         
+    //for AdMob
         GADMobileAds.configure(withApplicationID: "ca-app-pub-7199410801226990~1516633985") //AdMob //2mins
         
         return true
+    }
+    
+//for Facebook Login
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        //let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation]) //Swift 4 version
+        
+        let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options) //FBLogin //10mins
+        
+        return handled
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

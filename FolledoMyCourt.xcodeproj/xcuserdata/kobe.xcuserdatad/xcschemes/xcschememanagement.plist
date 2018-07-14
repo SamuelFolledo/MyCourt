@@ -7,7 +7,25 @@
 		<key>FolledoMyCourt.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>CD06FC7120F965D80033CB6F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CD06FC8520F965DA0033CB6F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CD06FC9020F965DA0033CB6F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
