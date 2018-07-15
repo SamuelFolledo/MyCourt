@@ -14,7 +14,7 @@ class CreateGameViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .black
-        navigationItem.title = "Create Game"
+//        navigationItem.title = "Create Game"
         
     }
 

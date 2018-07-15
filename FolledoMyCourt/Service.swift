@@ -15,15 +15,16 @@ class Service {
     static let buttonBackgroundColorSignInAnonymously = UIColor(red: 88, green: 86, blue: 214, alpha: 1)
     static let buttonCornerRadius: CGFloat = 7
     
-//showAlert
+    //showAlert
     static func showAlert(on: UIViewController, style: UIAlertControllerStyle, title: String?, message: String?, actions: [UIAlertAction] = [UIAlertAction(title: "OK", style: .default, handler: nil)], completion: (() -> Swift.Void)? = nil ) { //Signin Anonymously //30mins
         let alert = UIAlertController(title: title, message: message, preferredStyle: style)
-//        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil) //dismiss action
-//        alert.addAction(action)
+        //        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil) //dismiss action
+        //        alert.addAction(action)
         for action in actions { //to have as much actions as possible, then we loop through it
             alert.addAction(action)
         }
         on.present(alert, animated: true, completion: completion) //we add a completion, so we can do something when showAlert is presented
     }
+    
     
 }

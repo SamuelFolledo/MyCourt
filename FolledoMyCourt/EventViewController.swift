@@ -14,7 +14,7 @@ class EventViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .blue
-        navigationItem.title = "Events"
+//        navigationItem.title = "Events"
     }
 
 

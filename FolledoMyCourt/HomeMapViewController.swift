@@ -11,11 +11,12 @@ import UIKit
 class HomeMapViewController: UIViewController {
 
     lazy var profileButton: UIButton = {
-        var button = UIButton(type: .custom)
+        var button = UIButton(type: .system)
         //button.backgroundImage(for: .normal) = UIImage(named: "user")
+        //button.setTitle("Hey", for: .normal)
         button.setImage(UIImage(named: "user"), for: .normal)
-        button.layer.masksToBounds = true //this enables us to have a corner radius
-        button.layer.cornerRadius = Service.buttonCornerRadius
+        //button.layer.masksToBounds = true //this enables us to have a corner radius
+        //button.layer.cornerRadius = Service.buttonCornerRadius
         button.addTarget(self, action: #selector(profileButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -27,15 +28,19 @@ class HomeMapViewController: UIViewController {
         navigationItem.title = "Map"
         
         view.addSubview(profileButton)
-        profileButton.center = self.view.center
+        
+        profileButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: nil, bottom: nil, trailing: view.safeAreaLayoutGuide.trailingAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: -10), size: .init(width: 100, height: 100))
+
         
     }
     
     @objc func profileButtonTapped() {
         let userProfileViewController = UserProfileViewController()
+        userProfileViewController.modalTransitionStyle = .coverVertical
         self.present(userProfileViewController, animated: true, completion: nil)
     }
     
 
 
 }
+

@@ -14,7 +14,7 @@ class SwipeUsersViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .yellow
-        navigationItem.title = "Swipe"
+//        navigationItem.title = "Swipe"
         
     }
 

@@ -14,11 +14,15 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         view.backgroundColor = .green
+        
+        
+        
         checkLoggedInUserStatus()
         setupViewController()
-    
+        
+        self.selectedIndex = 1
+        
     }
     
     fileprivate func checkLoggedInUserStatus() {
@@ -62,11 +66,11 @@ class MainTabBarController: UITabBarController {
             item.imageInsets = UIEdgeInsetsMake(4, 0, -4, 0) //top, left, bottom, right
         }
     }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.selectedIndex = 1
-    }
+//
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//        self.selectedIndex = 1
+//    }
 
 
 }
