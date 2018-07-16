@@ -55,7 +55,7 @@ class UserProfileViewController: UIViewController {
             try Auth.auth().signOut()
             let loginViewController = LoginViewController()
             let loginNavigationController = UINavigationController(rootViewController: loginViewController)
-            loginViewController.modalTransitionStyle = .partialCurl
+            loginViewController.modalTransitionStyle = .crossDissolve
             self.present(loginNavigationController, animated: true, completion: nil)
         } catch let error {
             print(error)

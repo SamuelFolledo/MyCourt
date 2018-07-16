@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        
     //for Facebook Login
         //[[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions]; //Objective-C version
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions) //Swift 3&4 version
@@ -27,8 +28,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //for Firebase
         FirebaseApp.configure() //1
         
+        
     //for AdMob
         GADMobileAds.configure(withApplicationID: "ca-app-pub-7199410801226990~1516633985") //AdMob //2mins
+        
+        window = UIWindow(frame: UIScreen.main.bounds) //
+        window?.makeKeyAndVisible() //
+        window?.rootViewController = MainTabBarController () //makes MainTabVC the rootView
         
         return true
     }

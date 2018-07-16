@@ -87,11 +87,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <items>
                                     <navigationItem id="pVe-Sn-buf">
-                                        <barButtonItem key="leftBarButtonItem" image="user" id="87W-NZ-dzT">
-                                            <connections>
-                                                <action selector="homeMapProfileButtonTapped:" destination="P1I-c7-UFX" id="6n0-f8-ZSM"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <barButtonItem key="leftBarButtonItem" image="user" id="87W-NZ-dzT"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -123,10 +119,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="rBm-dH-F5O"/>
                     <connections>
-                        <outlet property="adBannerView" destination="EDf-jU-ApO" id="pFx-GE-23g"/>
-                        <outlet property="homeMapNavBar" destination="khF-vz-f9J" id="fcA-7y-3fJ"/>
-                        <outlet property="homeMapProfileButton" destination="87W-NZ-dzT" id="Gzt-7Z-q8M"/>
-                        <outlet property="mapView" destination="P8F-4T-y5e" id="Ke6-lf-nCn"/>
                         <segue destination="Joa-JU-kp0" kind="presentation" identifier="userProfileSegue" id="Ib1-kv-Llx"/>
                     </connections>
                 </viewController>
@@ -158,21 +150,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="User Profile" id="BY6-Bq-HI1">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="J3B-dn-vCw">
-                            <connections>
-                                <action selector="backButtonTapped:" destination="M2a-ET-kRH" id="cC7-6Z-Ysm"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="OPU-y4-0nv">
-                            <connections>
-                                <action selector="saveButtonTapped:" destination="M2a-ET-kRH" id="4gB-e3-rjn"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="J3B-dn-vCw"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="OPU-y4-0nv"/>
                     </navigationItem>
-                    <connections>
-                        <outlet property="saveButton" destination="OPU-y4-0nv" id="Kkr-nF-bzd"/>
-                        <outlet property="userProfileNavItem" destination="BY6-Bq-HI1" id="74f-WX-n14"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eMQ-o2-F6R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

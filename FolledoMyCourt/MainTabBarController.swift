@@ -61,16 +61,11 @@ class MainTabBarController: UITabBarController {
     
         viewControllers = [createGameNavigationController, homeMapNavigationController, swipeUsersNavigationController, eventNavigationController]
         
-        guard let items = tabBar.items else {return}
+        guard let items = tabBar.items else { return }
         for item in items {
             item.imageInsets = UIEdgeInsetsMake(4, 0, -4, 0) //top, left, bottom, right
         }
     }
-//
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        self.selectedIndex = 1
-//    }
-
+    
 
 }
