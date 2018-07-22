@@ -11,22 +11,26 @@
 		98B7EA0B563F71BF4D725AF5 /* Pods_FolledoMyCourt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5805FE4B9A211E702C18945C /* Pods_FolledoMyCourt.framework */; };
 		BE6443B9A03BA5CEF016FE57 /* Pods_FolledoMyCourtUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D1C4BB92692AAA67DAF136 /* Pods_FolledoMyCourtUITests.framework */; };
 		CD02E52D20FA91BA00A6ECC3 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD02E52C20FA91BA00A6ECC3 /* Service.swift */; };
-		CD037D8520F99AB60008EB97 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD037D8420F99AB50008EB97 /* GoogleService-Info.plist */; };
 		CD037D8920F9A4F40008EB97 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD037D8820F9A4F40008EB97 /* MainTabBarController.swift */; };
 		CD037D8B20F9A5B50008EB97 /* HomeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD037D8A20F9A5B50008EB97 /* HomeMapViewController.swift */; };
-		CD037D8D20F9A5FB0008EB97 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD037D8C20F9A5FB0008EB97 /* UserProfileViewController.swift */; };
+		CD037D8D20F9A5FB0008EB97 /* UserProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD037D8C20F9A5FB0008EB97 /* UserProfileTableViewController.swift */; };
 		CD037D8F20F9A6120008EB97 /* SwipeUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD037D8E20F9A6120008EB97 /* SwipeUsersViewController.swift */; };
 		CD037D9120F9A9AA0008EB97 /* CreateGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD037D9020F9A9AA0008EB97 /* CreateGameViewController.swift */; };
 		CD037D9320F9AC480008EB97 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD037D9220F9AC480008EB97 /* EventViewController.swift */; };
+		CD04B19520FEA3B200FB8161 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD04B19420FEA3B200FB8161 /* LoginViewController.swift */; };
 		CD06FC7620F965D80033CB6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06FC7520F965D80033CB6F /* AppDelegate.swift */; };
-		CD06FC7820F965D80033CB6F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06FC7720F965D80033CB6F /* LoginViewController.swift */; };
-		CD06FC7B20F965D80033CB6F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD06FC7920F965D80033CB6F /* Main.storyboard */; };
 		CD06FC7D20F965DA0033CB6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD06FC7C20F965DA0033CB6F /* Assets.xcassets */; };
 		CD06FC8020F965DA0033CB6F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD06FC7E20F965DA0033CB6F /* LaunchScreen.storyboard */; };
 		CD06FC8B20F965DA0033CB6F /* FolledoMyCourtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06FC8A20F965DA0033CB6F /* FolledoMyCourtTests.swift */; };
 		CD06FC9620F965DA0033CB6F /* FolledoMyCourtUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06FC9520F965DA0033CB6F /* FolledoMyCourtUITests.swift */; };
 		CD06FCA620F966000033CB6F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD06FCA520F966000033CB6F /* MapKit.framework */; };
 		CD06FCA820F9661D0033CB6F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD06FCA720F9661D0033CB6F /* StoreKit.framework */; };
+		CDB0E79F21042C9200194DD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDB0E79E21042C9200194DD0 /* GoogleService-Info.plist */; };
+		CDFEA38E20FE6D5D000824A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDFEA38D20FE6D5D000824A6 /* Main.storyboard */; };
+		CDFEA39020FE6D75000824A6 /* HomeMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDFEA38F20FE6D75000824A6 /* HomeMap.storyboard */; };
+		CDFEA39220FE7406000824A6 /* CreateGame.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDFEA39120FE7406000824A6 /* CreateGame.storyboard */; };
+		CDFEA39420FE741C000824A6 /* SwipeUsers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDFEA39320FE741C000824A6 /* SwipeUsers.storyboard */; };
+		CDFEA39620FE7459000824A6 /* Events.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDFEA39520FE7459000824A6 /* Events.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,17 +58,15 @@
 		8E5B92B9AFB4866225072873 /* Pods-FolledoMyCourt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FolledoMyCourt.release.xcconfig"; path = "Pods/Target Support Files/Pods-FolledoMyCourt/Pods-FolledoMyCourt.release.xcconfig"; sourceTree = "<group>"; };
 		B56B92F3BD135D294B0F8305 /* Pods_FolledoMyCourtTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FolledoMyCourtTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD02E52C20FA91BA00A6ECC3 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		CD037D8420F99AB50008EB97 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CD037D8820F9A4F40008EB97 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		CD037D8A20F9A5B50008EB97 /* HomeMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapViewController.swift; sourceTree = "<group>"; };
-		CD037D8C20F9A5FB0008EB97 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		CD037D8C20F9A5FB0008EB97 /* UserProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewController.swift; sourceTree = "<group>"; };
 		CD037D8E20F9A6120008EB97 /* SwipeUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeUsersViewController.swift; sourceTree = "<group>"; };
 		CD037D9020F9A9AA0008EB97 /* CreateGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameViewController.swift; sourceTree = "<group>"; };
 		CD037D9220F9AC480008EB97 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		CD04B19420FEA3B200FB8161 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CD06FC7220F965D80033CB6F /* FolledoMyCourt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FolledoMyCourt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD06FC7520F965D80033CB6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CD06FC7720F965D80033CB6F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		CD06FC7A20F965D80033CB6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CD06FC7C20F965DA0033CB6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD06FC7F20F965DA0033CB6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD06FC8120F965DA0033CB6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -77,6 +79,12 @@
 		CD06FCA320F965F20033CB6F /* FolledoMyCourt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FolledoMyCourt.entitlements; sourceTree = "<group>"; };
 		CD06FCA520F966000033CB6F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CD06FCA720F9661D0033CB6F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		CDB0E79E21042C9200194DD0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CDFEA38D20FE6D5D000824A6 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		CDFEA38F20FE6D75000824A6 /* HomeMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeMap.storyboard; sourceTree = "<group>"; };
+		CDFEA39120FE7406000824A6 /* CreateGame.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateGame.storyboard; sourceTree = "<group>"; };
+		CDFEA39320FE741C000824A6 /* SwipeUsers.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SwipeUsers.storyboard; sourceTree = "<group>"; };
+		CDFEA39520FE7459000824A6 /* Events.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Events.storyboard; sourceTree = "<group>"; };
 		DA63BFF84DB6B257DBB7733A /* Pods-FolledoMyCourtUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FolledoMyCourtUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FolledoMyCourtUITests/Pods-FolledoMyCourtUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E4D1C4BB92692AAA67DAF136 /* Pods_FolledoMyCourtUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FolledoMyCourtUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E63052BC4A495B34BB92E0A2 /* Pods-FolledoMyCourtUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FolledoMyCourtUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FolledoMyCourtUITests/Pods-FolledoMyCourtUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -153,17 +161,16 @@
 				CD06FCA320F965F20033CB6F /* FolledoMyCourt.entitlements */,
 				CD06FC7520F965D80033CB6F /* AppDelegate.swift */,
 				CD02E52C20FA91BA00A6ECC3 /* Service.swift */,
-				CD06FC7720F965D80033CB6F /* LoginViewController.swift */,
-				CD037D8C20F9A5FB0008EB97 /* UserProfileViewController.swift */,
-				CD06FC7920F965D80033CB6F /* Main.storyboard */,
+				CD04B19420FEA3B200FB8161 /* LoginViewController.swift */,
 				CD037D8820F9A4F40008EB97 /* MainTabBarController.swift */,
-				CD037D9020F9A9AA0008EB97 /* CreateGameViewController.swift */,
+				CD037D8C20F9A5FB0008EB97 /* UserProfileTableViewController.swift */,
 				CD037D8A20F9A5B50008EB97 /* HomeMapViewController.swift */,
+				CD037D9020F9A9AA0008EB97 /* CreateGameViewController.swift */,
 				CD037D8E20F9A6120008EB97 /* SwipeUsersViewController.swift */,
 				CD037D9220F9AC480008EB97 /* EventViewController.swift */,
+				CDFEA38C20FE6CC3000824A6 /* Storyboards */,
 				CD06FC7C20F965DA0033CB6F /* Assets.xcassets */,
-				CD06FC7E20F965DA0033CB6F /* LaunchScreen.storyboard */,
-				CD037D8420F99AB50008EB97 /* GoogleService-Info.plist */,
+				CDB0E79E21042C9200194DD0 /* GoogleService-Info.plist */,
 				CD06FC8120F965DA0033CB6F /* Info.plist */,
 			);
 			path = FolledoMyCourt;
@@ -197,6 +204,19 @@
 				E4D1C4BB92692AAA67DAF136 /* Pods_FolledoMyCourtUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CDFEA38C20FE6CC3000824A6 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				CD06FC7E20F965DA0033CB6F /* LaunchScreen.storyboard */,
+				CDFEA38D20FE6D5D000824A6 /* Main.storyboard */,
+				CDFEA38F20FE6D75000824A6 /* HomeMap.storyboard */,
+				CDFEA39120FE7406000824A6 /* CreateGame.storyboard */,
+				CDFEA39320FE741C000824A6 /* SwipeUsers.storyboard */,
+				CDFEA39520FE7459000824A6 /* Events.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,9 +348,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD06FC8020F965DA0033CB6F /* LaunchScreen.storyboard in Resources */,
-				CD037D8520F99AB60008EB97 /* GoogleService-Info.plist in Resources */,
+				CDB0E79F21042C9200194DD0 /* GoogleService-Info.plist in Resources */,
+				CDFEA39420FE741C000824A6 /* SwipeUsers.storyboard in Resources */,
+				CDFEA39020FE6D75000824A6 /* HomeMap.storyboard in Resources */,
 				CD06FC7D20F965DA0033CB6F /* Assets.xcassets in Resources */,
-				CD06FC7B20F965D80033CB6F /* Main.storyboard in Resources */,
+				CDFEA39620FE7459000824A6 /* Events.storyboard in Resources */,
+				CDFEA39220FE7406000824A6 /* CreateGame.storyboard in Resources */,
+				CDFEA38E20FE6D5D000824A6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,10 +472,10 @@
 			files = (
 				CD037D9120F9A9AA0008EB97 /* CreateGameViewController.swift in Sources */,
 				CD037D8B20F9A5B50008EB97 /* HomeMapViewController.swift in Sources */,
-				CD037D8D20F9A5FB0008EB97 /* UserProfileViewController.swift in Sources */,
-				CD06FC7820F965D80033CB6F /* LoginViewController.swift in Sources */,
+				CD037D8D20F9A5FB0008EB97 /* UserProfileTableViewController.swift in Sources */,
 				CD06FC7620F965D80033CB6F /* AppDelegate.swift in Sources */,
 				CD02E52D20FA91BA00A6ECC3 /* Service.swift in Sources */,
+				CD04B19520FEA3B200FB8161 /* LoginViewController.swift in Sources */,
 				CD037D9320F9AC480008EB97 /* EventViewController.swift in Sources */,
 				CD037D8F20F9A6120008EB97 /* SwipeUsersViewController.swift in Sources */,
 				CD037D8920F9A4F40008EB97 /* MainTabBarController.swift in Sources */,
@@ -490,14 +514,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CD06FC7920F965D80033CB6F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CD06FC7A20F965D80033CB6F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CD06FC7E20F965DA0033CB6F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -10,33 +10,57 @@ import UIKit
 import FirebaseAuth
 
 class MainTabBarController: UITabBarController {
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .green
         
-        
-        
-        checkLoggedInUserStatus()
-        setupViewController()
+        //view.backgroundColor = .green
         
         self.selectedIndex = 1
+//        setupViewController()
+        
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        checkLoggedInUserStatus()
+    }
+    
+    
+    private func logoutTapped() {
+        do {
+            try Auth.auth().signOut()
+            let cookies = HTTPCookieStorage.shared
+            let facebookCookies = cookies.cookies(for: URL(string: "https://facebook.com/")!)
+            for cookie in facebookCookies! {
+                cookies.deleteCookie(cookie )
+            }
+            //self.present(loginViewController, animated: true, completion: nil)
+            self.performSegue(withIdentifier: "Logout", sender: nil)
+        } catch let error {
+            Service.showAlert(on: self, style: .alert, title: "Logout Error", message: error.localizedDescription)
+            //print(error)
+        }
+    }
+    
     fileprivate func checkLoggedInUserStatus() {
+        
         if Auth.auth().currentUser == nil {
             DispatchQueue.main.async {
-                let loginViewController = LoginViewController()
-                let loginNavigationController = UINavigationController(rootViewController: loginViewController)
-                self.present(loginNavigationController, animated: true, completion: nil)
-                return
+                print("No current logged in user... Logging out")
+                //self.logoutTapped()
+                self.performSegue(withIdentifier: "mainLogoutSegue", sender: nil)
             }
         }
     }
     
     fileprivate func setupViewController() {
+        //let storyBoard = Main.storyboard.instantiateInitialViewController()
+        
+        
         let createGameViewController = CreateGameViewController()
         let createGameNavigationController = UINavigationController(rootViewController: createGameViewController) //puts the VC as the rootVC of this navigationController
         createGameNavigationController.tabBarItem.image = UIImage(named: "basketball")?.withRenderingMode(.alwaysTemplate) //assigns an image of the tabBar

@@ -30,11 +30,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
     //for AdMob
-        GADMobileAds.configure(withApplicationID: "ca-app-pub-7199410801226990~1516633985") //AdMob //2mins
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-7199410801226990~1516633985") //AdMob //2mins "MY APP's ID"
+        let request = GADRequest()
+        request.testDevices = []
         
+        //let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "KobeVC") as UIViewController
+        let viewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()! //instatiate/call the Main.storyboard's initial VC
+
         window = UIWindow(frame: UIScreen.main.bounds) //
-        window?.makeKeyAndVisible() //
-        window?.rootViewController = MainTabBarController () //makes MainTabVC the rootView
+        window?.makeKeyAndVisible() //makes the window visible
+        window?.rootViewController = viewController //makes MainTabVC the rootView
         
         return true
     }
