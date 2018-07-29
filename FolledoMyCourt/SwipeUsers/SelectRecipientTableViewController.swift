@@ -68,7 +68,7 @@ class SelectRecipientTableViewController: UITableViewController {
             Database.database().reference().child("users").child(user.uid).child("snaps").childByAutoId().setValue(snapDictionary) //SC3 //38mins the .child(user.uid), now we know who we're sending to. Then go to the "snaps" child, then on this we want to do a child by autoID to say go ahead and pick a random thing for us and set the value for this as our snapDictionary
             
             //****  the last thing we want to do, is once the user has successfully sent you the snap, we want to pop them back to the original VC  ******
-            navigationController?.popToRootViewController(animated: true) //SC3 //39mins
+            navigationController?.popToRootViewController(animated: true) //SC3 //40mins
         }
         
     }
