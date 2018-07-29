@@ -22,7 +22,7 @@ class UserProfileTableViewController: UITableViewController {
         
         view.backgroundColor = .red
         
-        backButton.title = "Return"
+        //backButton.title = "Return"
         
         
     }
@@ -38,10 +38,10 @@ class UserProfileTableViewController: UITableViewController {
 //            }
             //self.present(loginViewController, animated: true, completion: nil)
             //self.performSegue(withIdentifier: "Logout", sender: nil)
-            if let viewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") {
-                print("LOGGING OUTTTTTTTT")
-                self.present(viewController, animated: true, completion: nil)
-            }
+            let viewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
+            print("LOGGING OUTTTTTTTT")
+            self.present(viewController, animated: true, completion: nil)
+            
         } catch let error {
             Service.showAlert(on: self, style: .alert, title: "Logout Error", message: error.localizedDescription)
             //print(error)
@@ -64,14 +64,14 @@ class UserProfileTableViewController: UITableViewController {
     
     
     
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 1
-//    }
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "userCellIdentifier", for: indexPath)
-//        return cell
-//    }
-//    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "userCellIdentifier", for: indexPath)
+        return cell
+    }
+    
     
     
 }

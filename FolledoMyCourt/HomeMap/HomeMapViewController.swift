@@ -14,6 +14,9 @@ class HomeMapViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var profileButton: UIButton!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    @IBOutlet weak var visualEffect: UIVisualEffectView!
     
     
     //var mapView = MKMapView()
@@ -67,34 +70,33 @@ class HomeMapViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation() //3 //8mins
     }
     
-    
-    @objc func standard(_ sender: Any) {
-        mapView.mapType = MKMapType.standard
-    }
-    
-    @objc func satellite(_ sender: Any) {
-        mapView.mapType = MKMapType.satellite
-    }
-    
-    @objc func hybrid(_ sender: Any) {
-        mapView.mapType = MKMapType.hybrid
-    }
-    
-    @objc func locateMe(_ sender: Any) {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        
-        mapView.showsUserLocation = true
-    }
+//
+//    @objc func standard(_ sender: Any) {
+//        mapView.mapType = MKMapType.standard
+//    }
+//
+//    @objc func satellite(_ sender: Any) {
+//        mapView.mapType = MKMapType.satellite
+//    }
+//
+//    @objc func hybrid(_ sender: Any) {
+//        mapView.mapType = MKMapType.hybrid
+//    }
+//
+//    @objc func locateMe(_ sender: Any) {
+//        locationManager.delegate = self
+//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        locationManager.requestWhenInUseAuthorization()
+//        locationManager.startUpdatingLocation()
+//
+//        mapView.showsUserLocation = true
+//    }
     
 //didUpdateLocations
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) { //3 //12mins
         if let coord = manager.location?.coordinate { //3 //12mins
             let center = CLLocationCoordinate2D(latitude: coord.latitude, longitude: coord.longitude) //3 //12mins
             userLocation = center //3 //23mins
-            
             
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)) //3 //13mins how big you want the region to be
             mapView.setRegion(region, animated: true) //3 //13mins set region

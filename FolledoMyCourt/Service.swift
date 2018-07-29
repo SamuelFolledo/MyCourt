@@ -26,6 +26,16 @@ class Service {
         on.present(alert, animated: true, completion: completion) //we add a completion, so we can do something when showAlert is presented
     }
     
+//presentAlert
+    static func presentAlert(on: UIViewController, title: String, message: String) {
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+            alertVC.dismiss(animated: true, completion: nil)
+        }
+        alertVC.addAction(okAction)
+        on.present(alertVC, animated: true, completion: nil)
+    }
+    
     
 }
 

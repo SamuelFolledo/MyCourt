@@ -9,7 +9,7 @@
 
 import UIKit
 import FirebaseAuth //2 //10mins
-//import Firebase
+import FirebaseDatabase
 import FBSDKCoreKit
 import FBSDKLoginKit
 
@@ -60,7 +60,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             if let user = user {
                 print("+++++++++Successfully signed in anoynmously with: ", user.user)
                 //            self.dismiss(animated: true, completion: nil)
-                self.performSegue(withIdentifier: "mainTabBarControllerSegue", sender: nil)
+                self.performSegue(withIdentifier: "loginToMainTabSegue", sender: nil)
             }
         }
         
@@ -160,7 +160,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                             if let error = error {
                                 Service.showAlert(on: self, style: .alert, title: "Signup Error", message: error.localizedDescription)
                             } else { //signup was successful
-                                self.performSegue(withIdentifier: "mainTabBarControllerSegue", sender: nil)
+                                
+                                if let user = user { //3 //24mins
+                                    Database.database().reference().child("users").child(user.user.uid).child("email").setValue(user.user.email) //SC3 //23mins - 24mins //first name that we want is "users". Then give it a child of the user's uid (unique identifier), then we specify what their child is so give it a child "email" and set its value by the user's email //In short, this adds this particular user in the app
+                                    
+                                    self.performSegue(withIdentifier: "loginToMainTabSegue", sender: nil)
+                                }
                             }
                         }
                     }
@@ -170,7 +175,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                             let okAction = UIAlertAction(title: "Ok", style: .default)
                             Service.showAlert(on: self, style: .alert, title: "Login Error", message: error.localizedDescription, actions: [okAction])
                         } else { //signup was successful
-                            self.performSegue(withIdentifier: "mainTabBarControllerSegue", sender: nil)
+                            self.performSegue(withIdentifier: "loginToMainTabSegue", sender: nil)
                         }
                     }
                 }

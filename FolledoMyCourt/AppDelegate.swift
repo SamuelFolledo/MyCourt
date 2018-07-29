@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         request.testDevices = []
         
         //let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "KobeVC") as UIViewController
-        let viewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()! //instatiate/call the Main.storyboard's initial VC
+        let viewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabBarController") //instatiate/call the Main.storyboard's initial VC
 
         window = UIWindow(frame: UIScreen.main.bounds) //
         window?.makeKeyAndVisible() //makes the window visible

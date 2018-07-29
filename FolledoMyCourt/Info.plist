@@ -76,6 +76,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Please allow MyCourt to use camera in order to take snap and send to a user</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Please allow MyCourt to user photos from the PhotoLibrary in order to save time and choose an image to upload instead of taking a picture</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

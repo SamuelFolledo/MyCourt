@@ -16,8 +16,9 @@
 		CD037D8D20F9A5FB0008EB97 /* UserProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD037D8C20F9A5FB0008EB97 /* UserProfileTableViewController.swift */; };
 		CD037D8F20F9A6120008EB97 /* SwipeUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD037D8E20F9A6120008EB97 /* SwipeUsersViewController.swift */; };
 		CD037D9120F9A9AA0008EB97 /* CreateGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD037D9020F9A9AA0008EB97 /* CreateGameViewController.swift */; };
-		CD037D9320F9AC480008EB97 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD037D9220F9AC480008EB97 /* EventViewController.swift */; };
+		CD037D9320F9AC480008EB97 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD037D9220F9AC480008EB97 /* EventsViewController.swift */; };
 		CD04B19520FEA3B200FB8161 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD04B19420FEA3B200FB8161 /* LoginViewController.swift */; };
+		CD06A90D210C23090086954A /* SelectRecipientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06A90C210C23090086954A /* SelectRecipientTableViewController.swift */; };
 		CD06FC7620F965D80033CB6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06FC7520F965D80033CB6F /* AppDelegate.swift */; };
 		CD06FC7D20F965DA0033CB6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD06FC7C20F965DA0033CB6F /* Assets.xcassets */; };
 		CD06FC8020F965DA0033CB6F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD06FC7E20F965DA0033CB6F /* LaunchScreen.storyboard */; };
@@ -25,6 +26,8 @@
 		CD06FC9620F965DA0033CB6F /* FolledoMyCourtUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06FC9520F965DA0033CB6F /* FolledoMyCourtUITests.swift */; };
 		CD06FCA620F966000033CB6F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD06FCA520F966000033CB6F /* MapKit.framework */; };
 		CD06FCA820F9661D0033CB6F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD06FCA720F9661D0033CB6F /* StoreKit.framework */; };
+		CD08AD9B2108F10800F008D2 /* SnapsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08AD9A2108F10800F008D2 /* SnapsTableViewController.swift */; };
+		CD08AD9D2108F35200F008D2 /* SelectPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08AD9C2108F35200F008D2 /* SelectPictureViewController.swift */; };
 		CDB0E79F21042C9200194DD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDB0E79E21042C9200194DD0 /* GoogleService-Info.plist */; };
 		CDFEA38E20FE6D5D000824A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDFEA38D20FE6D5D000824A6 /* Main.storyboard */; };
 		CDFEA39020FE6D75000824A6 /* HomeMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDFEA38F20FE6D75000824A6 /* HomeMap.storyboard */; };
@@ -63,8 +66,9 @@
 		CD037D8C20F9A5FB0008EB97 /* UserProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewController.swift; sourceTree = "<group>"; };
 		CD037D8E20F9A6120008EB97 /* SwipeUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeUsersViewController.swift; sourceTree = "<group>"; };
 		CD037D9020F9A9AA0008EB97 /* CreateGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameViewController.swift; sourceTree = "<group>"; };
-		CD037D9220F9AC480008EB97 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		CD037D9220F9AC480008EB97 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		CD04B19420FEA3B200FB8161 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		CD06A90C210C23090086954A /* SelectRecipientTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRecipientTableViewController.swift; sourceTree = "<group>"; };
 		CD06FC7220F965D80033CB6F /* FolledoMyCourt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FolledoMyCourt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD06FC7520F965D80033CB6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD06FC7C20F965DA0033CB6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 		CD06FCA320F965F20033CB6F /* FolledoMyCourt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FolledoMyCourt.entitlements; sourceTree = "<group>"; };
 		CD06FCA520F966000033CB6F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CD06FCA720F9661D0033CB6F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		CD08AD9A2108F10800F008D2 /* SnapsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapsTableViewController.swift; sourceTree = "<group>"; };
+		CD08AD9C2108F35200F008D2 /* SelectPictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPictureViewController.swift; sourceTree = "<group>"; };
 		CDB0E79E21042C9200194DD0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CDFEA38D20FE6D5D000824A6 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CDFEA38F20FE6D75000824A6 /* HomeMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeMap.storyboard; sourceTree = "<group>"; };
@@ -161,14 +167,11 @@
 				CD06FCA320F965F20033CB6F /* FolledoMyCourt.entitlements */,
 				CD06FC7520F965D80033CB6F /* AppDelegate.swift */,
 				CD02E52C20FA91BA00A6ECC3 /* Service.swift */,
-				CD04B19420FEA3B200FB8161 /* LoginViewController.swift */,
-				CD037D8820F9A4F40008EB97 /* MainTabBarController.swift */,
-				CD037D8C20F9A5FB0008EB97 /* UserProfileTableViewController.swift */,
-				CD037D8A20F9A5B50008EB97 /* HomeMapViewController.swift */,
-				CD037D9020F9A9AA0008EB97 /* CreateGameViewController.swift */,
-				CD037D8E20F9A6120008EB97 /* SwipeUsersViewController.swift */,
-				CD037D9220F9AC480008EB97 /* EventViewController.swift */,
-				CDFEA38C20FE6CC3000824A6 /* Storyboards */,
+				CD08AD962108EDAE00F008D2 /* Main */,
+				CD08AD972108EDD400F008D2 /* HomeMap */,
+				CD08AD992108EE1D00F008D2 /* CreateGame */,
+				CD08AD982108EE0300F008D2 /* SwipeUsers */,
+				CDFEA38C20FE6CC3000824A6 /* Events */,
 				CD06FC7C20F965DA0033CB6F /* Assets.xcassets */,
 				CDB0E79E21042C9200194DD0 /* GoogleService-Info.plist */,
 				CD06FC8120F965DA0033CB6F /* Info.plist */,
@@ -206,17 +209,55 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CDFEA38C20FE6CC3000824A6 /* Storyboards */ = {
+		CD08AD962108EDAE00F008D2 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				CD04B19420FEA3B200FB8161 /* LoginViewController.swift */,
 				CD06FC7E20F965DA0033CB6F /* LaunchScreen.storyboard */,
+				CD037D8820F9A4F40008EB97 /* MainTabBarController.swift */,
 				CDFEA38D20FE6D5D000824A6 /* Main.storyboard */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		CD08AD972108EDD400F008D2 /* HomeMap */ = {
+			isa = PBXGroup;
+			children = (
+				CD037D8A20F9A5B50008EB97 /* HomeMapViewController.swift */,
 				CDFEA38F20FE6D75000824A6 /* HomeMap.storyboard */,
-				CDFEA39120FE7406000824A6 /* CreateGame.storyboard */,
+				CD037D8C20F9A5FB0008EB97 /* UserProfileTableViewController.swift */,
+			);
+			path = HomeMap;
+			sourceTree = "<group>";
+		};
+		CD08AD982108EE0300F008D2 /* SwipeUsers */ = {
+			isa = PBXGroup;
+			children = (
+				CD037D8E20F9A6120008EB97 /* SwipeUsersViewController.swift */,
 				CDFEA39320FE741C000824A6 /* SwipeUsers.storyboard */,
+				CD08AD9A2108F10800F008D2 /* SnapsTableViewController.swift */,
+				CD08AD9C2108F35200F008D2 /* SelectPictureViewController.swift */,
+				CD06A90C210C23090086954A /* SelectRecipientTableViewController.swift */,
+			);
+			path = SwipeUsers;
+			sourceTree = "<group>";
+		};
+		CD08AD992108EE1D00F008D2 /* CreateGame */ = {
+			isa = PBXGroup;
+			children = (
+				CD037D9020F9A9AA0008EB97 /* CreateGameViewController.swift */,
+				CDFEA39120FE7406000824A6 /* CreateGame.storyboard */,
+			);
+			path = CreateGame;
+			sourceTree = "<group>";
+		};
+		CDFEA38C20FE6CC3000824A6 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				CD037D9220F9AC480008EB97 /* EventsViewController.swift */,
 				CDFEA39520FE7459000824A6 /* Events.storyboard */,
 			);
-			path = Storyboards;
+			path = Events;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -471,12 +512,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD037D9120F9A9AA0008EB97 /* CreateGameViewController.swift in Sources */,
+				CD06A90D210C23090086954A /* SelectRecipientTableViewController.swift in Sources */,
 				CD037D8B20F9A5B50008EB97 /* HomeMapViewController.swift in Sources */,
 				CD037D8D20F9A5FB0008EB97 /* UserProfileTableViewController.swift in Sources */,
 				CD06FC7620F965D80033CB6F /* AppDelegate.swift in Sources */,
 				CD02E52D20FA91BA00A6ECC3 /* Service.swift in Sources */,
+				CD08AD9B2108F10800F008D2 /* SnapsTableViewController.swift in Sources */,
 				CD04B19520FEA3B200FB8161 /* LoginViewController.swift in Sources */,
-				CD037D9320F9AC480008EB97 /* EventViewController.swift in Sources */,
+				CD037D9320F9AC480008EB97 /* EventsViewController.swift in Sources */,
+				CD08AD9D2108F35200F008D2 /* SelectPictureViewController.swift in Sources */,
 				CD037D8F20F9A6120008EB97 /* SwipeUsersViewController.swift in Sources */,
 				CD037D8920F9A4F40008EB97 /* MainTabBarController.swift in Sources */,
 			);

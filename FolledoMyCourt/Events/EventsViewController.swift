@@ -1,5 +1,5 @@
 //
-//  EventViewController.swift
+//  EventsViewController.swift
 //  FolledoMyCourt
 //
 //  Created by Samuel Folledo on 7/13/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventViewController: UIViewController {
+class EventsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
