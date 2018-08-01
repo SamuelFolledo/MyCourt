@@ -57,6 +57,9 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - SDWebImage (4.4.0):
+    - SDWebImage/Core (= 4.4.0)
+  - SDWebImage/Core (4.4.0)
   - SwiftyStoreKit (0.13.2)
 
 DEPENDENCIES:
@@ -68,6 +71,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - SDWebImage (~> 4.0)
   - SwiftyStoreKit
 
 SPEC REPOS:
@@ -88,6 +92,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
+    - SDWebImage
     - SwiftyStoreKit
 
 SPEC CHECKSUMS:
@@ -107,8 +112,9 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  SDWebImage: b534502786e43dde36dfcaee89356fe6df30e203
   SwiftyStoreKit: b7563505440a68c9d9fa70bc43d8a97015519409
 
-PODFILE CHECKSUM: fafd336a6c410890a67b6eebc656644341910f87
+PODFILE CHECKSUM: 607c2d5e76675572fe6f2a044f184a4dda556e46
 
 COCOAPODS: 1.5.2

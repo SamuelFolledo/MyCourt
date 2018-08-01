@@ -15,6 +15,9 @@ target 'FolledoMyCourt' do
   
   pod 'Firebase/AdMob'
   
+  pod 'SDWebImage', '~> 4.0'
+  
+  
   pod 'SwiftyStoreKit'
   
   pod 'FBSDKCoreKit'

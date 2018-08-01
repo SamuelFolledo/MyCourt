@@ -12,8 +12,9 @@ import FirebaseAuth
 
 class SelectRecipientTableViewController: UITableViewController {
 
-    var snapDescription: String = ""
+    var snapDescription: String = "" //3 //17mins
     var downloadURL: String = "" //3 //17mins
+    var imageName: String = "" //SC4 //29mins
     var users: [User] = [] //3 //SC3 //30mins
     
     
@@ -21,13 +22,15 @@ class SelectRecipientTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print(downloadURL)
-        Service.presentAlert(on: self, title: "Uploading image to Firebase successfuly!", message: "Here is your following URL:\n\(downloadURL)")
+        //print(downloadURL)
+        //Service.presentAlert(on: self, title: "Uploading image to Firebase successfuly!", message: "Here is your following URL:\n\(downloadURL)")
         
         
         Database.database().reference().child("users").observe(.childAdded) { (snapshot) in //3 //26mins
             let user = User()
-            if let userDictionary = snapshot.value as? NSDictionary { //3 //28mins snapshot should come as a dictionary
+            //if let userDictionary = snapshot.value as? NSDictionary { //3 //28mins snapshot should come as a dictionary
+            if let userDictionary = snapshot.value as? [String:AnyObject] { //3 //28mins snapshot should come as a dictionary
+            
                 if let email = userDictionary["email"] as? String { //3 //29mins
                     user.email = email //3 //30mins
                     user.uid = snapshot.key //3 //30mins equal the uid to the snapshot key
@@ -52,8 +55,7 @@ class SelectRecipientTableViewController: UITableViewController {
         let cell = UITableViewCell() //SC3 //31mins
         let user = users[indexPath.row] //SC3 //31mins
         
-        cell.textLabel?.text = user.email //SC3 //31mins
-        
+        cell.textLabel?.text = user.email //SC3 //31mins makes the cell's text the User class's email
         return cell //SC3 //31mins
     }
     
@@ -63,7 +65,7 @@ class SelectRecipientTableViewController: UITableViewController {
         
         if let fromEmail = Auth.auth().currentUser?.email { //SC3 //35mins
         
-            let snapDictionary: Dictionary = ["from": fromEmail, "description":snapDescription, "imageURL": downloadURL] //SC3 //37mins
+            let snapDictionary: Dictionary = ["from": fromEmail, "description":snapDescription, "imageURL": downloadURL, "imageName": imageName] //SC3 //37mins
             //***** now that we have a snap, it is just a matter of adding it to the correct user *****
             Database.database().reference().child("users").child(user.uid).child("snaps").childByAutoId().setValue(snapDictionary) //SC3 //38mins the .child(user.uid), now we know who we're sending to. Then go to the "snaps" child, then on this we want to do a child by autoID to say go ahead and pick a random thing for us and set the value for this as our snapDictionary
             

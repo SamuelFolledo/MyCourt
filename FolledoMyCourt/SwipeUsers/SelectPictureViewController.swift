@@ -17,6 +17,7 @@ class SelectPictureViewController: UIViewController, UIImagePickerControllerDele
     
     var imagePicker: UIImagePickerController?
     var imageAdded = false
+    var imageName = "FolledoCourtImages1_\(NSUUID().uuidString).jpg" //3 //5mins will create a unique string that is guaranteed to not equal to anything else
     
     
     override func viewDidLoad() {
@@ -73,7 +74,7 @@ class SelectPictureViewController: UIViewController, UIImagePickerControllerDele
                     if let imageData = UIImageJPEGRepresentation(image, 0.1) {//3 //4mins compress the image stored to 0.1 so it doesnt take too much space
                         
                     //***then now we upload***
-                        let imageName: String = "FolledoCourtImages1_\(NSUUID().uuidString).jpg" //3 //5mins add a child to our imagesFolder // 'NSUUID.init(uuidString: String )' we need a unique id to represent our image, Apple has a great class for that, "will create a unique string that is guaranteed to not equal to anything else"
+                        //let imageName: String = "FolledoCourtImages1_\(NSUUID().uuidString).jpg" //3 //5mins add a child to our imagesFolder // 'NSUUID.init(uuidString: String )' we need a unique id to represent our image, Apple has a great class for that, "will create a unique string that is guaranteed to not equal to anything else" //removed at //SC4 //30mins
                         
                         let imageReference = imagesFolder.child(imageName)
 //                        let path = imageReference.fullPath //File path is "images/space.jpg"
@@ -112,12 +113,12 @@ class SelectPictureViewController: UIViewController, UIImagePickerControllerDele
                                              The idea is when a user signs up for the first time we should make a new object or child for them which has a random string and then it has their email inside of there. Then when someone sends that person a snap we we're going to add on to their snap's child here with the randomId but then it's going to have the description, who was from that image, and imageURL
                                              
                                              */
-                                        } // end of unwrapping imageURL
+                                        } // end of unwrapping imageURL and performing segue
                                     } //errorleess downloading imageURL
                                 } //end of downloading imageURL
-                            } //errorless creating metadata
-                        } //end of creating metadata and putting the imageData to the reference
-                    }
+                            } //errorless putData
+                        } //end of putData
+                    } //end of imageData
                 }
                 
             } else { //we are missing something
@@ -137,6 +138,7 @@ class SelectPictureViewController: UIViewController, UIImagePickerControllerDele
                 if let description = messageTextField.text {
                     selectVC.downloadURL = downloadURL //SC3 //18mins
                     selectVC.snapDescription = description //SC3 //36mins
+                    selectVC.imageName = imageName //selectVC image name is now equal to this VC's imageName
                 }
             }
         }

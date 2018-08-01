@@ -18,6 +18,7 @@
 		CD037D9120F9A9AA0008EB97 /* CreateGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD037D9020F9A9AA0008EB97 /* CreateGameViewController.swift */; };
 		CD037D9320F9AC480008EB97 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD037D9220F9AC480008EB97 /* EventsViewController.swift */; };
 		CD04B19520FEA3B200FB8161 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD04B19420FEA3B200FB8161 /* LoginViewController.swift */; };
+		CD055F13210E937800936FAF /* ViewSnapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD055F12210E937800936FAF /* ViewSnapViewController.swift */; };
 		CD06A90D210C23090086954A /* SelectRecipientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06A90C210C23090086954A /* SelectRecipientTableViewController.swift */; };
 		CD06FC7620F965D80033CB6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06FC7520F965D80033CB6F /* AppDelegate.swift */; };
 		CD06FC7D20F965DA0033CB6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD06FC7C20F965DA0033CB6F /* Assets.xcassets */; };
@@ -68,6 +69,7 @@
 		CD037D9020F9A9AA0008EB97 /* CreateGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameViewController.swift; sourceTree = "<group>"; };
 		CD037D9220F9AC480008EB97 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		CD04B19420FEA3B200FB8161 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		CD055F12210E937800936FAF /* ViewSnapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSnapViewController.swift; sourceTree = "<group>"; };
 		CD06A90C210C23090086954A /* SelectRecipientTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRecipientTableViewController.swift; sourceTree = "<group>"; };
 		CD06FC7220F965D80033CB6F /* FolledoMyCourt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FolledoMyCourt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD06FC7520F965D80033CB6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				CD08AD9A2108F10800F008D2 /* SnapsTableViewController.swift */,
 				CD08AD9C2108F35200F008D2 /* SelectPictureViewController.swift */,
 				CD06A90C210C23090086954A /* SelectRecipientTableViewController.swift */,
+				CD055F12210E937800936FAF /* ViewSnapViewController.swift */,
 			);
 			path = SwipeUsers;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -477,6 +481,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -511,6 +516,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD055F13210E937800936FAF /* ViewSnapViewController.swift in Sources */,
 				CD037D9120F9A9AA0008EB97 /* CreateGameViewController.swift in Sources */,
 				CD06A90D210C23090086954A /* SelectRecipientTableViewController.swift in Sources */,
 				CD037D8B20F9A5B50008EB97 /* HomeMapViewController.swift in Sources */,

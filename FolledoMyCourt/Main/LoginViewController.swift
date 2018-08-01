@@ -127,7 +127,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             self.loginButton.setTitle("Sign Up", for: .normal)
             self.switchToSignupButton.setTitle("Switch to Log in", for: .normal)
         }
-        
     }
     
 //
