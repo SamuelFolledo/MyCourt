@@ -54,7 +54,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         Auth.auth().signInAnonymously { (user, error) in
             if let error = error {
                 print("Failed to sign in anonymously with error: ",error)
-                Service.showAlert(on: self, style: .alert, title: "Sign In Error", message: error.localizedDescription)
+                let alert = Service.showAlert(on: self, style: .alert, title: "Sign In Error", message: error.localizedDescription)
+                self.present(alert, animated: true, completion: nil)
                 return
             }
             if let user = user {
@@ -75,21 +76,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
 //Facebook didCompleteWith delegate method
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) { //FBLogin //17mins
         if error != nil { //FBLogin //17mins
-            print(error) //FBLogin //17mins
+//            print(error) //FBLogin //17mins
+            let alert:UIAlertController = Service.showAlert(on: self, style: .alert, title: "Facebook Login Error", message: "\(error.localizedDescription)\nPlease try again")
+            self.present(alert, animated: true, completion: nil)
             return //FBLogin //17mins
         } else if result.isCancelled { //FBLogin //17mins if user canceled login
             print("User has canceled login")
+            let alert:UIAlertController = Service.showAlert(on: self, style: .alert, title: "Facebook Login Error", message: "User has cancelled Login\nPlease try again")
+            self.present(alert, animated: true, completion: nil)
         } else { //FBLogin //if successful, meaning no error, and login didnt cancel log in
             if result.grantedPermissions.contains("email"){ //FBLogin //18minsmake sure they gave us permissions
                 if let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"email,name"]) { //FBLogin //19mins //FBSDKGraohRequest - represents a request to the Facebook Graph API. //we're looking for "me" only because we dont want anything to do with user's friends. //' parameters: ["fields":"email,name"] ' gives us the email and name
                     graphRequest.start { (connection, result, error) in //FBLogin //20mins, give us connection, result, and error
                         if error != nil { //FBLogin //20mins
                             print(error!) //FBLogin //20mins
+                            let alert:UIAlertController = Service.showAlert(on: self, style: .alert, title: "Facebook Login Error", message: "\(error!.localizedDescription)")
+                            self.present(alert, animated: true, completion: nil)
                         } else { //FBLogin //20mins if everything worked out...
                             if let userDetails = result { //FBLogin //21mins if no error then we should get the results
                                 //print(userDetails)
                                 print("Successfuly Log in Facebook: ", userDetails)
-                                
                             }
                         }
                     }
@@ -153,11 +159,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             if let password = passwordTextField.text {
                 if signupMode { //SIGNUP!
                     if passwordTextField.text != confirmPasswordTextField.text { //passwords dont match!
-                        Service.showAlert(on: self, style: .alert, title: "Passwords Error", message: "Passwords do not match.\nPlease try again")
+                        let alert:UIAlertController = Service.showAlert(on: self, style: .alert, title: "Passwords Error", message: "Passwords do not match.\nPlease try again")
+                        self.present(alert, animated: true, completion: nil)
                     } else { //PASSWORDS MATCH!
                         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
                             if let error = error {
-                                Service.showAlert(on: self, style: .alert, title: "Signup Error", message: error.localizedDescription)
+                                let alert = Service.showAlert(on: self, style: .alert, title: "Signup Error", message: error.localizedDescription)
+                                self.present(alert, animated: true, completion: nil)
                             } else { //signup was successful
                                 
                                 if let user = user { //3 //24mins
@@ -172,7 +180,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                     Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
                         if let error = error {
                             let okAction = UIAlertAction(title: "Ok", style: .default)
-                            Service.showAlert(on: self, style: .alert, title: "Login Error", message: error.localizedDescription, actions: [okAction])
+                            let alert = Service.showAlert(on: self, style: .alert, title: "Login Error", message: error.localizedDescription, actions: [okAction])
+                            self.present(alert, animated: true, completion: nil)
                         } else { //signup was successful
                             self.performSegue(withIdentifier: "loginToMainTabSegue", sender: nil)
                         }

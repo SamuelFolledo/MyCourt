@@ -201,7 +201,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="boxButtonBG" width="50" height="50"/>
+        <image name="boxButtonBG" width="44" height="44"/>
         <image name="exit" width="32" height="32"/>
         <image name="user" width="32" height="32"/>
     </resources>

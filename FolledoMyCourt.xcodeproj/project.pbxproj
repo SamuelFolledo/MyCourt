@@ -27,8 +27,13 @@
 		CD06FC9620F965DA0033CB6F /* FolledoMyCourtUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06FC9520F965DA0033CB6F /* FolledoMyCourtUITests.swift */; };
 		CD06FCA620F966000033CB6F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD06FCA520F966000033CB6F /* MapKit.framework */; };
 		CD06FCA820F9661D0033CB6F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD06FCA720F9661D0033CB6F /* StoreKit.framework */; };
+		CD084B162128831C0011DA17 /* AllMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD084B152128831C0011DA17 /* AllMessagesViewController.swift */; };
+		CD084B18212883350011DA17 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD084B17212883350011DA17 /* MessageViewController.swift */; };
+		CD084B1A2128C7AE0011DA17 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD084B192128C7AD0011DA17 /* MessageTableViewCell.swift */; };
 		CD08AD9B2108F10800F008D2 /* SnapsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08AD9A2108F10800F008D2 /* SnapsTableViewController.swift */; };
 		CD08AD9D2108F35200F008D2 /* SelectPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08AD9C2108F35200F008D2 /* SelectPictureViewController.swift */; };
+		CD3F175321263AFA00939ED8 /* BluetoothViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F175221263AFA00939ED8 /* BluetoothViewController.swift */; };
+		CD3F175521263E2800939ED8 /* BluetoothTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F175421263E2800939ED8 /* BluetoothTableViewCell.swift */; };
 		CDB0E79F21042C9200194DD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDB0E79E21042C9200194DD0 /* GoogleService-Info.plist */; };
 		CDFEA38E20FE6D5D000824A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDFEA38D20FE6D5D000824A6 /* Main.storyboard */; };
 		CDFEA39020FE6D75000824A6 /* HomeMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDFEA38F20FE6D75000824A6 /* HomeMap.storyboard */; };
@@ -85,8 +90,13 @@
 		CD06FCA320F965F20033CB6F /* FolledoMyCourt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FolledoMyCourt.entitlements; sourceTree = "<group>"; };
 		CD06FCA520F966000033CB6F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CD06FCA720F9661D0033CB6F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		CD084B152128831C0011DA17 /* AllMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMessagesViewController.swift; sourceTree = "<group>"; };
+		CD084B17212883350011DA17 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		CD084B192128C7AD0011DA17 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		CD08AD9A2108F10800F008D2 /* SnapsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapsTableViewController.swift; sourceTree = "<group>"; };
 		CD08AD9C2108F35200F008D2 /* SelectPictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPictureViewController.swift; sourceTree = "<group>"; };
+		CD3F175221263AFA00939ED8 /* BluetoothViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothViewController.swift; sourceTree = "<group>"; };
+		CD3F175421263E2800939ED8 /* BluetoothTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothTableViewCell.swift; sourceTree = "<group>"; };
 		CDB0E79E21042C9200194DD0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CDFEA38D20FE6D5D000824A6 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CDFEA38F20FE6D75000824A6 /* HomeMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeMap.storyboard; sourceTree = "<group>"; };
@@ -211,6 +221,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CD084B14212882DD0011DA17 /* Snaps */ = {
+			isa = PBXGroup;
+			children = (
+				CD08AD9C2108F35200F008D2 /* SelectPictureViewController.swift */,
+				CD06A90C210C23090086954A /* SelectRecipientTableViewController.swift */,
+				CD055F12210E937800936FAF /* ViewSnapViewController.swift */,
+				CD08AD9A2108F10800F008D2 /* SnapsTableViewController.swift */,
+			);
+			path = Snaps;
+			sourceTree = "<group>";
+		};
 		CD08AD962108EDAE00F008D2 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,10 +258,10 @@
 			children = (
 				CD037D8E20F9A6120008EB97 /* SwipeUsersViewController.swift */,
 				CDFEA39320FE741C000824A6 /* SwipeUsers.storyboard */,
-				CD08AD9A2108F10800F008D2 /* SnapsTableViewController.swift */,
-				CD08AD9C2108F35200F008D2 /* SelectPictureViewController.swift */,
-				CD06A90C210C23090086954A /* SelectRecipientTableViewController.swift */,
-				CD055F12210E937800936FAF /* ViewSnapViewController.swift */,
+				CD084B152128831C0011DA17 /* AllMessagesViewController.swift */,
+				CD084B17212883350011DA17 /* MessageViewController.swift */,
+				CD084B192128C7AD0011DA17 /* MessageTableViewCell.swift */,
+				CD084B14212882DD0011DA17 /* Snaps */,
 			);
 			path = SwipeUsers;
 			sourceTree = "<group>";
@@ -250,6 +271,8 @@
 			children = (
 				CD037D9020F9A9AA0008EB97 /* CreateGameViewController.swift */,
 				CDFEA39120FE7406000824A6 /* CreateGame.storyboard */,
+				CD3F175221263AFA00939ED8 /* BluetoothViewController.swift */,
+				CD3F175421263E2800939ED8 /* BluetoothTableViewCell.swift */,
 			);
 			path = CreateGame;
 			sourceTree = "<group>";
@@ -468,6 +491,7 @@
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -481,6 +505,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -519,13 +544,18 @@
 				CD055F13210E937800936FAF /* ViewSnapViewController.swift in Sources */,
 				CD037D9120F9A9AA0008EB97 /* CreateGameViewController.swift in Sources */,
 				CD06A90D210C23090086954A /* SelectRecipientTableViewController.swift in Sources */,
+				CD3F175321263AFA00939ED8 /* BluetoothViewController.swift in Sources */,
 				CD037D8B20F9A5B50008EB97 /* HomeMapViewController.swift in Sources */,
 				CD037D8D20F9A5FB0008EB97 /* UserProfileTableViewController.swift in Sources */,
+				CD3F175521263E2800939ED8 /* BluetoothTableViewCell.swift in Sources */,
 				CD06FC7620F965D80033CB6F /* AppDelegate.swift in Sources */,
 				CD02E52D20FA91BA00A6ECC3 /* Service.swift in Sources */,
 				CD08AD9B2108F10800F008D2 /* SnapsTableViewController.swift in Sources */,
+				CD084B162128831C0011DA17 /* AllMessagesViewController.swift in Sources */,
+				CD084B1A2128C7AE0011DA17 /* MessageTableViewCell.swift in Sources */,
 				CD04B19520FEA3B200FB8161 /* LoginViewController.swift in Sources */,
 				CD037D9320F9AC480008EB97 /* EventsViewController.swift in Sources */,
+				CD084B18212883350011DA17 /* MessageViewController.swift in Sources */,
 				CD08AD9D2108F35200F008D2 /* SelectPictureViewController.swift in Sources */,
 				CD037D8F20F9A6120008EB97 /* SwipeUsersViewController.swift in Sources */,
 				CD037D8920F9A4F40008EB97 /* MainTabBarController.swift in Sources */,

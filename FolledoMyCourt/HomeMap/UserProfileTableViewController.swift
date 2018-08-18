@@ -29,23 +29,31 @@ class UserProfileTableViewController: UITableViewController {
     
     
     @IBAction func logoutTapped() {
-        do {
-            try Auth.auth().signOut()
-//            let cookies = HTTPCookieStorage.shared
-//            let facebookCookies = cookies.cookies(for: URL(string: "https://facebook.com/")!)
-//            for cookie in facebookCookies! {
-//                cookies.deleteCookie(cookie )
-//            }
-            //self.present(loginViewController, animated: true, completion: nil)
-            //self.performSegue(withIdentifier: "Logout", sender: nil)
-            let viewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
-            print("LOGGING OUTTTTTTTT")
-            self.present(viewController, animated: true, completion: nil)
-            
-        } catch let error {
-            Service.showAlert(on: self, style: .alert, title: "Logout Error", message: error.localizedDescription)
-            //print(error)
+        let signoutAction = UIAlertAction(title: "Sign Out", style: .destructive) { (action) in
+            do {
+                try Auth.auth().signOut()
+                let cookies = HTTPCookieStorage.shared
+                let facebookCookies = cookies.cookies(for: URL(string: "https://facebook.com/")!)
+                for cookie in facebookCookies! {
+                    cookies.deleteCookie(cookie )
+                }
+                //self.present(loginViewController, animated: true, completion: nil)
+                //self.performSegue(withIdentifier: "Logout", sender: nil)
+                let viewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
+                print("LOGGING OUTTTTTTTT")
+                self.present(viewController, animated: true, completion: nil)
+                
+            } catch let error {
+                let alert = Service.showAlert(on: self, style: .alert, title: "Logout Error", message: error.localizedDescription)
+                self.present(alert, animated: true, completion: nil)
+                //print(error)
+            }
         }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let signoutOrCancel: UIAlertController = Service.showAlert(on: self, style: .actionSheet, title: nil, message: nil, actions: [signoutAction, cancelAction], completion: nil)
+        self.present(signoutOrCancel, animated: true, completion: nil)
+        
     }
     
     @IBAction func backTapped(_ sender: Any) {
@@ -58,7 +66,8 @@ class UserProfileTableViewController: UITableViewController {
             self.dismiss(animated: true, completion: nil)
         }
         
-        Service.showAlert(on: self, style: .alert, title: "Save Successfuly", message: "EEEEYYOOOOOOOOO!!!", actions: [alertAction]) //an alert that dismisses the VC once OK is pressed
+        let alert = Service.showAlert(on: self, style: .alert, title: "Save Successfuly", message: "EEEEYYOOOOOOOOO!!!", actions: [alertAction]) //an alert that dismisses the VC once OK is pressed
+        self.present(alert, animated: true, completion: nil)
         
     }
     

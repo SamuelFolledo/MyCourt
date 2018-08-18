@@ -3,127 +3,127 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "MyCourtLogo-iPadNotifications-iOS7-11@2x-40x40.png",
+      "filename" : "MyCourtLogo2-iPhoneNotification@2x-40x40.jpg",
       "scale" : "2x"
     },
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "MyCourtLogo-iPhoneNotification@3x-60x60.png",
+      "filename" : "MyCourtLogo2-iPhoneNotification@3x-60x60.jpg",
       "scale" : "3x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "MyCourtLogo-iPadSettings-iOS5-11@1x-29x29.png",
+      "filename" : "MyCourtLogo2-iPhoneSpotlight-iOS5-6@1x-29x29.jpg",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "MyCourtLogo-iPadSettings-iOS5-11@2x-58x58.png",
+      "filename" : "MyCourtLogo2-iPhoneSpotlight-iOS5-6@2x-58x58-1.jpg",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "MyCourtLogo-iPhoneSpotlight-iOS5-6@3x-87x87.png",
+      "filename" : "MyCourtLogo2-iPhoneSpotlight-iOS5-6@3x-87x87.jpg",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "MyCourtLogo-iPadSpotlight-iOS7-11@2x-80x80.png",
+      "filename" : "MyCourtLogo2-iPhoneSpotlight-iOS7-11@2x-80x80-1.jpg",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "MyCourtLogo-iPhoneSpotlight-iOS7-11@3x-120x120.png",
+      "filename" : "MyCourtLogo2-iPhoneSpotlight-iOS7-11@3x-120x120-1.jpg",
       "scale" : "3x"
     },
     {
       "size" : "57x57",
       "idiom" : "iphone",
-      "filename" : "MyCourtLogo-iPhoneApp-iOS5-6@1x-57x57.png",
+      "filename" : "MyCourtLogo2-iPhoneApp-iOS5-6@1x-57x57.jpg",
       "scale" : "1x"
     },
     {
       "size" : "57x57",
       "idiom" : "iphone",
-      "filename" : "MyCourtLogo-iPhoneApp-iOS5-6@2x-114x114.png",
+      "filename" : "MyCourtLogo2-iPhoneApp-iOS5-6@2x-114x114.jpg",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "MyCourtLogo-iPhoneApp-iOS7-11@2x-120x120.png",
+      "filename" : "MyCourtLogo2-iPhoneApp-iOS7-11@2x-120x120.jpg",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "MyCourtLogo-iPhoneApp-iOS7-11@3x-180x180.png",
+      "filename" : "MyCourtLogo2-iPhoneApp-iOS7-11@3x-180x180.jpg",
       "scale" : "3x"
     },
     {
       "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "MyCourtLogo-iPadNotifications-iOS7-11@1x-20x20.png",
+      "filename" : "MyCourtLogo2-iPadNotifications-iOS7-11@1x-20x20.jpg",
       "scale" : "1x"
     },
     {
       "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "MyCourtLogo-iPadSpotlight-iOS7-11@1x-40x40.png",
+      "filename" : "MyCourtLogo2-iPadNotifications-iOS7-11@2x-40x40.jpg",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "MyCourtLogo-iPhoneSpotlight-iOS5-6@1x-29x29.png",
+      "filename" : "MyCourtLogo2-iPadSettings-iOS5-11@1x-29x29-1.jpg",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "MyCourtLogo-iPhoneSpotlight-iOS5-6@2x-58x58.png",
+      "filename" : "MyCourtLogo2-iPadSettings-iOS5-11@2x-58x58-1.jpg",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "MyCourtLogo-iPhoneNotification@2x-40x40.png",
+      "filename" : "MyCourtLogo2-iPadSpotlight-iOS7-11@1x-40x40.jpg",
       "scale" : "1x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "MyCourtLogo-iPhoneSpotlight-iOS7-11@2x-80x80.png",
+      "filename" : "MyCourtLogo2-iPadSpotlight-iOS7-11@2x-80x80.jpg",
       "scale" : "2x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "MyCourtLogo-iPadApp-iOS7-11@1x-76x76.png",
+      "filename" : "MyCourtLogo2-iPadApp-iOS7-11@1x-76x76.jpg",
       "scale" : "1x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "MyCourtLogo-iPadApp-iOS7-11@2x-152x152.png",
+      "filename" : "MyCourtLogo2-iPadApp-iOS7-11@2x-152x152.jpg",
       "scale" : "2x"
     },
     {
       "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "filename" : "MyCourtLogo-iPadProApp-iOS9-11@2x-167x167.png",
+      "filename" : "MyCourtLogo2-iPadProApp-iOS9-11@2x-167x167.jpg",
       "scale" : "2x"
     },
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "MyCourtLogo-AppStore-iOS-1024x1024.png",
+      "filename" : "MyCourtLogo2-AppStore-iOS-1024x1024.jpg",
       "scale" : "1x"
     }
   ],

@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Please allow MyCourt to use location while in usage so we can let other players know when you are in a court</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -39,6 +37,14 @@
 				<string>fb237795130370048</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.1049012209134-vv6qq9gl3d01l733njpegqismchvb6q4</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
@@ -60,6 +66,12 @@
 		<string>MKDirectionsModeCar</string>
 		<string>MKDirectionsModePedestrian</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Please allow MyCourt to use camera in order to take snap and send to a user</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Please allow MyCourt to use location while in usage so we can let other players know when you are in a court</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Please allow MyCourt to user photos from the PhotoLibrary in order to save time and choose an image to upload instead of taking a picture</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
@@ -76,10 +88,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>Please allow MyCourt to use camera in order to take snap and send to a user</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Please allow MyCourt to user photos from the PhotoLibrary in order to save time and choose an image to upload instead of taking a picture</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

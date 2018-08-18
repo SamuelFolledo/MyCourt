@@ -11,20 +11,35 @@ import FirebaseAuth
 
 class MainTabBarController: UITabBarController {
     
+    var tabIndex: Int = 1
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.delegate = self as? UITabBarControllerDelegate
+        self.tabBarController?.delegate = self as? UITabBarControllerDelegate
         
+        
+    }
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        
+        print(item)
+    }
+    
+    func setupHorizontalBar() {
+        let horizontalBarView = UIView()
+        horizontalBarView.backgroundColor = .white
         
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        checkLoggedInUserStatus()
+//        if self.selectedViewController == HomeMapViewController { tabIndex = 1 }
+        self.selectedIndex = tabIndex
         
-        self.selectedIndex = 1
+        checkLoggedInUserStatus()
         
     }
     
@@ -45,6 +60,7 @@ class MainTabBarController: UITabBarController {
 //        }
 //    }
 
+    
     
 
     fileprivate func checkLoggedInUserStatus() {

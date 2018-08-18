@@ -138,7 +138,7 @@ class SelectPictureViewController: UIViewController, UIImagePickerControllerDele
                 if let description = messageTextField.text {
                     selectVC.downloadURL = downloadURL //SC3 //18mins
                     selectVC.snapDescription = description //SC3 //36mins
-                    selectVC.imageName = imageName //selectVC image name is now equal to this VC's imageName
+                    selectVC.imageName = self.imageName //selectVC image name is now equal to this VC's imageName
                 }
             }
         }

@@ -32,12 +32,11 @@ class HomeMapViewController: UIViewController, CLLocationManagerDelegate {
         self.navigationController?.isNavigationBarHidden = true
         //navigationItem.title = "Map"
        
+        setupViews()
+        
         adBannerView.adUnitID = "ca-app-pub-3940256099942544/6300978111" //AdMob //8mins
         adBannerView.rootViewController = self //AdMob //8min s
         adBannerView.load(GADRequest()) //AdMob //9mins
-        
-        
-        setupViews()
         
         
         
