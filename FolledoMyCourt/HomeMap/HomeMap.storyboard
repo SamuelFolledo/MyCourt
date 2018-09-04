@@ -13,7 +13,7 @@
         <!--Home Map View Controller-->
         <scene sceneID="ahl-Lt-Had">
             <objects>
-                <viewController id="rW3-VD-5AB" customClass="HomeMapViewController" customModule="FolledoMyCourt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeMapViewController" id="rW3-VD-5AB" customClass="HomeMapViewController" customModule="FolledoMyCourt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EBr-ac-NzE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,25 +21,6 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X3U-9j-ZUy">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                             </mapView>
-                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcx-Lm-uEm" userLabel="TopBlurView">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="34"/>
-                                <subviews>
-                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cVC-KO-Mbh">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="34"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.75" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ugv-Cp-B8w">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="34"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </view>
-                                        <blurEffect style="light"/>
-                                    </visualEffectView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="cVC-KO-Mbh" firstAttribute="top" secondItem="qcx-Lm-uEm" secondAttribute="top" id="DlF-gM-rdW"/>
-                                    <constraint firstAttribute="trailing" secondItem="cVC-KO-Mbh" secondAttribute="trailing" id="Jhj-Iz-gB1"/>
-                                    <constraint firstItem="cVC-KO-Mbh" firstAttribute="leading" secondItem="qcx-Lm-uEm" secondAttribute="leading" id="eVb-sL-7HS"/>
-                                    <constraint firstAttribute="bottom" secondItem="cVC-KO-Mbh" secondAttribute="bottom" id="je5-Nr-FBg"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ai0-IW-H4a" customClass="GADBannerView">
                                 <rect key="frame" x="0.0" y="637" width="414" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -48,7 +29,7 @@
                                 </constraints>
                             </view>
                             <stackView contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gbc-rk-S7h" userLabel="TopStackView">
-                                <rect key="frame" x="5" y="32" width="404" height="45.333333333333343"/>
+                                <rect key="frame" x="5" y="30.000000000000004" width="404" height="45.333333333333343"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5M7-Z4-Y4T">
                                         <rect key="frame" x="0.0" y="5" width="53" height="35.333333333333336"/>
@@ -74,6 +55,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NIC-kW-DQj">
                                         <rect key="frame" x="351" y="5" width="53" height="35.333333333333336"/>
                                         <state key="normal" backgroundImage="boxButtonBG"/>
+                                        <connections>
+                                            <action selector="chatButtonTapped:" destination="rW3-VD-5AB" eventType="touchUpInside" id="Za8-ka-aWN"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -88,23 +72,28 @@
                                     <constraint firstItem="TA9-q8-D9t" firstAttribute="centerX" secondItem="gbc-rk-S7h" secondAttribute="centerX" id="su8-48-lJD"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MON-lO-hOL">
+                                <rect key="frame" x="341" y="0.0" width="33" height="30"/>
+                                <state key="normal" title="Chat"/>
+                                <connections>
+                                    <action selector="chatButtonTapped:" destination="rW3-VD-5AB" eventType="touchUpInside" id="Oju-Zt-JMc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="gbc-rk-S7h" firstAttribute="top" secondItem="qcx-Lm-uEm" secondAttribute="bottom" constant="-2" id="0RW-jG-S4Y"/>
                             <constraint firstItem="Ai0-IW-H4a" firstAttribute="bottom" secondItem="D6r-sO-4dq" secondAttribute="bottom" id="1Xf-dz-r3k"/>
+                            <constraint firstItem="MON-lO-hOL" firstAttribute="top" secondItem="EBr-ac-NzE" secondAttribute="top" id="4fP-UH-tHN"/>
                             <constraint firstItem="Ai0-IW-H4a" firstAttribute="leading" secondItem="D6r-sO-4dq" secondAttribute="leading" id="7P8-ka-bjZ"/>
                             <constraint firstItem="D6r-sO-4dq" firstAttribute="bottom" secondItem="X3U-9j-ZUy" secondAttribute="bottom" priority="998" id="7d5-Sa-T2J"/>
+                            <constraint firstItem="gbc-rk-S7h" firstAttribute="top" secondItem="MON-lO-hOL" secondAttribute="bottom" id="CIX-k8-2kD"/>
+                            <constraint firstItem="D6r-sO-4dq" firstAttribute="trailing" secondItem="MON-lO-hOL" secondAttribute="trailing" constant="40" id="H6r-OU-Vhu"/>
                             <constraint firstItem="X3U-9j-ZUy" firstAttribute="trailing" secondItem="D6r-sO-4dq" secondAttribute="trailing" id="II9-os-d5k"/>
                             <constraint firstItem="X3U-9j-ZUy" firstAttribute="top" secondItem="EBr-ac-NzE" secondAttribute="top" id="KOY-d6-l7w"/>
-                            <constraint firstItem="X3U-9j-ZUy" firstAttribute="top" secondItem="qcx-Lm-uEm" secondAttribute="bottom" priority="900" constant="-34" id="L0a-iu-TER"/>
                             <constraint firstItem="gbc-rk-S7h" firstAttribute="leading" secondItem="D6r-sO-4dq" secondAttribute="leading" constant="5" id="T45-PZ-9q9"/>
                             <constraint firstItem="X3U-9j-ZUy" firstAttribute="leading" secondItem="D6r-sO-4dq" secondAttribute="leading" id="UUa-Cx-bxN"/>
-                            <constraint firstItem="qcx-Lm-uEm" firstAttribute="leading" secondItem="D6r-sO-4dq" secondAttribute="leading" id="VNv-lA-Ugf"/>
                             <constraint firstItem="D6r-sO-4dq" firstAttribute="trailing" secondItem="Ai0-IW-H4a" secondAttribute="trailing" id="ccS-gY-Sym"/>
                             <constraint firstItem="Ai0-IW-H4a" firstAttribute="top" secondItem="X3U-9j-ZUy" secondAttribute="bottom" priority="997" constant="-50" id="neM-Ao-8FU"/>
-                            <constraint firstItem="D6r-sO-4dq" firstAttribute="trailing" secondItem="qcx-Lm-uEm" secondAttribute="trailing" id="q38-Mh-fCC"/>
-                            <constraint firstItem="qcx-Lm-uEm" firstAttribute="top" secondItem="EBr-ac-NzE" secondAttribute="top" id="w8H-yE-gbQ"/>
                             <constraint firstItem="gbc-rk-S7h" firstAttribute="trailing" secondItem="D6r-sO-4dq" secondAttribute="trailing" constant="-5" id="zUB-Uy-piu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="D6r-sO-4dq"/>

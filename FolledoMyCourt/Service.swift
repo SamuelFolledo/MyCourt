@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
+import FirebaseAuth
 
 class Service {
     
@@ -58,6 +61,45 @@ extension UIView {
             trailingAnchor.constraint(equalTo: trailing, constant: padding.right).isActive = true
         }
     }
+    
+    
+//    func checkCurrentUser() {
+//        let storageRef = Storage.storage().reference()
+//        let databaseRef = Database.database().reference()
+//        if Auth.auth().currentUser == nil{
+////            dispatch_async(dispatch_get_main_queue(), {() -> Void in
+//            DispatchQueue.main.async {
+//                let loginController = LoginController()
+//                self.present(loginController, animated: true, completion: nil)
+//            }
+//            
+//        } else {
+//            //observe userLogin
+////            Analytics.logEventWithName(kFIREventLogin, parameters: nil)
+//            let userID = FIRAuth.auth()?.currentUser?.uid
+//            
+//            self.databaseRef.child("users").child(userID!).observeEventType(.Value, withBlock: { (snapshot) in
+//                // Get user value
+//                dispatch_async(dispatch_get_main_queue()){
+//                    let username = snapshot.value!["username"] as! String
+//                    self.userNameLabel.text = username
+//                    // check if user has photo
+//                    if snapshot.hasChild("userPhoto"){
+//                        // set image locatin
+//                        let filePath = "\(userID!)/\("userPhoto")"
+//                        // Assuming a < 10MB file, though you can change that
+//                        self.storageRef.child(filePath).dataWithMaxSize(10*1024*1024, completion: { (data, error) in
+//                            let userPhoto = UIImage(data: data!)
+//                            self.userPhoto.image = userPhoto
+//                        })
+//                    }
+//                    
+//                }
+//                
+//            })
+//        }
+//    }
+    
 }
 
 /*

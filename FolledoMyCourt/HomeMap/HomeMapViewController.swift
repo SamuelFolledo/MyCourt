@@ -136,6 +136,12 @@ class HomeMapViewController: UIViewController, CLLocationManagerDelegate {
     }
     
 
+    @IBAction func chatButtonTapped(_ sender: Any) {
+        print("Chat tapped")
+        let vc = MessagesController()
+        let navController = UINavigationController(rootViewController: vc)
+        self.present(navController, animated: true, completion: nil)
+    }
     
     
 

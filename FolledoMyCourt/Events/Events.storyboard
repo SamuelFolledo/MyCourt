@@ -17,9 +17,31 @@
                     <view key="view" contentMode="scaleToFill" id="Szg-Dm-K9g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E2z-6j-3zz">
+                                <rect key="frame" x="302" y="0.0" width="33" height="30"/>
+                                <state key="normal" title="Chat"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNa-lY-yca">
+                                <rect key="frame" x="0.0" y="25" width="375" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="E2z-6j-3zz" firstAttribute="top" secondItem="Szg-Dm-K9g" secondAttribute="top" id="8NR-dM-kzt"/>
+                            <constraint firstItem="aNa-lY-yca" firstAttribute="top" secondItem="2rI-gi-3zZ" secondAttribute="top" constant="5" id="CdQ-cM-UKG"/>
+                            <constraint firstItem="2rI-gi-3zZ" firstAttribute="trailing" secondItem="E2z-6j-3zz" secondAttribute="trailing" constant="40" id="fBF-Ax-aBj"/>
+                            <constraint firstItem="2rI-gi-3zZ" firstAttribute="trailing" secondItem="aNa-lY-yca" secondAttribute="trailing" id="tbC-G3-CV8"/>
+                            <constraint firstItem="aNa-lY-yca" firstAttribute="leading" secondItem="2rI-gi-3zZ" secondAttribute="leading" id="zoe-ib-eqN"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="2rI-gi-3zZ"/>
                     </view>
+                    <connections>
+                        <outlet property="resultLabel" destination="aNa-lY-yca" id="afk-S1-YEm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4BJ-5f-OTa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

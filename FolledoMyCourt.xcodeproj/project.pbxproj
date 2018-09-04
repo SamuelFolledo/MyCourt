@@ -27,14 +27,17 @@
 		CD06FC9620F965DA0033CB6F /* FolledoMyCourtUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06FC9520F965DA0033CB6F /* FolledoMyCourtUITests.swift */; };
 		CD06FCA620F966000033CB6F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD06FCA520F966000033CB6F /* MapKit.framework */; };
 		CD06FCA820F9661D0033CB6F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD06FCA720F9661D0033CB6F /* StoreKit.framework */; };
-		CD084B162128831C0011DA17 /* AllMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD084B152128831C0011DA17 /* AllMessagesViewController.swift */; };
-		CD084B18212883350011DA17 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD084B17212883350011DA17 /* MessageViewController.swift */; };
-		CD084B1A2128C7AE0011DA17 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD084B192128C7AD0011DA17 /* MessageTableViewCell.swift */; };
 		CD08AD9B2108F10800F008D2 /* SnapsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08AD9A2108F10800F008D2 /* SnapsTableViewController.swift */; };
 		CD08AD9D2108F35200F008D2 /* SelectPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08AD9C2108F35200F008D2 /* SelectPictureViewController.swift */; };
+		CD08FD30213C49680000050C /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = CD08FD2F213C49680000050C /* Resnet50.mlmodel */; };
+		CD08FD36213CD9AA0000050C /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08FD35213CD9AA0000050C /* MessagesController.swift */; };
+		CD08FD3C213CF4BF0000050C /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08FD3B213CF4BF0000050C /* NewMessageController.swift */; };
+		CD08FD40213DC1460000050C /* MyCourtUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08FD3F213DC1460000050C /* MyCourtUser.swift */; };
 		CD3F175321263AFA00939ED8 /* BluetoothViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F175221263AFA00939ED8 /* BluetoothViewController.swift */; };
 		CD3F175521263E2800939ED8 /* BluetoothTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F175421263E2800939ED8 /* BluetoothTableViewCell.swift */; };
+		CD979E422138C8DB00033C98 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD979E412138C8DB00033C98 /* LoginController.swift */; };
 		CDB0E79F21042C9200194DD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDB0E79E21042C9200194DD0 /* GoogleService-Info.plist */; };
+		CDE55926212DA06B00314EDD /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDE55925212DA06B00314EDD /* Chat.storyboard */; };
 		CDFEA38E20FE6D5D000824A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDFEA38D20FE6D5D000824A6 /* Main.storyboard */; };
 		CDFEA39020FE6D75000824A6 /* HomeMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDFEA38F20FE6D75000824A6 /* HomeMap.storyboard */; };
 		CDFEA39220FE7406000824A6 /* CreateGame.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDFEA39120FE7406000824A6 /* CreateGame.storyboard */; };
@@ -90,14 +93,17 @@
 		CD06FCA320F965F20033CB6F /* FolledoMyCourt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FolledoMyCourt.entitlements; sourceTree = "<group>"; };
 		CD06FCA520F966000033CB6F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CD06FCA720F9661D0033CB6F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		CD084B152128831C0011DA17 /* AllMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMessagesViewController.swift; sourceTree = "<group>"; };
-		CD084B17212883350011DA17 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
-		CD084B192128C7AD0011DA17 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		CD08AD9A2108F10800F008D2 /* SnapsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapsTableViewController.swift; sourceTree = "<group>"; };
 		CD08AD9C2108F35200F008D2 /* SelectPictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPictureViewController.swift; sourceTree = "<group>"; };
+		CD08FD2F213C49680000050C /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50.mlmodel; sourceTree = "<group>"; };
+		CD08FD35213CD9AA0000050C /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
+		CD08FD3B213CF4BF0000050C /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
+		CD08FD3F213DC1460000050C /* MyCourtUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCourtUser.swift; sourceTree = "<group>"; };
 		CD3F175221263AFA00939ED8 /* BluetoothViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothViewController.swift; sourceTree = "<group>"; };
 		CD3F175421263E2800939ED8 /* BluetoothTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothTableViewCell.swift; sourceTree = "<group>"; };
+		CD979E412138C8DB00033C98 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		CDB0E79E21042C9200194DD0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CDE55925212DA06B00314EDD /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		CDFEA38D20FE6D5D000824A6 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CDFEA38F20FE6D75000824A6 /* HomeMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeMap.storyboard; sourceTree = "<group>"; };
 		CDFEA39120FE7406000824A6 /* CreateGame.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateGame.storyboard; sourceTree = "<group>"; };
@@ -178,7 +184,11 @@
 			children = (
 				CD06FCA320F965F20033CB6F /* FolledoMyCourt.entitlements */,
 				CD06FC7520F965D80033CB6F /* AppDelegate.swift */,
+				CDE55925212DA06B00314EDD /* Chat.storyboard */,
+				CD08FD35213CD9AA0000050C /* MessagesController.swift */,
+				CD08FD3B213CF4BF0000050C /* NewMessageController.swift */,
 				CD02E52C20FA91BA00A6ECC3 /* Service.swift */,
+				CD08FD3F213DC1460000050C /* MyCourtUser.swift */,
 				CD08AD962108EDAE00F008D2 /* Main */,
 				CD08AD972108EDD400F008D2 /* HomeMap */,
 				CD08AD992108EE1D00F008D2 /* CreateGame */,
@@ -235,10 +245,11 @@
 		CD08AD962108EDAE00F008D2 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				CD04B19420FEA3B200FB8161 /* LoginViewController.swift */,
 				CD06FC7E20F965DA0033CB6F /* LaunchScreen.storyboard */,
 				CD037D8820F9A4F40008EB97 /* MainTabBarController.swift */,
 				CDFEA38D20FE6D5D000824A6 /* Main.storyboard */,
+				CD04B19420FEA3B200FB8161 /* LoginViewController.swift */,
+				CD979E412138C8DB00033C98 /* LoginController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -258,9 +269,6 @@
 			children = (
 				CD037D8E20F9A6120008EB97 /* SwipeUsersViewController.swift */,
 				CDFEA39320FE741C000824A6 /* SwipeUsers.storyboard */,
-				CD084B152128831C0011DA17 /* AllMessagesViewController.swift */,
-				CD084B17212883350011DA17 /* MessageViewController.swift */,
-				CD084B192128C7AD0011DA17 /* MessageTableViewCell.swift */,
 				CD084B14212882DD0011DA17 /* Snaps */,
 			);
 			path = SwipeUsers;
@@ -281,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				CD037D9220F9AC480008EB97 /* EventsViewController.swift */,
+				CD08FD2F213C49680000050C /* Resnet50.mlmodel */,
 				CDFEA39520FE7459000824A6 /* Events.storyboard */,
 			);
 			path = Events;
@@ -414,6 +423,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDE55926212DA06B00314EDD /* Chat.storyboard in Resources */,
 				CD06FC8020F965DA0033CB6F /* LaunchScreen.storyboard in Resources */,
 				CDB0E79F21042C9200194DD0 /* GoogleService-Info.plist in Resources */,
 				CDFEA39420FE741C000824A6 /* SwipeUsers.storyboard in Resources */,
@@ -547,18 +557,20 @@
 				CD3F175321263AFA00939ED8 /* BluetoothViewController.swift in Sources */,
 				CD037D8B20F9A5B50008EB97 /* HomeMapViewController.swift in Sources */,
 				CD037D8D20F9A5FB0008EB97 /* UserProfileTableViewController.swift in Sources */,
+				CD08FD40213DC1460000050C /* MyCourtUser.swift in Sources */,
+				CD08FD30213C49680000050C /* Resnet50.mlmodel in Sources */,
 				CD3F175521263E2800939ED8 /* BluetoothTableViewCell.swift in Sources */,
 				CD06FC7620F965D80033CB6F /* AppDelegate.swift in Sources */,
 				CD02E52D20FA91BA00A6ECC3 /* Service.swift in Sources */,
 				CD08AD9B2108F10800F008D2 /* SnapsTableViewController.swift in Sources */,
-				CD084B162128831C0011DA17 /* AllMessagesViewController.swift in Sources */,
-				CD084B1A2128C7AE0011DA17 /* MessageTableViewCell.swift in Sources */,
 				CD04B19520FEA3B200FB8161 /* LoginViewController.swift in Sources */,
 				CD037D9320F9AC480008EB97 /* EventsViewController.swift in Sources */,
-				CD084B18212883350011DA17 /* MessageViewController.swift in Sources */,
 				CD08AD9D2108F35200F008D2 /* SelectPictureViewController.swift in Sources */,
+				CD979E422138C8DB00033C98 /* LoginController.swift in Sources */,
 				CD037D8F20F9A6120008EB97 /* SwipeUsersViewController.swift in Sources */,
 				CD037D8920F9A4F40008EB97 /* MainTabBarController.swift in Sources */,
+				CD08FD3C213CF4BF0000050C /* NewMessageController.swift in Sources */,
+				CD08FD36213CD9AA0000050C /* MessagesController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -728,6 +740,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8KSKUH7X29;
 				INFOPLIST_FILE = FolledoMyCourt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -748,6 +761,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8KSKUH7X29;
 				INFOPLIST_FILE = FolledoMyCourt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

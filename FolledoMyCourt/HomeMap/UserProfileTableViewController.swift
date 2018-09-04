@@ -31,19 +31,20 @@ class UserProfileTableViewController: UITableViewController {
     @IBAction func logoutTapped() {
         let signoutAction = UIAlertAction(title: "Sign Out", style: .destructive) { (action) in
             do {
-                try Auth.auth().signOut()
+                try Auth.auth().signOut() //Signs user out
                 let cookies = HTTPCookieStorage.shared
                 let facebookCookies = cookies.cookies(for: URL(string: "https://facebook.com/")!)
                 for cookie in facebookCookies! {
                     cookies.deleteCookie(cookie )
                 }
-                //self.present(loginViewController, animated: true, completion: nil)
-                //self.performSegue(withIdentifier: "Logout", sender: nil)
-                let viewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
+                let loginController = LoginController()
                 print("LOGGING OUTTTTTTTT")
-                self.present(viewController, animated: true, completion: nil)
+                self.present(loginController, animated: true, completion: nil)
+//                let viewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
+//                print("LOGGING OUTTTTTTTT")
+//                self.present(viewController, animated: true, completion: nil)
                 
-            } catch let error {
+            } catch let error { //present any error
                 let alert = Service.showAlert(on: self, style: .alert, title: "Logout Error", message: error.localizedDescription)
                 self.present(alert, animated: true, completion: nil)
                 //print(error)

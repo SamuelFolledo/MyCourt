@@ -59,16 +59,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                 return
             }
             if let user = user {
-                print("+++++++++Successfully signed in anoynmously with: ", user.user)
-                //            self.dismiss(animated: true, completion: nil)
-                self.performSegue(withIdentifier: "loginToMainTabSegue", sender: nil)
+                print("+++++++++Successfully signed in anoynmously with: \(user.user)+++++++++")
+//            self.dismiss(animated: true, completion: nil)
+                let viewController: UIViewController = UIStoryboard(name: "HomeMap", bundle: nil).instantiateViewController(withIdentifier: "HomeMapViewController")
+                self.present(viewController, animated: true, completion: nil)
+//                self.performSegue(withIdentifier: "loginToMainTabSegue", sender: nil)
             }
         }
         
     }
     
     
-//Facebook loginButtonDidLogOut delegate method
+//Facebook loginButtonDidLogOut delegate method //handles Facebook Log out Button
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) { //FBLogin //17mins
         print("Did logout of Facebook...") //FBLogin //17mins
     } //FBLogin //17mins
@@ -155,8 +157,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     
     @IBAction func loginOrSignupTapped(_ sender: Any) {
         
-        if let email = emailTextField.text{
-            if let password = passwordTextField.text {
+        if let email = emailTextField.text { //unwrap email
+            if let password = passwordTextField.text { //unwrap password
+                
                 if signupMode { //SIGNUP!
                     if passwordTextField.text != confirmPasswordTextField.text { //passwords dont match!
                         let alert:UIAlertController = Service.showAlert(on: self, style: .alert, title: "Passwords Error", message: "Passwords do not match.\nPlease try again")
@@ -170,8 +173,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                                 
                                 if let user = user { //3 //24mins
                                     Database.database().reference().child("users").child(user.user.uid).child("email").setValue(user.user.email) //SC3 //23mins - 24mins //first name that we want is "users". Then give it a child of the user's uid (unique identifier), then we specify what their child is so give it a child "email" and set its value by the user's email //In short, this adds this particular user in the app
-                                    
-                                    self.performSegue(withIdentifier: "loginToMainTabSegue", sender: nil)
+                                    self.dismiss(animated: true, completion: nil)
+                                    //self.performSegue(withIdentifier: "loginToMainTabSegue", sender: nil)
                                 }
                             }
                         }

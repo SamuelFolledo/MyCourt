@@ -10,8 +10,11 @@ import UIKit
 
 class SwipeUsersViewController: UIViewController {
     
-    private let agePickerDataSource = ["±1 year", "±2 years", "±3 years", "±5 years"]
-    
+    private let agePickerDataSource = ["SAME AGE", "±1 YEAR", "±2 YEARS", "±3 YEARS", "±5 YEARS", "ANYONE"]
+    var ageArray:[String] = [ ]
+    var heightArray:[String] = Array()
+    var distanceArray:[String] = Array()
+    var specialArray:[String] = Array()
     
     @IBOutlet weak var opponentImageView: UIImageView!
     
@@ -26,12 +29,9 @@ class SwipeUsersViewController: UIViewController {
     @IBOutlet weak var bestAttributesLabel: UILabel!
     @IBOutlet weak var myMessageLabel: UILabel!
     
-    @IBOutlet weak var agePickerView: UIPickerView!
+    @IBOutlet weak var filterPickerView: UIPickerView!
     
-    @IBOutlet weak var heightPickerView: UIPickerView!
-    @IBOutlet weak var editButton: UIBarButtonItem!
-    @IBOutlet weak var distancePickerView: UIPickerView!
-    @IBOutlet weak var specialPickerView: UIPickerView!
+   
     
     
     var displayUserID: String = ""
@@ -41,9 +41,9 @@ class SwipeUsersViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         
         
-        agePickerView.dataSource = self
-        agePickerView.delegate = self
-//        agePickerView.backgroundColor = .darkGray
+        filterPickerView.dataSource = self
+        filterPickerView.delegate = self
+//        filterPickerView.backgroundColor = .darkGray
         
         let gesture = UIPanGestureRecognizer(target: self, action: #selector(wasDragged(gestureRecognizer:))) //2 //5mins
         opponentImageView.addGestureRecognizer(gesture) //2 //6mins //this add the gesture on swipeLabel. Make sure to check "User Interaction Enabled" in the storyboard
@@ -102,14 +102,14 @@ class SwipeUsersViewController: UIViewController {
             scaledAndRotated = rotation.scaledBy(x: 1, y: 1) //2 //28mins and their original size
             opponentImageView.transform = scaledAndRotated //2 //29mins apply the transformation to swipeLabel
             
-            opponentImageView.center = CGPoint(x: view.bounds.width / 2 , y: view.bounds.height / 2) //2 //15mins puts the label back to the center of the screen
+            opponentImageView.center = CGPoint(x: view.bounds.width / 2 , y: view.bounds.height / 2 + 10) //2 //15mins puts the label back to the center of the screen
         } //2 end of .ended state
         
     } //2 end of wasDragged method
     
     
-    @IBAction func editButtonTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "moveToSnaps", sender: nil)
+    @IBAction func snapsButtonTapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "moveToSnapsSegue", sender: nil)
     }
     
 }
@@ -119,12 +119,16 @@ class SwipeUsersViewController: UIViewController {
 
 extension SwipeUsersViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return 4
     }
     
 //    func pickerVie
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return agePickerDataSource.count
+        
+        if component == 0 {
+            
+        }
+        return 6
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
