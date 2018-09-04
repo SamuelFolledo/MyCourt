@@ -33,7 +33,7 @@ class MessagesController: UITableViewController {
     
     @objc func handleNewMessage() {
         let newMessageController = NewMessageController()
-        let navController = UINavigationController(rootViewController: newMessageController)
+        let navController = UINavigationController(rootViewController: newMessageController) //will give us a nav bar
         present(navController, animated: true, completion: nil)
     }
 
