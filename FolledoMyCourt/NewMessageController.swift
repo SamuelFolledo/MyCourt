@@ -35,7 +35,9 @@ class NewMessageController: UITableViewController {
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let user = MyCourtUser(dictionary: dictionary) //each user will be a brand new user
                 self.users.append(user)
+                
 //                user.setValuesForKeysWithDictionary(dictionary) //ep4 if u use this setter, your app will crash if your class properties dont exactly match up with the firebase dictionary keys
+                
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }

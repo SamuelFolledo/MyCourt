@@ -33,6 +33,8 @@
 		CD08FD36213CD9AA0000050C /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08FD35213CD9AA0000050C /* MessagesController.swift */; };
 		CD08FD3C213CF4BF0000050C /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08FD3B213CF4BF0000050C /* NewMessageController.swift */; };
 		CD08FD40213DC1460000050C /* MyCourtUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08FD3F213DC1460000050C /* MyCourtUser.swift */; };
+		CD08FD42213E3DFA0000050C /* UserProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08FD41213E3DF90000050C /* UserProfileTableViewCell.swift */; };
+		CD0A9AB5213F27A3009B62F5 /* LoginController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0A9AB4213F27A3009B62F5 /* LoginController+handlers.swift */; };
 		CD3F175321263AFA00939ED8 /* BluetoothViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F175221263AFA00939ED8 /* BluetoothViewController.swift */; };
 		CD3F175521263E2800939ED8 /* BluetoothTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F175421263E2800939ED8 /* BluetoothTableViewCell.swift */; };
 		CD979E422138C8DB00033C98 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD979E412138C8DB00033C98 /* LoginController.swift */; };
@@ -99,6 +101,8 @@
 		CD08FD35213CD9AA0000050C /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		CD08FD3B213CF4BF0000050C /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		CD08FD3F213DC1460000050C /* MyCourtUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCourtUser.swift; sourceTree = "<group>"; };
+		CD08FD41213E3DF90000050C /* UserProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewCell.swift; sourceTree = "<group>"; };
+		CD0A9AB4213F27A3009B62F5 /* LoginController+handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginController+handlers.swift"; sourceTree = "<group>"; };
 		CD3F175221263AFA00939ED8 /* BluetoothViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothViewController.swift; sourceTree = "<group>"; };
 		CD3F175421263E2800939ED8 /* BluetoothTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothTableViewCell.swift; sourceTree = "<group>"; };
 		CD979E412138C8DB00033C98 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -250,6 +254,7 @@
 				CDFEA38D20FE6D5D000824A6 /* Main.storyboard */,
 				CD04B19420FEA3B200FB8161 /* LoginViewController.swift */,
 				CD979E412138C8DB00033C98 /* LoginController.swift */,
+				CD0A9AB4213F27A3009B62F5 /* LoginController+handlers.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 				CD037D8A20F9A5B50008EB97 /* HomeMapViewController.swift */,
 				CDFEA38F20FE6D75000824A6 /* HomeMap.storyboard */,
 				CD037D8C20F9A5FB0008EB97 /* UserProfileTableViewController.swift */,
+				CD08FD41213E3DF90000050C /* UserProfileTableViewCell.swift */,
 			);
 			path = HomeMap;
 			sourceTree = "<group>";
@@ -555,6 +561,7 @@
 				CD037D9120F9A9AA0008EB97 /* CreateGameViewController.swift in Sources */,
 				CD06A90D210C23090086954A /* SelectRecipientTableViewController.swift in Sources */,
 				CD3F175321263AFA00939ED8 /* BluetoothViewController.swift in Sources */,
+				CD08FD42213E3DFA0000050C /* UserProfileTableViewCell.swift in Sources */,
 				CD037D8B20F9A5B50008EB97 /* HomeMapViewController.swift in Sources */,
 				CD037D8D20F9A5FB0008EB97 /* UserProfileTableViewController.swift in Sources */,
 				CD08FD40213DC1460000050C /* MyCourtUser.swift in Sources */,
@@ -571,6 +578,7 @@
 				CD037D8920F9A4F40008EB97 /* MainTabBarController.swift in Sources */,
 				CD08FD3C213CF4BF0000050C /* NewMessageController.swift in Sources */,
 				CD08FD36213CD9AA0000050C /* MessagesController.swift in Sources */,
+				CD0A9AB5213F27A3009B62F5 /* LoginController+handlers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

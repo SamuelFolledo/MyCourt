@@ -9,7 +9,22 @@
 import UIKit
 import FirebaseAuth
 
+struct CellData {
+    let image: UIImage?
+    let message: String?
+}
+
+
+
+
+
+//             USER PROFILE TABLE VIEW CONTROLLER            //
+
 class UserProfileTableViewController: UITableViewController {
+    
+    var data = [CellData]()
+    let cellId: String = "cellId"
+    
     
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var saveButton: UIBarButtonItem!
@@ -22,40 +37,43 @@ class UserProfileTableViewController: UITableViewController {
         
         view.backgroundColor = .red
         
-        //backButton.title = "Return"
+//        data = [CellData.init(image: #imageLiteral(resourceName: "apple"), message: "About")] //create a new cell
+//        data = [CellData.init(image: #imageLiteral(resourceName: "exit"), message: "Logout")] //create a new cell
+//
+        
+        createDataCell()
+        
+        self.tableView.register(CustomCell.self, forCellReuseIdentifier: cellId)
+        
+    //but we still have to automatically make them resize to the contents inside of it
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 100 //to make the cell have a limit and save memory //now in cellForRowAt layoutSubviews()
         
         
     }
+    
+    
+    func createDataCell() {
+         
+        let data1 = CellData.init(image: #imageLiteral(resourceName: "updateProfilePicture"), message: "Update Profile Picture")
+        let data2 = CellData.init(image: #imageLiteral(resourceName: "exit"), message: "Logout")
+        let data3 = CellData.init(image: #imageLiteral(resourceName: "apple"), message: "About")
+
+        
+        
+        data.append(data1)
+        data.append(data2)
+        data.append(data3)
+        
+    }
+    
     
     
     @IBAction func logoutTapped() {
-        let signoutAction = UIAlertAction(title: "Sign Out", style: .destructive) { (action) in
-            do {
-                try Auth.auth().signOut() //Signs user out
-                let cookies = HTTPCookieStorage.shared
-                let facebookCookies = cookies.cookies(for: URL(string: "https://facebook.com/")!)
-                for cookie in facebookCookies! {
-                    cookies.deleteCookie(cookie )
-                }
-                let loginController = LoginController()
-                print("LOGGING OUTTTTTTTT")
-                self.present(loginController, animated: true, completion: nil)
-//                let viewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
-//                print("LOGGING OUTTTTTTTT")
-//                self.present(viewController, animated: true, completion: nil)
-                
-            } catch let error { //present any error
-                let alert = Service.showAlert(on: self, style: .alert, title: "Logout Error", message: error.localizedDescription)
-                self.present(alert, animated: true, completion: nil)
-                //print(error)
-            }
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let signoutOrCancel: UIAlertController = Service.showAlert(on: self, style: .actionSheet, title: nil, message: nil, actions: [signoutAction, cancelAction], completion: nil)
-        self.present(signoutOrCancel, animated: true, completion: nil)
+        perform(#selector(handleLogout), with: nil, afterDelay: 0)
         
     }
+    
     
     @IBAction func backTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -72,57 +90,73 @@ class UserProfileTableViewController: UITableViewController {
         
     }
     
-    
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+//didSelectRow
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+        switch indexPath.row {
+        case 0:
+//            handleUpdateImage()
+            print("Update image coming soon")
+        case 1:
+            handleLogout()
+        case 2:
+            print("About coming soon")
+        default:
+            break
+        }
+        
     }
+    
+    
+//cellForRowAt
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "userCellIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CustomCell
+        
+        cell.mainImage = data[indexPath.row].image
+        cell.message = data[indexPath.row].message
+        cell.layoutSubviews()
+        
         return cell
     }
     
+//numberOfRowsInSection
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data.count
+    }
     
     
+    
+    
+ 
+    
+//handleLogout
+    @objc func handleLogout() {
+        let signoutAction = UIAlertAction(title: "Log Out?", style: .destructive) { (action) in
+            do {
+                try Auth.auth().signOut() //Signs user out
+                let cookies = HTTPCookieStorage.shared
+                let facebookCookies = cookies.cookies(for: URL(string: "https://facebook.com/")!)
+                for cookie in facebookCookies! {
+                    cookies.deleteCookie(cookie )
+                }
+                let loginController = LoginController()
+                print("LOGGING OUTTTTTTTT")
+                self.present(loginController, animated: true, completion: nil)
+                //                let viewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
+                //                print("LOGGING OUTTTTTTTT")
+                //                self.present(viewController, animated: true, completion: nil)
+                
+            } catch let error { //present any error
+                let alert = Service.showAlert(on: self, style: .alert, title: "Logout Error", message: error.localizedDescription)
+                self.present(alert, animated: true, completion: nil)
+                //print(error)
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let signoutOrCancel: UIAlertController = Service.showAlert(on: self, style: .actionSheet, title: nil, message: nil, actions: [signoutAction, cancelAction], completion: nil)
+        self.present(signoutOrCancel, animated: true, completion: nil)
+        
+    }
 }
 
-
-
-
-
-
-
-
-
-
-/*
-
- 
- //    func setNavigationBar() {
- //        let screenSize: CGRect = UIScreen.main.bounds
- //        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 20, width: screenSize.width, height: 50))
- //
- //        //navBar.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.safeAreaLayoutGuide.leadingAnchor, bottom: nil, trailing: view.safeAreaLayoutGuide.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: screenSize.width, height: 44))
- //        let navItem = UINavigationItem(title: "User Profile")
- //
- //
- //        let signoutButton = UIButton()
- //        signoutButton.frame = CGRect(x:0, y:0, width:40, height:40)
- //        signoutButton.setImage(UIImage(named: "exit"), for: .normal)
- //        signoutButton.setImage(UIImage(named: "exit"), for: .highlighted)
- //        signoutButton.backgroundColor = UIColor.yellow
- //        signoutButton.layer.cornerRadius = 5.0
- //        signoutButton.addTarget(self, action: #selector(signOutButtonTapped), for: .touchUpInside)
- //        let rightBarButton = UIBarButtonItem(customView: signoutButton)
- //        //self.navigationItem.rightBarButtonItem = rightBarButton
- //        navItem.rightBarButtonItem = rightBarButton
- //
- //        //let signoutButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: nil, action: #selector(signOutButtonTapped))
- //
- //
- //        navBar.setItems([navItem], animated: false)
- //        self.view.addSubview(navBar)
- //    }
- 
- 
-*/

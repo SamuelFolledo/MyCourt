@@ -7,16 +7,22 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseAuth //2 //10mins
 import FirebaseDatabase
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-class LoginController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
+class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, FBSDKLoginButtonDelegate {
 
 //    var userInfo: UserInfo!
 //    let userName: String = ""
 //    let userUID: String = ""
+    
+    var imagePicker: UIImagePickerController?
+    var imageAdded = false
+    var imageName = "FolledoCourtImages1_\(NSUUID().uuidString).jpg"
+    
     
     let facebookButton: FBSDKLoginButton = {
         let button = FBSDKLoginButton()
@@ -50,7 +56,7 @@ class LoginController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDe
     let loginRegisterButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor(r: 80, g: 101, b: 161)
-        button.setTitle("Login", for: .normal)
+        button.setTitle("Register", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(.white, for: .normal)
         button.setTitleShadowColor(.darkGray, for: .normal)
@@ -59,6 +65,8 @@ class LoginController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDe
         button.setTitleColor(Service.buttonTitleColor, for: .normal)
         button.layer.masksToBounds = true //this enables us to have a corner radius
         button.layer.cornerRadius = Service.buttonCornerRadius
+    
+    //run method on tap
         button.addTarget(self, action: #selector(handleLoginRegister), for: .touchUpInside)
         return button
     }()
@@ -101,8 +109,9 @@ class LoginController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDe
         tf.text = "Password123"
         return tf
     }()
+    
 //logo
-    let logoImageView: UIImageView = {
+    let loginLogoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "apple")
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -110,12 +119,16 @@ class LoginController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDe
         return imageView
     }()
     
+    
+    
+    
+    
 //loginRegisterSegmentedControl
     lazy var loginRegisterSegmentedControl: UISegmentedControl = {
         let sc = UISegmentedControl(items: ["Login", "Register"])
         sc.translatesAutoresizingMaskIntoConstraints = false
         sc.tintColor = .white
-        //sc.selectedSegmentIndex = 0 //to go to log in // 1 would be the register
+        sc.selectedSegmentIndex = 1 //to go to log in // 1 would be the register
         sc.addTarget(self, action: #selector(handleLoginRegisterChange), for: .valueChanged)
         return sc
     }()
@@ -135,22 +148,29 @@ class LoginController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDe
         facebookButton.readPermissions = ["public_profile", "email"]
         facebookButton.delegate = self
         
-        //loginRegisterSegmentedControl.selectedSegmentIndex = 0
+        
+    //run method on tap
+        let imageTap = UITapGestureRecognizer(target: self, action: #selector(LoginController.handleSelectLoginLogoImageView))
+    //enable gesture
+        loginLogoImageView.isUserInteractionEnabled = true //because by default it's false
+//        imageTap.numberOfTapsRequired = 2
+        loginLogoImageView.addGestureRecognizer(imageTap)
         
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        loginRegisterSegmentedControl.selectedSegmentIndex = 0
+//        loginRegisterSegmentedControl.selectedSegmentIndex = 1
     }
 
     func setupViews() {
         view.addSubview(inputsContainerView)
         view.addSubview(loginRegisterButton)
-        view.addSubview(logoImageView)
+        view.addSubview(loginLogoImageView)
         view.addSubview(loginRegisterSegmentedControl)
         view.addSubview(facebookButton)
         view.addSubview(signAnonymouslyButton)
+        
         
         setupConstraints()
         
@@ -159,7 +179,7 @@ class LoginController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDe
     func setupConstraints() {
         inputsViewConstraints()
         loginRegisterButtonConstraints()
-        logoImageViewConstraints()
+        loginLogoImageViewConstraints()
         loginRegisterSegmentedControlConstraints()
         facebookButtonConstraints()
         signAnonymouslyButtonConstraints()
@@ -275,67 +295,7 @@ class LoginController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDe
     }
     
     
-    func handleRegister() {
-        if let name = nameTextField.text {
-            if var email = emailTextField.text { //unwrap email
-                if var password = passwordTextField.text { //unwrap password
-                //remove white space and new lines
-                    email = email.trimmingCharacters(in: .whitespacesAndNewlines)
-                    password = password.trimmingCharacters(in: .whitespacesAndNewlines)
-                //spinner
-                    let spinner: UIActivityIndicatorView = UIActivityIndicatorView() as UIActivityIndicatorView
-                    spinner.activityIndicatorViewStyle = .whiteLarge
-                    spinner.center = view.center
-                    self.view.addSubview(spinner)
-                    spinner.startAnimating()
-                    
-                //create the user
-                    Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-                        spinner.stopAnimating()
-                        if let error = error {
-                            let alert = Service.showAlert(on: self, style: .alert, title: "Signup Error", message: error.localizedDescription)
-                            self.present(alert, animated: true, completion: nil)
-                        } else { //signup was successful
-                            
-                            if let user = user { //3 //24mins
-                              let ref = Database.database().reference()
-                                let usersReference = ref.child("users").child(user.user.uid)//SC3 //23mins - 24mins this adds this particular user in the app
-                                let values = ["name": name, "email": email]
-                                usersReference.setValue(values, withCompletionBlock: { (error, ref) in
-                                    if let error = error {
-                                        let vc = Service.showAlert(on: self, style: .alert, title: "Register Error", message: error.localizedDescription)
-                                        self.present(vc, animated: true, completion: nil)
-                                    }
-                                    
-                                    print("No Error creating a user of \(user.user.uid) \(ref.description())")
-                                    
-                                    DispatchQueue.main.async {
-                                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                        let vc = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
-                                        self.present(vc, animated: true, completion: nil)
-                                    }
-//                                    self.userInfo.email = email
-//                                    self.userInfo.name = name
-//                                    self.userInfo.uid = String(user.user.uid)
-                                    
-                                })
-                            }
-                        }
-                    }
-                } else { //no password
-                    let vc = Service.showAlert(on: self, style: .alert, title: "Missing Password", message: "Please try again")
-                    self.present(vc, animated: true, completion: nil)
-                }
-            } else { //no email
-                let vc = Service.showAlert(on: self, style: .alert, title: "Missing Email", message: "Please try again")
-                self.present(vc, animated: true, completion: nil)
-            }
-        } else { //no name
-            let vc = Service.showAlert(on: self, style: .alert, title: "Missing Name", message: "Please try again")
-            self.present(vc, animated: true, completion: nil)
-        }
-        
-    }
+
     
 //handleLoginRegisterChange method
     @objc func handleLoginRegisterChange() { //updates inputsContainerView when login or register is toggled
@@ -349,7 +309,7 @@ class LoginController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDe
         nameTextFieldHeightAnchor?.isActive = false //turn it off first then turn it back on once u update it
         nameTextFieldHeightAnchor = nameTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: loginRegisterSegmentedControl.selectedSegmentIndex == 0 ? 0 : 1/3) //if selectedSegment index is 0, then nameTextFieldHeight is 0 else it's 1/3 of inputsContainerView
         nameTextFieldHeightAnchor?.isActive = true
-        nameTextField.isHidden = loginRegisterSegmentedControl.selectedSegmentIndex == 0 //hide the nameTextField's placeholder
+        nameTextField.isHidden = loginRegisterSegmentedControl.selectedSegmentIndex == 0 //textField isHidden = true if loginRegisterSegmentedControl.selectedSegmentIndex == 0 is true as well //hide the nameTextField's placeholder
         
     //change height of emailTextField
         emailTextFieldHeightAnchor?.isActive = false //turn it off first then turn it back on once u update it
@@ -413,15 +373,15 @@ class LoginController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDe
     func loginRegisterSegmentedControlConstraints() {
         loginRegisterSegmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         loginRegisterSegmentedControl.bottomAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: -12).isActive = true //put it above
-        loginRegisterSegmentedControl.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, constant: 1/2).isActive = true
+        loginRegisterSegmentedControl.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, multiplier: 1/2).isActive = true
         loginRegisterSegmentedControl.heightAnchor.constraint(equalToConstant: 36).isActive = true
     }
     
-    func logoImageViewConstraints() {
-        logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        logoImageView.bottomAnchor.constraint(equalTo: loginRegisterSegmentedControl.topAnchor, constant: -12).isActive = true //negative constant to have it on the top
-        logoImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        logoImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+    func loginLogoImageViewConstraints() {
+        loginLogoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        loginLogoImageView.bottomAnchor.constraint(equalTo: loginRegisterSegmentedControl.topAnchor, constant: -12).isActive = true //negative constant to have it on the top
+        loginLogoImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        loginLogoImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
     }
     
     
@@ -441,17 +401,23 @@ class LoginController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDe
         self.inputsContainerViewHeightAnchor = inputsContainerView.heightAnchor.constraint(equalToConstant: 150) //this will allow us to interchange the heighAnchor
         self.inputsContainerViewHeightAnchor?.isActive = true
         
+        
+        
         inputsContainerView.addSubview(nameTextField)
         inputsContainerView.addSubview(nameSeparatorView)
         inputsContainerView.addSubview(emailTextField)
         inputsContainerView.addSubview(emailSeparatorView)
         inputsContainerView.addSubview(passwordTextField)
         
+       
+        
     //nameTextField
         nameTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 12).isActive = true
         nameTextField.topAnchor.constraint(equalTo: inputsContainerView.topAnchor).isActive = true
         nameTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, constant: 0).isActive = true
-        nameTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/3).isActive = true
+        //nameTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/3).isActive = true
+        nameTextFieldHeightAnchor = nameTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/3)
+        nameTextFieldHeightAnchor?.isActive = true
         
     //nameSeparatorView constraints
         nameSeparatorView.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor).isActive = true
@@ -478,6 +444,247 @@ class LoginController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDe
         passwordTextFieldHeightAnchor = passwordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/3) //passwordTextFieldHeightAnchor
         passwordTextFieldHeightAnchor?.isActive = true
     }
+    
+    
+    
+
+    
+    
+    
+    
+// ++++++++++++++++++++++++ method handlers ++++++++++++++++++++++++++++
+
+    //handleUpdateImage
+//    func handleUpdateImage() {
+//        print("login logo tapped")
+//        //let picker = UIImagePickerController()
+//        if imagePicker != nil {
+//            imagePicker?.delegate = self
+//            imagePicker?.allowsEditing = true //will allow us to edit image
+//
+//            imagePicker?.sourceType = .camera
+//
+//            present(imagePicker!, animated: true, completion: nil)
+//
+//        } else { //imagePicker error
+//            Service.presentAlert(on: self, title: "Image Picker Error", message: "Failed to launch images")
+//        }
+        
+        
+//    }
+    
+    
+    
+    //extension LoginController: UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
+    
+    
+// ----- HANDLE Select Profile ImageView -----------
+    @objc func handleSelectLoginLogoImageView() {
+        
+        print("login logo tapped")
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true //will allow us to edit image
+        
+        picker.sourceType = .photoLibrary
+//        picker.sourceType = isCamera == true ? .camera : .photoLibrary
+        
+        present(picker, animated: true, completion: nil)
+        
+    }
+    
+    
+//delegate method that will get the image to our app
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        //print(info)
+        print("Finished picking image. Now setting it...")
+        var selectedImageFromPicker: UIImage?
+        
+        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+            selectedImageFromPicker = editedImage
+        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+            selectedImageFromPicker = originalImage
+            
+            
+        }
+        
+        //now do MY MOVES WITH THE IMAGE ==================================
+        
+        if let myCourtProfilePictureImage = selectedImageFromPicker {
+            //            let ui = UIView.init(frame: CGRect(x: 0, y: 50, width: 320, height: 430))
+            //loginLogoImageView.backgroundColor = .white
+            print("putting image to login logo")
+            loginLogoImageView.image = myCourtProfilePictureImage
+            
+        }
+        
+        dismiss(animated: true, completion: nil) //after image is picked, dismiss vc
+        
+    }
+//imagePickerController DID CANCEL
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("canceled image picker")
+        dismiss(animated: true, completion: nil) //dismiss if it u cancel
+    }
+    
+    
+    
+    
+// --------------- HANDLE Register ---------------
+    
+//registerUserIntoDatanase
+    private func registerUserIntoDatabaseWithUID(uid: String, values: [String: AnyObject] ) {
+        
+        let ref = Database.database().reference()
+        let usersReference = ref.child("users").child(uid)//SC3 //23mins - 24mins this adds this particular user in the app //uid parameter was added, but remember to take and unwrap it first from whoever's gonna call this method and have it as its uid parameter
+//        let values = ["name": name, "email": email, "profileImageURL": metadata.downloadUrl()] //"profileImageURL": metadata.downloadUrl() was added for the image, and added as one of the parameters instead
+        usersReference.setValue(values, withCompletionBlock: { (error, ref) in
+            if let error = error {
+                let vc = Service.showAlert(on: self, style: .alert, title: "Register Error", message: error.localizedDescription)
+                self.present(vc, animated: true, completion: nil)
+            }
+            
+//            print("No Error creating a user of \(user.user.uid) \(ref.description())")
+            
+            DispatchQueue.main.async {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
+                self.present(vc, animated: true, completion: nil)
+            }
+//                                    self.userInfo.email = email
+//                                    self.userInfo.name = name
+//                                    self.userInfo.uid = String(user.user.uid)
+            
+        })
+        
+        
+    }
+    
+    @objc func handleRegister() {
+        if let name = nameTextField.text {
+            if var email = emailTextField.text { //unwrap email
+                if var password = passwordTextField.text { //unwrap password
+                    //remove white space and new lines
+                    email = email.trimmingCharacters(in: .whitespacesAndNewlines)
+                    password = password.trimmingCharacters(in: .whitespacesAndNewlines)
+                    //spinner
+                    let spinner: UIActivityIndicatorView = UIActivityIndicatorView() as UIActivityIndicatorView
+                    spinner.activityIndicatorViewStyle = .whiteLarge
+                    spinner.center = view.center
+                    self.view.addSubview(spinner)
+                    spinner.startAnimating()
+                    
+                    //create the user
+                    Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+                        spinner.stopAnimating()
+                        if let error = error {
+                            let alert = Service.showAlert(on: self, style: .alert, title: "Signup Error", message: error.localizedDescription)
+                            self.present(alert, animated: true, completion: nil)
+                        } else { //signup was successful
+                            
+                            if let userUid = user?.user.uid { //3 //24mins
+                                
+                                
+                                
+                                
+                            ////////////////////////
+                                
+                                    
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+//BEGINNING OF STORING IMAGE TO FIREBASE STORAGE
+                                let imageName = NSUUID().uuidString //create a random generated string
+                                let storageRef = Storage.storage().reference().child("profile_images").child("0000\(imageName).png")
+                                if let uploadData = UIImagePNGRepresentation(self.loginLogoImageView.image!) {
+                                    
+                                    let imageReference = storageRef.child(imageName)
+                                    
+                                    imageReference.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                                        if let error = error { //error in putting image to Storage
+                                            Service.presentAlert(on: self, title: "Error Putting Data To Server", message: (error.localizedDescription))
+                                            return
+                                        } else { //if no error then downloadURL of metadata
+                                        
+//                                            if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
+                                            imageReference.downloadURL(completion: { (imageUrl, error) in
+                                                if let error = error {
+                                                    Service.presentAlert(on: self, title: "Error in downloading image URL", message: error.localizedDescription)
+                                                } else { //no error on downloading metadata URL
+                                                    
+                                                    if let downloadURL = imageUrl?.absoluteString {
+                                                    
+                                                        let values = ["name": name, "email": email, "profileImageUrl": downloadURL] //"profileImageURL": metadata.downloadUrl() was added for the image, and added as one of the parameters instead
+                                                    
+                                                        self.registerUserIntoDatabaseWithUID(uid: userUid, values: values as [String : AnyObject])
+                                                    
+                                                    }
+                                                    
+                                                }
+                                            })
+                                            
+                                            
+                                            
+                                            
+                                        
+                                        
+                                    //successful at putting image to Firebase Storage
+//                                            self.registerUserIntoDatabaseWithUID(uid: userUid, values: <#T##[String : AnyObject]#>)
+                                        
+                                        
+                                        
+                                        }
+                                    })
+                                    
+                                }
+                                
+                                
+                                
+                                
+//END OF STORING IMAGE TO FIREBASE STORAGE
+                                
+                                
+                                //following line has been put as a function instead with the added "profileImageUrl"
+                            }
+                        }
+                    }
+                } else { //no password
+                    let vc = Service.showAlert(on: self, style: .alert, title: "Missing Password", message: "Please try again")
+                    self.present(vc, animated: true, completion: nil)
+                }
+            } else { //no email
+                let vc = Service.showAlert(on: self, style: .alert, title: "Missing Email", message: "Please try again")
+                self.present(vc, animated: true, completion: nil)
+            }
+        } else { //no name
+            let vc = Service.showAlert(on: self, style: .alert, title: "Missing Name", message: "Please try again")
+            self.present(vc, animated: true, completion: nil)
+        }
+        
+    }
+    
+    //    fileprivate func registerUserIntoDatabaseWithUID(_ uid: String, values: [String: AnyObject]) {
+    //        let ref = FIRDatabase.database().reference()
+    //        let usersReference = ref.child("users").child(uid)
+    //
+    //        usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
+    //
+    //            if let err = err {
+    //                print(err)
+    //                return
+    //            }
+    //
+    //            self.dismiss(animated: true, completion: nil)
+    //        })
+    //    }
+    
+    
+    
+    
 
 
 }
