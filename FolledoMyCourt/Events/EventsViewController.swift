@@ -78,6 +78,7 @@ class EventsViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(true)
         captureSession.stopRunning()
     }
     

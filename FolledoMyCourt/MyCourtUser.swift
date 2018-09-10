@@ -13,11 +13,13 @@ class MyCourtUser: NSObject {
     var name: String?
     var email: String?
     var profileImageUrl: String?
+    var userUid: String?
     
     init(dictionary: [String: Any]) {
         self.name = dictionary["name"] as? String
         self.email = dictionary["email"] as? String
         self.profileImageUrl = dictionary["profileImageUrl"] as? String
+        self.userUid = dictionary["userUid"] as? String
     }
 }
 

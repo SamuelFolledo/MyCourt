@@ -11,15 +11,14 @@ import CoreBluetooth
 
 class BluetoothViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CBCentralManagerDelegate {
 
+    var centralManager: CBCentralManager?
     var names: [String] = [] //2 storage for our teble view cells
     var RSSIs: [NSNumber] = []
     var timer: Timer?
     
-    
     @IBOutlet weak var tableView: UITableView!
-    var centralManager: CBCentralManager?
     
-    
+//viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,28 +29,6 @@ class BluetoothViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return names.count
-    }
-    
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //Udemy_HandlingPushes_S16L212 //10mins //once we have set up the nameLabel and rssiLabel tableViewCell outlets, we have to get the cell from out storyboard, by using DequeueReusable Cell
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "blueCell", for: indexPath) as? BluetoothTableViewCell {
-            
-            cell.nameLabel.text = names[indexPath.row]
-            cell.rssiLabel.text = "RSSI: \(RSSIs[indexPath.row])"
-            
-            return cell
-        } else {
-            print("Missing cell file")
-            let vc: UIAlertController = Service.showAlert(on: self, style: .alert, title: "Error", message: "Missing Cell file")
-            present(vc, animated: true, completion: nil)
-        }
-        
-        return UITableViewCell() //should never get run
-        
-    }
     
     
     
@@ -67,7 +44,7 @@ class BluetoothViewController: UIViewController, UITableViewDataSource, UITableV
     
     func startTimer() {
         timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { (timer) in
+        timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true, block: { (timer) in
             self.startScan()
         })
     }
@@ -100,18 +77,58 @@ class BluetoothViewController: UIViewController, UITableViewDataSource, UITableV
         
         if let bluetoothPeripheralName = peripheral.name {
             print("Peripheral Name: \(bluetoothPeripheralName)")
+            print("Peripheral RSSI: \(RSSI)")
+            print("Ad Data: \(advertisementData)")
+            print("\n**************************************************\n\n\n")
+            
+            guard !names.contains(bluetoothPeripheralName) else { return } //this stops creating a new cell for bluetooth device with the same name
+            
             names.append(bluetoothPeripheralName)
         } else {
             print("Peripheral 'Name': \(peripheral.identifier.uuidString)")
+            print("Peripheral RSSI: \(RSSI)")
+            print("Ad Data: \(advertisementData)")
+            print("\n**************************************************\n\n\n")
             names.append(peripheral.identifier.uuidString) //if it cant get an actual name then just give me any information about how u could identify each of those
         }
         
-        print("Peripheral NamE: \(RSSI)")
-        RSSIs.append(RSSI)
         
-        print("Ad Data: \(advertisementData)")
-        print("\n**************************************************\n\n\n")
+        RSSIs.append(RSSI)
+        tableView.reloadData()
+        
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return names.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //Udemy_HandlingPushes_S16L212 //10mins //once we have set up the nameLabel and rssiLabel tableViewCell outlets, we have to get the cell from out storyboard, by using DequeueReusable Cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "blueCell", for: indexPath) as? BluetoothTableViewCell {
             
+            cell.nameLabel.text = names[indexPath.row]
+            cell.rssiLabel.text = "RSSI: \(RSSIs[indexPath.row])"
+            
+            return cell
+            
+        } else {
+            print("Missing cell file")
+            let vc: UIAlertController = Service.showAlert(on: self, style: .alert, title: "Error", message: "Missing Cell file")
+            present(vc, animated: true, completion: nil)
+        }
+        
+        return UITableViewCell() //should never get run
+        
+    }
+    
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        //super.viewDidDisappear(true)
+        timer?.invalidate()
+        centralManager?.stopScan() //stop and start it again
+        print("Bluetooth timer stopped")
         
     }
     
