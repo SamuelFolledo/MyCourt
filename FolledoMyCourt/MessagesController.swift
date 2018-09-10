@@ -43,25 +43,82 @@ class MessagesController: UITableViewController {
         if Auth.auth().currentUser?.uid == nil {
             perform(#selector(handleLogout), with: nil, afterDelay: 0)
         } else {
-            if let uid = Auth.auth().currentUser?.uid { //unwrap the currentUser's uid
-                
-                print("UID = \(uid)")
-                Database.database().reference().child("users").child(uid).observe(.value, with: { (snapshot) in //listen for a single value, which is the current user
-                    print("observed")
-                    if let dictionary = snapshot.value as? [String: AnyObject] {
-                        print("got the dict")
-                        print(dictionary)
-                        if let userName = dictionary["name"] as? String {
-                            print(userName)
-                            self.navigationItem.title = userName //set the title as the name from the snapshot
-                        }
-                    }
-                    
-                }, withCancel: nil) //withCancel nil is safer and less error
-            }
+            fetchCurrentUserAndSetupNavBarTitle()
         }
     }
     
+//fetch Current User
+    func fetchCurrentUserAndSetupNavBarTitle() {
+        if let uid = Auth.auth().currentUser?.uid { //unwrap the currentUser's uid
+            
+            print("UID = \(uid)")
+            Database.database().reference().child("users").child(uid).observe(.value, with: { (snapshot) in //listen for a single value, which is the current user
+                print("observed")
+                if let dictionary = snapshot.value as? [String: AnyObject] {
+//                    if let userName:String = dictionary["name"] as? String {
+//                        print(userName)
+//                        self.navigationItem.title = userName //set the title as the name from the snapshot //changed
+                        
+                    let user = MyCourtUser(dictionary: dictionary) //ep.7
+                    self.setupNavBarWithCurrentUser(user: user) //ep.7
+                    
+                }
+                
+            }, withCancel: nil) //withCancel nil is safer and less error
+        }
+    }
+    
+//navBar that will display current user's image and name to our nav bar
+    func setupNavBarWithCurrentUser(user: MyCourtUser) {
+        let titleView = UIView() //the titleView which will contain our image and name
+        titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
+        titleView.backgroundColor = .red
+        
+        
+    //after adding the titleView, profileImageView, and nameLabel, they dont fit correctly, and the containerView will be our solution
+        let containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        titleView.addSubview(containerView)
+        
+        
+    
+    //profileImage
+        let profileImageView = UIImageView()
+        containerView.addSubview(profileImageView)
+        
+        profileImageView.translatesAutoresizingMaskIntoConstraints = false
+        profileImageView.contentMode = .scaleAspectFill
+        profileImageView.layer.cornerRadius = 20
+        profileImageView.clipsToBounds = true
+        if let profileImageUrl = user.profileImageUrl {
+            profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
+        }
+        
+        profileImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
+        profileImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        
+    //nameLabel
+        let nameLabel = UILabel()
+        containerView.addSubview(nameLabel)
+        
+        nameLabel.text = user.name
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 8).isActive = true
+        nameLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
+        nameLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
+        nameLabel.heightAnchor.constraint(equalTo: profileImageView.heightAnchor).isActive = true
+        
+        
+    //containerView constraints
+        containerView.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
+        containerView.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
+        
+        print("Current user name and image is loaded")
+        self.navigationItem.titleView = titleView
+    }
     
     
     
@@ -79,6 +136,7 @@ class MessagesController: UITableViewController {
         }
         
         let loginController = LoginController()
+        loginController.messagesController = self //ep.7 bug fix
         self.present(loginController, animated: true, completion: nil)
     }
     

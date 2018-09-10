@@ -15,13 +15,15 @@ import FBSDKLoginKit
 
 class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, FBSDKLoginButtonDelegate {
 
+    var messagesController: MessagesController?
+    
 //    var userInfo: UserInfo!
 //    let userName: String = ""
 //    let userUID: String = ""
     
     var imagePicker: UIImagePickerController?
-    var imageAdded = false
-    var imageName = "FolledoCourtImages1_\(NSUUID().uuidString).jpg"
+    var imageAdded: Bool = false
+    var imageName: String = "FolledoCourtImages1_\(NSUUID().uuidString).jpg"
     
     
     let facebookButton: FBSDKLoginButton = {
@@ -282,7 +284,7 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
                         let alert = Service.showAlert(on: self, style: .alert, title: "Login Error", message: error.localizedDescription, actions: [okAction])
                         self.present(alert, animated: true, completion: nil)
                     } else { //login was successful
-                        
+                        self.messagesController?.fetchCurrentUserAndSetupNavBarTitle() //ep.7 bug fix
                         DispatchQueue.main.async {
                             let storyboard = UIStoryboard(name: "Main", bundle: nil)
                             let vc = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
@@ -535,7 +537,7 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
 //registerUserIntoDatanase
     private func registerUserIntoDatabaseWithUID(uid: String, values: [String: AnyObject] ) {
         
-        let ref = Database.database().reference()
+        let ref = Database.database().reference() //https://console.firebase.google.com/u/1/project/folledomycourt/authentication/users
         let usersReference = ref.child("users").child(uid)//SC3 //23mins - 24mins this adds this particular user in the app //uid parameter was added, but remember to take and unwrap it first from whoever's gonna call this method and have it as its uid parameter
 //        let values = ["name": name, "email": email, "profileImageURL": metadata.downloadUrl()] //"profileImageURL": metadata.downloadUrl() was added for the image, and added as one of the parameters instead
         usersReference.setValue(values, withCompletionBlock: { (error, ref) in
@@ -543,10 +545,16 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
                 let vc = Service.showAlert(on: self, style: .alert, title: "Register Error", message: error.localizedDescription)
                 self.present(vc, animated: true, completion: nil)
             }
-            
-//            print("No Error creating a user of \(user.user.uid) \(ref.description())")
-            
-            DispatchQueue.main.async {
+        
+            DispatchQueue.main.async { //if no error then proceed
+                
+//                self.messagesController?.fetchCurrentUserAndSetupNavBarTitle() //ep.7 bug fix
+//                self.messagesController?.navigationItem.title = values["name"] as? String //ep.7 bug fix another way instead of calling method //removed as well in ep.7
+                let user = MyCourtUser(dictionary: values) //ep.7
+                user.setValuesForKeys(values) //ep.7
+                self.messagesController?.setupNavBarWithCurrentUser(user: user) //ep.7
+                
+                
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
                 self.present(vc, animated: true, completion: nil)
@@ -559,6 +567,7 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
         
         
     }
+    
     
     @objc func handleRegister() {
         if let name = nameTextField.text {
@@ -587,21 +596,13 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
                                 
                                 
                                 
-                            ////////////////////////
-                                
-                                    
-                                
-                                
-                                
-                                
-                                
-                                
                                 
 //BEGINNING OF STORING IMAGE TO FIREBASE STORAGE
                                 let imageName = NSUUID().uuidString //create a random generated string
                                 let storageRef = Storage.storage().reference().child("profile_images").child("0000\(imageName).png")
-                                if let uploadData = UIImagePNGRepresentation(self.loginLogoImageView.image!) {
-                                    
+//                                if let uploadData = UIImagePNGRepresentation(self.loginLogoImageView.image!) { //removed and changed to JPEG in order to compress
+                                if let profileImage = self.loginLogoImageView.image, let uploadData = UIImageJPEGRepresentation(profileImage, 0.1) { //ep.7 compress the image uploaded to 10%
+                                
                                     let imageReference = storageRef.child(imageName)
                                     
                                     imageReference.putData(uploadData, metadata: nil, completion: { (metadata, error) in
@@ -616,39 +617,18 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
                                                     Service.presentAlert(on: self, title: "Error in downloading image URL", message: error.localizedDescription)
                                                 } else { //no error on downloading metadata URL
                                                     
-                                                    if let downloadURL = imageUrl?.absoluteString {
+                                                    if let profileImageUrl = imageUrl?.absoluteString {
                                                     
-                                                        let values = ["name": name, "email": email, "profileImageUrl": downloadURL] //"profileImageURL": metadata.downloadUrl() was added for the image, and added as one of the parameters instead
+                                                        let values = ["name": name, "email": email, "profileImageUrl": profileImageUrl] //"profileImageURL": metadata.downloadUrl() was added for the image, and added as one of the parameters instead
                                                     
                                                         self.registerUserIntoDatabaseWithUID(uid: userUid, values: values as [String : AnyObject])
                                                     
                                                     }
-                                                    
                                                 }
                                             })
-                                            
-                                            
-                                            
-                                            
-                                        
-                                        
-                                    //successful at putting image to Firebase Storage
-//                                            self.registerUserIntoDatabaseWithUID(uid: userUid, values: <#T##[String : AnyObject]#>)
-                                        
-                                        
-                                        
                                         }
                                     })
-                                    
                                 }
-                                
-                                
-                                
-                                
-//END OF STORING IMAGE TO FIREBASE STORAGE
-                                
-                                
-                                //following line has been put as a function instead with the added "profileImageUrl"
                             }
                         }
                     }
@@ -666,21 +646,6 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
         }
         
     }
-    
-    //    fileprivate func registerUserIntoDatabaseWithUID(_ uid: String, values: [String: AnyObject]) {
-    //        let ref = FIRDatabase.database().reference()
-    //        let usersReference = ref.child("users").child(uid)
-    //
-    //        usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
-    //
-    //            if let err = err {
-    //                print(err)
-    //                return
-    //            }
-    //
-    //            self.dismiss(animated: true, completion: nil)
-    //        })
-    //    }
     
     
     

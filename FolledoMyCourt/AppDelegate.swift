@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate { //Fir
         
     //for AdMob
         GADMobileAds.configure(withApplicationID: "ca-app-pub-7199410801226990~1516633985") //AdMob //2mins "MY APP's ID"
-        let request = GADRequest()
+        let request:GADRequest = GADRequest()
         request.testDevices = []
         
         

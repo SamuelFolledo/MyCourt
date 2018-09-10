@@ -76,7 +76,7 @@ class MainTabBarController: UITabBarController {
             //self.present(loginViewController, animated: true, completion: nil)
 //            self.performSegue(withIdentifier: "mainTabBarToLoginSegue", sender: nil)
         } catch let error {
-            let alert = Service.showAlert(on: self, style: .alert, title: "Logout Error", message: error.localizedDescription)
+            let alert:UIAlertController = Service.showAlert(on: self, style: .alert, title: "Logout Error", message: error.localizedDescription)
             present(alert, animated: true, completion: nil)
             //print(error)
         }

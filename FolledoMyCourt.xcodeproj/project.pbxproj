@@ -26,7 +26,6 @@
 		CD06FC8B20F965DA0033CB6F /* FolledoMyCourtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06FC8A20F965DA0033CB6F /* FolledoMyCourtTests.swift */; };
 		CD06FC9620F965DA0033CB6F /* FolledoMyCourtUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06FC9520F965DA0033CB6F /* FolledoMyCourtUITests.swift */; };
 		CD06FCA620F966000033CB6F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD06FCA520F966000033CB6F /* MapKit.framework */; };
-		CD06FCA820F9661D0033CB6F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD06FCA720F9661D0033CB6F /* StoreKit.framework */; };
 		CD08AD9B2108F10800F008D2 /* SnapsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08AD9A2108F10800F008D2 /* SnapsTableViewController.swift */; };
 		CD08AD9D2108F35200F008D2 /* SelectPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08AD9C2108F35200F008D2 /* SelectPictureViewController.swift */; };
 		CD08FD30213C49680000050C /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = CD08FD2F213C49680000050C /* Resnet50.mlmodel */; };
@@ -94,7 +93,6 @@
 		CD06FC9720F965DA0033CB6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD06FCA320F965F20033CB6F /* FolledoMyCourt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FolledoMyCourt.entitlements; sourceTree = "<group>"; };
 		CD06FCA520F966000033CB6F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		CD06FCA720F9661D0033CB6F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CD08AD9A2108F10800F008D2 /* SnapsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapsTableViewController.swift; sourceTree = "<group>"; };
 		CD08AD9C2108F35200F008D2 /* SelectPictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPictureViewController.swift; sourceTree = "<group>"; };
 		CD08FD2F213C49680000050C /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50.mlmodel; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD06FCA620F966000033CB6F /* MapKit.framework in Frameworks */,
-				CD06FCA820F9661D0033CB6F /* StoreKit.framework in Frameworks */,
 				98B7EA0B563F71BF4D725AF5 /* Pods_FolledoMyCourt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,7 +223,6 @@
 		CD06FCA420F966000033CB6F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CD06FCA720F9661D0033CB6F /* StoreKit.framework */,
 				CD06FCA520F966000033CB6F /* MapKit.framework */,
 				5805FE4B9A211E702C18945C /* Pods_FolledoMyCourt.framework */,
 				B56B92F3BD135D294B0F8305 /* Pods_FolledoMyCourtTests.framework */,
@@ -381,7 +377,7 @@
 								enabled = 0;
 							};
 							com.apple.InAppPurchase = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.Keychain = {
 								enabled = 1;

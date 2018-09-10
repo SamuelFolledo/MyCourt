@@ -10,7 +10,9 @@ import UIKit
 
 class SwipeUsersViewController: UIViewController {
     
-    private let agePickerDataSource = ["SAME AGE", "±1 YEAR", "±2 YEARS", "±3 YEARS", "±5 YEARS", "ANYONE"]
+    private let agePickerDataSource = ["Same Age", "±1 Year", "±2 Years", "±3 Years", "±5 Years", "Anyone"]
+    private let distancePickerDataSource = ["" , ""]
+    
     var ageArray:[String] = [ ]
     var heightArray:[String] = Array()
     var distanceArray:[String] = Array()
@@ -22,6 +24,7 @@ class SwipeUsersViewController: UIViewController {
     
     @IBOutlet weak var heightLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var winLoseLabel: UILabel!
     
     @IBOutlet weak var homeCourtLabel: UILabel!
     @IBOutlet weak var awayCourtLabel: UILabel!
@@ -102,7 +105,8 @@ class SwipeUsersViewController: UIViewController {
             scaledAndRotated = rotation.scaledBy(x: 1, y: 1) //2 //28mins and their original size
             opponentImageView.transform = scaledAndRotated //2 //29mins apply the transformation to swipeLabel
             
-            opponentImageView.center = CGPoint(x: view.bounds.width / 2 , y: view.bounds.height / 2 + 10) //2 //15mins puts the label back to the center of the screen
+            opponentImageView.center = CGPoint(x: view.bounds.width / 2 , y:  view.bounds.height / 2 - 10) //2 //15mins puts the label back to the center of the screen
+            
         } //2 end of .ended state
         
     } //2 end of wasDragged method
@@ -122,7 +126,7 @@ extension SwipeUsersViewController: UIPickerViewDelegate, UIPickerViewDataSource
         return 4
     }
     
-//    func pickerVie
+//    func pickerView
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         if component == 0 {
@@ -130,6 +134,7 @@ extension SwipeUsersViewController: UIPickerViewDelegate, UIPickerViewDataSource
         }
         return 6
     }
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         myMessageLabel.text = agePickerDataSource[row]
@@ -142,17 +147,17 @@ extension SwipeUsersViewController: UIPickerViewDelegate, UIPickerViewDataSource
     
 //method for editing each view of the rows in the pickerView
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        var label: UILabel
         
+        var label: UILabel
         if let view = view as? UILabel {
             label = view
         } else {
             label = UILabel()
         }
         
-        label.textColor = .red
+        label.textColor = .white
         label.textAlignment = .center
-        label.font = UIFont(name: "Menlo-Regular", size: 14)
+        label.font = UIFont(name: "Menlo-Regular", size: 16)
         label.text = agePickerDataSource[row]
         
         return label

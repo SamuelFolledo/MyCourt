@@ -19,7 +19,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     
     
     let screenSize: CGRect = UIScreen.main.bounds
-    var signupMode = false
+    var signupMode: Bool = false
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -54,7 +54,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         Auth.auth().signInAnonymously { (user, error) in
             if let error = error {
                 print("Failed to sign in anonymously with error: ",error)
-                let alert = Service.showAlert(on: self, style: .alert, title: "Sign In Error", message: error.localizedDescription)
+                let alert:UIAlertController = Service.showAlert(on: self, style: .alert, title: "Sign In Error", message: error.localizedDescription)
                 self.present(alert, animated: true, completion: nil)
                 return
             }
@@ -92,8 +92,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                     graphRequest.start { (connection, result, error) in //FBLogin //20mins, give us connection, result, and error
                         if error != nil { //FBLogin //20mins
                             print(error!) //FBLogin //20mins
-                            let alert:UIAlertController = Service.showAlert(on: self, style: .alert, title: "Facebook Login Error", message: "\(error!.localizedDescription)")
-                            self.present(alert, animated: true, completion: nil)
+                            Service.presentAlert(on: self, title: "Facebook Login Error", message: "\(error?.localizedDescription)")
+//                            let alert:UIAlertController = Service.showAlert(on: self, style: .alert, title: "Facebook Login Error", message: "\(error!.localizedDescription)")
+//                            self.present(alert, animated: true, completion: nil)
                         } else { //FBLogin //20mins if everything worked out...
                             if let userDetails = result { //FBLogin //21mins if no error then we should get the results
                                 //print(userDetails)
@@ -157,8 +158,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     
     @IBAction func loginOrSignupTapped(_ sender: Any) {
         
-        if let email = emailTextField.text { //unwrap email
-            if let password = passwordTextField.text { //unwrap password
+        if let email:String = emailTextField.text { //unwrap email
+            if let password:String = passwordTextField.text { //unwrap password
                 
                 if signupMode { //SIGNUP!
                     if passwordTextField.text != confirmPasswordTextField.text { //passwords dont match!
@@ -167,8 +168,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                     } else { //PASSWORDS MATCH!
                         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
                             if let error = error {
-                                let alert = Service.showAlert(on: self, style: .alert, title: "Signup Error", message: error.localizedDescription)
-                                self.present(alert, animated: true, completion: nil)
+//                                let alert = Service.showAlert(on: self, style: .alert, title: "Signup Error", message: error.localizedDescription)
+//                                self.present(alert, animated: true, completion: nil)
+                                Service.presentAlert(on: self, title: "Sigup Error", message: "\(error.localizedDescription)")
                             } else { //signup was successful
                                 
                                 if let user = user { //3 //24mins
@@ -183,7 +185,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
                     Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
                         if let error = error {
                             let okAction = UIAlertAction(title: "Ok", style: .default)
-                            let alert = Service.showAlert(on: self, style: .alert, title: "Login Error", message: error.localizedDescription, actions: [okAction])
+                            let alert:UIAlertController = Service.showAlert(on: self, style: .alert, title: "Login Error", message: error.localizedDescription, actions: [okAction])
                             self.present(alert, animated: true, completion: nil)
                         } else { //signup was successful
                             self.performSegue(withIdentifier: "loginToMainTabSegue", sender: nil)
