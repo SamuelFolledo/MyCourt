@@ -76,6 +76,9 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
     let nameTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Name"
+        tf.keyboardType = UIKeyboardType.default
+        tf.clearButtonMode = UITextFieldViewMode.always
+        tf.returnKeyType = .next
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
     }()
@@ -92,7 +95,9 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
         tf.placeholder = "Email address"
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.text = "samuelfolledo@gmail.com"
+        tf.clearButtonMode = UITextFieldViewMode.always
         tf.keyboardType = .emailAddress
+        tf.returnKeyType = .next
         return tf
     }()
     let emailSeparatorView: UIView = {
@@ -107,6 +112,9 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
         let tf = UITextField()
         tf.placeholder = "Password"
         tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.keyboardType = UIKeyboardType.default
+        tf.clearButtonMode = UITextFieldViewMode.always
+        tf.returnKeyType = .done
         tf.isSecureTextEntry = true //secure password inputs ****
         tf.text = "Password123"
         return tf
