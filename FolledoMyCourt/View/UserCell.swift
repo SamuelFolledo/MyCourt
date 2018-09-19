@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 
 //UserCell //needed for our programmatically cellForRowAt
 class UserCell: UITableViewCell { //is the UserCell we registered to our TableView
@@ -15,27 +16,8 @@ class UserCell: UITableViewCell { //is the UserCell we registered to our TableVi
 //ep. 10 it should be UserCell's job to keep track of the message, and the cellForRowAt from MessagesController should only return the cell
     var message: ChatMessage? { //ep.10
         didSet {
-            
-            //ep.10 to get the name displayed instead of the uid
-            if let userId = message?.userUid { //ep.10
-                let ref = Database.database().reference().child("users").child(userId) //ep.10 //having the reference set here, now we can observe the value!
-                
-                ref.observe(.value, with: { (snapshot) in //ep.10 observe the value and unwrap the dictionary
-                    
-                    if let dictionary = snapshot.value as? [String : AnyObject] {
-                        let name = dictionary["name"] as? String
-                        
-                        self.textLabel?.text = name //assign the textLabel
-//                        cell.textLabel?.text = name //assign the name ep.10 //putting this didSet here in the UserCell from MEssagesController, we dont have to include the cell anymore, as well as for profileImageView
-                        
-                        if let profileImageUrl = dictionary["profileImageUrl"] as? String {
-                            self.profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
-                        }
-                    }
-                    //                print(ref + snapshot)
-                }, withCancel: nil) //ep.10
-            }
-            detailTextLabel?.text = message?.text //assign the message in .detailTextLabel
+            setupNameAndProfileImage() //ep.11
+            detailTextLabel?.text = message?.text //ep.10 //assign the message in .detailTextLabel
             
             if let seconds = message?.timeStamp?.doubleValue { //ep.10
                 let timeStampDate = NSDate.init(timeIntervalSince1970: seconds) //ep.10
@@ -54,6 +36,29 @@ class UserCell: UITableViewCell { //is the UserCell we registered to our TableVi
         detailTextLabel?.frame = CGRect(x: 70, y: detailTextLabel!.frame.origin.y, width: detailTextLabel!.frame.width, height: detailTextLabel!.frame.height + 5)
     }
     
+    private func setupNameAndProfileImage() { //ep.11 created a func for it instead of having it in didSet
+        
+        //ep.10 to get the name displayed instead of the uid
+        if let id = message?.chatPartnerId() { //ep.10 //ep.12 changed to chatPartnerId
+            let ref = Database.database().reference().child("users").child(id) //ep.10 //having the reference set here, now we can observe the value! //ep.11 userUid is changed to id from chatPartnerId in order to reference the right "profileImageUrl"
+            
+            ref.observe(.value, with: { (snapshot) in //ep.10 observe the value and unwrap the dictionary
+                
+                if let dictionary = snapshot.value as? [String : AnyObject] {
+                    let name = dictionary["name"] as? String
+                    
+                    self.textLabel?.text = name //assign the textLabel
+                    //                        cell.textLabel?.text = name //assign the name ep.10 //putting this didSet here in the UserCell from MEssagesController, we dont have to include the cell anymore, as well as for profileImageView
+                    
+                    if let profileImageUrl = dictionary["profileImageUrl"] as? String {
+                        self.profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
+                    }
+                }
+                //                print(ref + snapshot)
+            }, withCancel: nil) //ep.10
+        }
+    }
+    
     let profileImageView: UIImageView = { //ep.6
         let imageView = UIImageView()
         imageView.image = UIImage(named: "apple")
@@ -69,7 +74,7 @@ class UserCell: UITableViewCell { //is the UserCell we registered to our TableVi
 //timeLabel
     let timeLabel: UILabel = { //ep.10
         let label = UILabel() //ep.10
-        label.text = "HH:MM:SS" //ep.10
+//        label.text = "HH:MM:SS" //ep.10
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .darkGray
         label.font = .systemFont(ofSize: 13)

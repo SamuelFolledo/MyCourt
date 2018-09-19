@@ -41,9 +41,9 @@ class CreateGameViewController: UIViewController {
             
             URLSession.shared.dataTask(with: request) { (data, urlresponse, error) in //Percival S18-L225 //11-13mins create the request with a completion handler
                 
-                if error != nil { //Percival S18-L225 //13mins
+                if let error = error  { //Percival S18-L225 //13mins
                     print(error) //Percival S18-L225 /13mins
-                    let vc = Service.showAlert(on: self, style: .alert, title: "Error", message: error?.localizedDescription)
+                    let vc = Service.showAlert(on: self, style: .alert, title: "Error", message: error.localizedDescription)
                     self.present(vc, animated: true, completion: nil)
                 }
                 }.resume() //Percival S18-L225 //15mins
@@ -67,6 +67,14 @@ class CreateGameViewController: UIViewController {
     
     func femaleHandler (_: UIAlertAction) {
         Analytics.setUserProperty("Female", forName: "gender_female")
+    }
+    
+    @IBAction func visionButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "toVisionSegue", sender: nil)
+//        let storyboard = UIStoryboard(name: "CreateGameView", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "VisionController")
+//        self.present(vc, animated: true, completion: nil)
+        
     }
     
     @IBAction func bluetoothTapped(_ sender: Any) {

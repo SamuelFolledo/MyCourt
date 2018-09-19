@@ -10,12 +10,16 @@ import UIKit
 import Firebase
 import FirebaseAuth //2 //10mins
 import FirebaseDatabase
+import FirebaseStorage
 import FBSDKCoreKit
 import FBSDKLoginKit
 
 class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, FBSDKLoginButtonDelegate {
 
     var messagesController: MessagesController?
+    var initialY: CGFloat!
+    var offset: CGFloat!
+    
     
 //    var userInfo: UserInfo!
 //    let userName: String = ""
@@ -158,21 +162,64 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
         facebookButton.readPermissions = ["public_profile", "email"]
         facebookButton.delegate = self
         
-        
-    //run method on tap
-        let imageTap = UITapGestureRecognizer(target: self, action: #selector(LoginController.handleSelectLoginLogoImageView))
-    //enable gesture
-        loginLogoImageView.isUserInteractionEnabled = true //because by default it's false
-//        imageTap.numberOfTapsRequired = 2
-        loginLogoImageView.addGestureRecognizer(imageTap)
+        handleKeyboardOberservers()
+        handleLogoIsTapped()
         
         
     }
     
+    
     override func viewDidAppear(_ animated: Bool) {
 //        loginRegisterSegmentedControl.selectedSegmentIndex = 1
     }
+    
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+    }
+    
+    
+    
+    
+// ---------------------- viewDidLoad methods ------------------------------
+    
+    func handleLogoIsTapped(){
+        //run method on tap
+        let imageTap = UITapGestureRecognizer(target: self, action: #selector(LoginController.handleSelectLoginLogoImageView))
+        //enable gesture
+        loginLogoImageView.isUserInteractionEnabled = true //because by default it's false
+        //        imageTap.numberOfTapsRequired = 2
+        loginLogoImageView.addGestureRecognizer(imageTap)
+        
+    }
+    
+//show/hide keyboard and handling the views
+    func handleKeyboardOberservers(){
+        self.initialY = view.frame.origin.y //to show/hide keyboard
+        self.offset = -80 //to show/hide keyboard //go "up" when decreasing the Y value
 
+        NotificationCenter.default.addObserver(self, selector: #selector(handleViewsOnKeyboardShowOrHide(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleViewsOnKeyboardShowOrHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleViewsOnKeyboardShowOrHide(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+        
+    //        NotificationCenter.default.addObserver(forName: Notification.Name.UIKeyboardWillShow, object: nil, queue: OperationQueue.main) { (notification: Notification) in //to show/hide keyboard
+//            self.view.frame.origin.y = self.initialY + self.offset //this gets run whenever keyboard shows, which will move the view's origin frame up
+//        }
+//
+//        NotificationCenter.default.addObserver(forName: Notification.Name.UIKeyboardWillHide, object: nil, queue: OperationQueue.main) { (notification: Notification) in //to show/hide keyboard
+//            self.view.frame.origin.y = self.initialY //put the view.frame.y back to its originY
+//        }
+    }
+    
+    
     func setupViews() {
         view.addSubview(inputsContainerView)
         view.addSubview(loginRegisterButton)
@@ -195,51 +242,23 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
         signAnonymouslyButtonConstraints()
     }
     
-// ---------------------- Facebook methods ------------------------------
-//Facebook loginButtonDidLogOut delegate method //handles Facebook Log out Button
-    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) { //FBLogin //17mins
-        print("Did logout of Facebook...") //FBLogin //17mins
-    } //FBLogin //17mins
     
-//Facebook didCompleteWith delegate method
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) { //FBLogin //17mins
-        if error != nil { //FBLogin //17mins
-            //            print(error) //FBLogin //17mins
-            let alert:UIAlertController = Service.showAlert(on: self, style: .alert, title: "Facebook Login Error", message: "\(error.localizedDescription)\nPlease try again")
-            self.present(alert, animated: true, completion: nil)
-            return //FBLogin //17mins
-        } else if result.isCancelled { //FBLogin //17mins if user canceled login
-            print("User has canceled login")
-            let alert:UIAlertController = Service.showAlert(on: self, style: .alert, title: "Facebook Login Error", message: "User has cancelled Login\nPlease try again")
-            self.present(alert, animated: true, completion: nil)
-        } else { //FBLogin //if successful, meaning no error, and login didnt cancel log in
-            
-            if result.grantedPermissions.contains("email"){ //FBLogin //18minsmake sure they gave us permissions
-                if let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"email,name"]) { //FBLogin //19mins //FBSDKGraohRequest - represents a request to the Facebook Graph API. //we're looking for "me" only because we dont want anything to do with user's friends. //' parameters: ["fields":"email,name"] ' gives us the email and name
-                    graphRequest.start { (connection, result, error) in //FBLogin //20mins, give us connection, result, and error
-                        if error != nil { //FBLogin //20mins
-                            print(error!) //FBLogin //20mins
-                            let alert:UIAlertController = Service.showAlert(on: self, style: .alert, title: "Facebook Login Error", message: "\(error!.localizedDescription)")
-                            self.present(alert, animated: true, completion: nil)
-                            
-                        } else { //FBLogin //20mins if everything worked out...
-                            if let userDetails = result { //FBLogin //21mins if no error then we should get the results
-                                //print(userDetails)
-                                print("Successfuly Log in Facebook: ", userDetails)
-                            }
-                        }
-                    }
-                }
-            } else { //result.grantedPermissions = false
-                let alert:UIAlertController = Service.showAlert(on: self, style: .alert, title: "Facebook Error", message: "Facebook failed to grant access")
-                self.present(alert, animated: true, completion: nil)
-            }
+    
+    
+// ---------------------- helper methods ------------------------------
+    
+    @objc func handleViewsOnKeyboardShowOrHide(notification: Notification) {
+//        print("Keyboard will show: \(notification.name.rawValue)")
+        guard let keyboardRect = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        
+        if (notification.name == Notification.Name.UIKeyboardWillShow) || (notification.name == Notification.Name.UIKeyboardWillChangeFrame) {
+            view.frame.origin.y = -keyboardRect.height / 2
+        } else if notification.name == Notification.Name.UIKeyboardWillHide {
+            view.frame.origin.y = 0
         }
+        
+        
     }
-    
-    
-    
-// ---------------------- methods ------------------------------
     
 //signInAnonymouslyButtonTapped method
     @objc func handleSignInAnonymouslyButtonTapped() {
@@ -376,7 +395,7 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
         facebookButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         facebookButton.topAnchor.constraint(equalTo: signAnonymouslyButton.bottomAnchor, constant: 12).isActive = true
         facebookButton.widthAnchor.constraint(equalTo: loginRegisterButton.widthAnchor).isActive = true
-        facebookButton.heightAnchor.constraint(equalToConstant: 28).isActive = true
+        facebookButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     
@@ -457,38 +476,52 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
     
     
     
-
+    
+// ---------------------- Facebook methods ------------------------------
+    //Facebook loginButtonDidLogOut delegate method //handles Facebook Log out Button
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) { //FBLogin //17mins
+        print("Did logout of Facebook...") //FBLogin //17mins
+    } //FBLogin //17mins
+    
+    //Facebook didCompleteWith delegate method
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) { //FBLogin //17mins
+        if error != nil { //FBLogin //17mins
+            //            print(error) //FBLogin //17mins
+            let alert:UIAlertController = Service.showAlert(on: self, style: .alert, title: "Facebook Login Error", message: "\(error.localizedDescription)\nPlease try again")
+            self.present(alert, animated: true, completion: nil)
+            return //FBLogin //17mins
+        } else if result.isCancelled { //FBLogin //17mins if user canceled login
+            print("User has canceled login")
+            let alert:UIAlertController = Service.showAlert(on: self, style: .alert, title: "Facebook Login Error", message: "User has cancelled Login\nPlease try again")
+            self.present(alert, animated: true, completion: nil)
+        } else { //FBLogin //if successful, meaning no error, and login didnt cancel log in
+            
+            if result.grantedPermissions.contains("email"){ //FBLogin //18minsmake sure they gave us permissions
+                if let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"email,name"]) { //FBLogin //19mins //FBSDKGraohRequest - represents a request to the Facebook Graph API. //we're looking for "me" only because we dont want anything to do with user's friends. //' parameters: ["fields":"email,name"] ' gives us the email and name
+                    graphRequest.start { (connection, result, error) in //FBLogin //20mins, give us connection, result, and error
+                        if error != nil { //FBLogin //20mins
+                            print(error!) //FBLogin //20mins
+                            let alert:UIAlertController = Service.showAlert(on: self, style: .alert, title: "Facebook Login Error", message: "\(error!.localizedDescription)")
+                            self.present(alert, animated: true, completion: nil)
+                            
+                        } else { //FBLogin //20mins if everything worked out...
+                            if let userDetails = result { //FBLogin //21mins if no error then we should get the results
+                                //print(userDetails)
+                                print("Successfuly Log in Facebook: ", userDetails)
+                            }
+                        }
+                    }
+                }
+            } else { //result.grantedPermissions = false
+                let alert:UIAlertController = Service.showAlert(on: self, style: .alert, title: "Facebook Error", message: "Facebook failed to grant access")
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
     
     
     
-    
-// ++++++++++++++++++++++++ method handlers ++++++++++++++++++++++++++++
-
-    //handleUpdateImage
-//    func handleUpdateImage() {
-//        print("login logo tapped")
-//        //let picker = UIImagePickerController()
-//        if imagePicker != nil {
-//            imagePicker?.delegate = self
-//            imagePicker?.allowsEditing = true //will allow us to edit image
-//
-//            imagePicker?.sourceType = .camera
-//
-//            present(imagePicker!, animated: true, completion: nil)
-//
-//        } else { //imagePicker error
-//            Service.presentAlert(on: self, title: "Image Picker Error", message: "Failed to launch images")
-//        }
-        
-        
-//    }
-    
-    
-    
-    //extension LoginController: UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
-    
-    
-// ----- HANDLE Select Profile ImageView -----------
+// ----------------- HANDLE Select Profile ImageView ---------------
     @objc func handleSelectLoginLogoImageView() {
         
         print("login logo tapped")
@@ -559,7 +592,7 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
 //                self.messagesController?.fetchCurrentUserAndSetupNavBarTitle() //ep.7 bug fix
 //                self.messagesController?.navigationItem.title = values["name"] as? String //ep.7 bug fix another way instead of calling method //removed as well in ep.7
                 let user = MyCourtUser(dictionary: values) //ep.7
-                user.setValuesForKeys(values) //ep.7
+//                user.setValuesForKeys(values) //ep.7
                 self.messagesController?.setupNavBarWithCurrentUser(user: user) //ep.7
                 
                 

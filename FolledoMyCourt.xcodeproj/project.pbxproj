@@ -17,6 +17,7 @@
 		CD037D8F20F9A6120008EB97 /* SwipeUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD037D8E20F9A6120008EB97 /* SwipeUsersViewController.swift */; };
 		CD037D9120F9A9AA0008EB97 /* CreateGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD037D9020F9A9AA0008EB97 /* CreateGameViewController.swift */; };
 		CD037D9320F9AC480008EB97 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD037D9220F9AC480008EB97 /* EventsViewController.swift */; };
+		CD040EDF214F648E005310C8 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD040EDE214F648E005310C8 /* ChatMessageCell.swift */; };
 		CD0454282146BFCD00C9E83D /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0454272146BFCD00C9E83D /* ChatLogController.swift */; };
 		CD04542A21474AB000C9E83D /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD04542921474AB000C9E83D /* ChatMessage.swift */; };
 		CD04B19520FEA3B200FB8161 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD04B19420FEA3B200FB8161 /* LoginViewController.swift */; };
@@ -36,6 +37,7 @@
 		CD08FD40213DC1460000050C /* MyCourtUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08FD3F213DC1460000050C /* MyCourtUser.swift */; };
 		CD08FD42213E3DFA0000050C /* UserProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08FD41213E3DF90000050C /* UserProfileTableViewCell.swift */; };
 		CD0A9AB5213F27A3009B62F5 /* LoginController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0A9AB4213F27A3009B62F5 /* LoginController+handlers.swift */; };
+		CD0C8F3E214AACA3009756C1 /* MachineLearningController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0C8F3D214AACA3009756C1 /* MachineLearningController.swift */; };
 		CD3F175321263AFA00939ED8 /* BluetoothViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F175221263AFA00939ED8 /* BluetoothViewController.swift */; };
 		CD3F175521263E2800939ED8 /* BluetoothTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F175421263E2800939ED8 /* BluetoothTableViewCell.swift */; };
 		CD979E422138C8DB00033C98 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD979E412138C8DB00033C98 /* LoginController.swift */; };
@@ -80,6 +82,7 @@
 		CD037D8E20F9A6120008EB97 /* SwipeUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeUsersViewController.swift; sourceTree = "<group>"; };
 		CD037D9020F9A9AA0008EB97 /* CreateGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameViewController.swift; sourceTree = "<group>"; };
 		CD037D9220F9AC480008EB97 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		CD040EDE214F648E005310C8 /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		CD0454272146BFCD00C9E83D /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		CD04542921474AB000C9E83D /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		CD04B19420FEA3B200FB8161 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +109,7 @@
 		CD08FD3F213DC1460000050C /* MyCourtUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCourtUser.swift; sourceTree = "<group>"; };
 		CD08FD41213E3DF90000050C /* UserProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewCell.swift; sourceTree = "<group>"; };
 		CD0A9AB4213F27A3009B62F5 /* LoginController+handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginController+handlers.swift"; sourceTree = "<group>"; };
+		CD0C8F3D214AACA3009756C1 /* MachineLearningController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachineLearningController.swift; sourceTree = "<group>"; };
 		CD3F175221263AFA00939ED8 /* BluetoothViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothViewController.swift; sourceTree = "<group>"; };
 		CD3F175421263E2800939ED8 /* BluetoothTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothTableViewCell.swift; sourceTree = "<group>"; };
 		CD979E412138C8DB00033C98 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -203,10 +207,10 @@
 			children = (
 				CD06FCA320F965F20033CB6F /* FolledoMyCourt.entitlements */,
 				CD06FC7520F965D80033CB6F /* AppDelegate.swift */,
+				CD02E52C20FA91BA00A6ECC3 /* Service.swift */,
 				CDE55925212DA06B00314EDD /* Chat.storyboard */,
 				CDA48BFE214950BC00C1E527 /* View */,
 				CD0454262146BF9500C9E83D /* Messages */,
-				CD02E52C20FA91BA00A6ECC3 /* Service.swift */,
 				CD08AD962108EDAE00F008D2 /* Main */,
 				CD08AD972108EDD400F008D2 /* HomeMap */,
 				CD08AD992108EE1D00F008D2 /* CreateGame */,
@@ -253,8 +257,8 @@
 			children = (
 				CD08AD9C2108F35200F008D2 /* SelectPictureViewController.swift */,
 				CD06A90C210C23090086954A /* SelectRecipientTableViewController.swift */,
-				CD055F12210E937800936FAF /* ViewSnapViewController.swift */,
 				CD08AD9A2108F10800F008D2 /* SnapsTableViewController.swift */,
+				CD055F12210E937800936FAF /* ViewSnapViewController.swift */,
 			);
 			path = Snaps;
 			sourceTree = "<group>";
@@ -300,6 +304,8 @@
 				CDFEA39120FE7406000824A6 /* CreateGame.storyboard */,
 				CD3F175221263AFA00939ED8 /* BluetoothViewController.swift */,
 				CD3F175421263E2800939ED8 /* BluetoothTableViewCell.swift */,
+				CD0C8F3D214AACA3009756C1 /* MachineLearningController.swift */,
+				CD08FD2F213C49680000050C /* Resnet50.mlmodel */,
 			);
 			path = CreateGame;
 			sourceTree = "<group>";
@@ -308,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				CDA48BFF214950DF00C1E527 /* UserCell.swift */,
+				CD040EDE214F648E005310C8 /* ChatMessageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -316,7 +323,6 @@
 			isa = PBXGroup;
 			children = (
 				CD037D9220F9AC480008EB97 /* EventsViewController.swift */,
-				CD08FD2F213C49680000050C /* Resnet50.mlmodel */,
 				CDFEA39520FE7459000824A6 /* Events.storyboard */,
 			);
 			path = Events;
@@ -581,8 +587,10 @@
 				CD055F13210E937800936FAF /* ViewSnapViewController.swift in Sources */,
 				CD037D9120F9A9AA0008EB97 /* CreateGameViewController.swift in Sources */,
 				CD06A90D210C23090086954A /* SelectRecipientTableViewController.swift in Sources */,
+				CD0C8F3E214AACA3009756C1 /* MachineLearningController.swift in Sources */,
 				CD3F175321263AFA00939ED8 /* BluetoothViewController.swift in Sources */,
 				CD08FD42213E3DFA0000050C /* UserProfileTableViewCell.swift in Sources */,
+				CD040EDF214F648E005310C8 /* ChatMessageCell.swift in Sources */,
 				CD037D8B20F9A5B50008EB97 /* HomeMapViewController.swift in Sources */,
 				CD037D8D20F9A5FB0008EB97 /* UserProfileTableViewController.swift in Sources */,
 				CD08FD40213DC1460000050C /* MyCourtUser.swift in Sources */,
