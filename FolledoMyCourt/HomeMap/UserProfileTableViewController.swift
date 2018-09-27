@@ -46,7 +46,7 @@ class UserProfileTableViewController: UITableViewController {
         self.tableView.register(CustomCell.self, forCellReuseIdentifier: cellId)
         
     //but we still have to automatically make them resize to the contents inside of it
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 100 //to make the cell have a limit and save memory //now in cellForRowAt layoutSubviews()
         
         

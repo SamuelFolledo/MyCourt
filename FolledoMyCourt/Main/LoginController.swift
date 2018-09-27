@@ -81,7 +81,7 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
         let tf = UITextField()
         tf.placeholder = "Name"
         tf.keyboardType = UIKeyboardType.default
-        tf.clearButtonMode = UITextFieldViewMode.always
+        tf.clearButtonMode = UITextField.ViewMode.always
         tf.returnKeyType = .next
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
@@ -99,7 +99,7 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
         tf.placeholder = "Email address"
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.text = "samuelfolledo@gmail.com"
-        tf.clearButtonMode = UITextFieldViewMode.always
+        tf.clearButtonMode = UITextField.ViewMode.always
         tf.keyboardType = .emailAddress
         tf.returnKeyType = .next
         return tf
@@ -117,7 +117,7 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
         tf.placeholder = "Password"
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.keyboardType = UIKeyboardType.default
-        tf.clearButtonMode = UITextFieldViewMode.always
+        tf.clearButtonMode = UITextField.ViewMode.always
         tf.returnKeyType = .done
         tf.isSecureTextEntry = true //secure password inputs ****
         tf.text = "Password123"
@@ -175,15 +175,15 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
     
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
     
@@ -206,9 +206,9 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
         self.initialY = view.frame.origin.y //to show/hide keyboard
         self.offset = -80 //to show/hide keyboard //go "up" when decreasing the Y value
 
-        NotificationCenter.default.addObserver(self, selector: #selector(handleViewsOnKeyboardShowOrHide(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleViewsOnKeyboardShowOrHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleViewsOnKeyboardShowOrHide(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleViewsOnKeyboardShowOrHide(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleViewsOnKeyboardShowOrHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleViewsOnKeyboardShowOrHide(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         
     //        NotificationCenter.default.addObserver(forName: Notification.Name.UIKeyboardWillShow, object: nil, queue: OperationQueue.main) { (notification: Notification) in //to show/hide keyboard
 //            self.view.frame.origin.y = self.initialY + self.offset //this gets run whenever keyboard shows, which will move the view's origin frame up
@@ -249,11 +249,11 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
     
     @objc func handleViewsOnKeyboardShowOrHide(notification: Notification) {
 //        print("Keyboard will show: \(notification.name.rawValue)")
-        guard let keyboardRect = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        guard let keyboardRect = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         
-        if (notification.name == Notification.Name.UIKeyboardWillShow) || (notification.name == Notification.Name.UIKeyboardWillChangeFrame) {
+        if (notification.name == UIResponder.keyboardWillShowNotification) || (notification.name == UIResponder.keyboardWillChangeFrameNotification) {
             view.frame.origin.y = -keyboardRect.height / 2
-        } else if notification.name == Notification.Name.UIKeyboardWillHide {
+        } else if notification.name == UIResponder.keyboardWillHideNotification {
             view.frame.origin.y = 0
         }
         
@@ -298,7 +298,7 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
                 password = password.trimmingCharacters(in: .whitespacesAndNewlines)
             //spinner
                 let spinner: UIActivityIndicatorView = UIActivityIndicatorView() as UIActivityIndicatorView
-                spinner.activityIndicatorViewStyle = .whiteLarge
+                spinner.style = .whiteLarge
                 spinner.center = view.center
                 self.view.addSubview(spinner)
                 spinner.startAnimating()
@@ -329,7 +329,7 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
 //handleLoginRegisterChange method
     @objc func handleLoginRegisterChange() { //updates inputsContainerView when login or register is toggled
         let title = loginRegisterSegmentedControl.titleForSegment(at: loginRegisterSegmentedControl.selectedSegmentIndex) //looks for the title of loginRegisterSegmentedControl thats currently selected (0:"Login", 1: "Register")
-        loginRegisterButton.setTitle(title, for: UIControlState()) //set the button's title equal to the segmentedControl's title
+        loginRegisterButton.setTitle(title, for: UIControl.State()) //set the button's title equal to the segmentedControl's title
         
     //change height of inputContainerView
         inputsContainerViewHeightAnchor?.constant = loginRegisterSegmentedControl.selectedSegmentIndex == 0 ? 100 : 150 //having a reference to inputsContainerViewHeightAnchor allows us to change its height whenever we change the tab from register to login and vice versa //if selectedSegmentIndex is 0, then heightAnchor is 100, else 150
@@ -538,31 +538,45 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
     
     
 //delegate method that will get the image to our app
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        //print(info)
-        print("Finished picking image. Now setting it...")
-        var selectedImageFromPicker: UIImage?
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+        var selectedImageFromPicker: UIImage?
+        //info was updated in Swift 4
+        if let editedImage = info[.editedImage] as? UIImage {
             selectedImageFromPicker = editedImage
-        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+            
+        } else if let originalImage = info[.originalImage] as? UIImage {
             selectedImageFromPicker = originalImage
             
             
         }
         
-        //now do MY MOVES WITH THE IMAGE ==================================
-        
-        if let myCourtProfilePictureImage = selectedImageFromPicker {
-            //            let ui = UIView.init(frame: CGRect(x: 0, y: 50, width: 320, height: 430))
-            //loginLogoImageView.backgroundColor = .white
+        if let myCourtProfilePictureImage = selectedImageFromPicker { //if image is successfully unwrapped...
             print("putting image to login logo")
             loginLogoImageView.image = myCourtProfilePictureImage
-            
         }
         
-        dismiss(animated: true, completion: nil) //after image is picked, dismiss vc
-        
+// These are pre Swift 4.2
+//        //print(info)
+//        print("Finished picking image. Now setting it...")
+//        var selectedImageFromPicker: UIImage?
+//
+//        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+//            selectedImageFromPicker = editedImage
+//        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+//            selectedImageFromPicker = originalImage
+//        }
+
+//        if let myCourtProfilePictureImage = selectedImageFromPicker {
+//            //            let ui = UIView.init(frame: CGRect(x: 0, y: 50, width: 320, height: 430))
+//            //loginLogoImageView.backgroundColor = .white
+//            print("putting image to login logo")
+//            loginLogoImageView.image = myCourtProfilePictureImage
+//
+//        }
+//
+//        dismiss(animated: true, completion: nil) //after image is picked, dismiss vc
+//
     }
 //imagePickerController DID CANCEL
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -619,7 +633,7 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
                     password = password.trimmingCharacters(in: .whitespacesAndNewlines)
                     //spinner
                     let spinner: UIActivityIndicatorView = UIActivityIndicatorView() as UIActivityIndicatorView
-                    spinner.activityIndicatorViewStyle = .whiteLarge
+                    spinner.style = .whiteLarge
                     spinner.center = view.center
                     self.view.addSubview(spinner)
                     spinner.startAnimating()
@@ -640,11 +654,9 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
                                 
 //BEGINNING OF STORING IMAGE TO FIREBASE STORAGE
                                 let imageName = NSUUID().uuidString //create a random generated string
-                                let storageRef = Storage.storage().reference().child("profile_images").child("0000\(imageName).png")
+                                let imageReference = Storage.storage().reference().child("profile_images").child("0000\(imageName).png")
 //                                if let uploadData = UIImagePNGRepresentation(self.loginLogoImageView.image!) { //removed and changed to JPEG in order to compress
-                                if let profileImage = self.loginLogoImageView.image, let uploadData = UIImageJPEGRepresentation(profileImage, 0.1) { //ep.7 compress the image uploaded to 10%
-                                
-                                    let imageReference = storageRef.child(imageName)
+                                if let profileImage = self.loginLogoImageView.image, let uploadData = profileImage.jpegData(compressionQuality: 0.1) { //ep.7 compress the image uploaded to 10%
                                     
                                     imageReference.putData(uploadData, metadata: nil, completion: { (metadata, error) in
                                         if let error = error { //error in putting image to Storage
@@ -701,3 +713,8 @@ extension UIColor {
     }
 }
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}

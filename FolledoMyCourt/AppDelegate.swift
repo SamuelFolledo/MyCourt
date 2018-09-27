@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate { //Fir
 //    let providers: [FUIAuthProvider] = [ FUIGoogleAuth() ]
     
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         
@@ -117,7 +117,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate { //Fir
     
     
 //for Facebook Login
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         
         //let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation]) //Swift 4 version
         

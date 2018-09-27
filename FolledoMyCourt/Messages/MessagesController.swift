@@ -33,53 +33,68 @@ class MessagesController: UITableViewController {
         checkCurrentUser()
         
 //        observeMessages() //ep.9 //ep.11 removed
-        observeUserMessages() //ep.11
+//        observeUserMessages() //ep.11
         
         
     }
+    
     
     var messages = [ChatMessage]() //ep.9
     var messagesDictionary = [String: ChatMessage]() //ep.10
     
-    
     func observeUserMessages() { //ep.11
-        guard let userUid = Auth.auth().currentUser?.uid else { return } //ep.11
+        guard let currentUserUid = Auth.auth().currentUser?.uid else { return } //ep.11
         
-        let ref = Database.database().reference().child("user-messages").child(userUid)
+        let ref = Database.database().reference().child("user-messages").child(currentUserUid)
         ref.observe(.childAdded, with: { (snapshot) in //ep.11 11mins once we got the reference, then we can observe. The "user-messages" will have a child of the current user which has a child of the reference of all their messages from "messages"
 //            print(snapshot)
-            let messageId = snapshot.key //ep.11
-            let messageReference = Database.database().reference().child("messages").child(messageId)
+            let toUserId = snapshot.key //ep.11 //ep.16 10mins
             
-            messageReference.observeSingleEvent(of: .value, with: { (snapshoot) in
-//                print(snapshoot)
+            let toUsersIdMessages = Database.database().reference().child("user-messages").child(currentUserUid).child(toUserId) //ep.11 //ep.16 13mins done to individually observe our messages inside of our user-messages tree
+            
+            toUsersIdMessages.observe(.childAdded, with: { (snapshoot) in //ep.16 14mins
                 
-                //now we convert our snapshot into our ChatMessage NSObject
-                if let dictionary = snapshoot.value as? [String: AnyObject] { //ep.9
-                    //print(snapshoot)
-                    let message = ChatMessage(dictionary: dictionary) //ep.9
-                    //print("\(String(describing: message.text))") //ep.9
-                    
-    //                self.messages.append(message) //ep.9 APPEND //commented out to be equal to messagesDictionary
-                    let chatPartnerId = message.chatPartnerId() //ep.10 if let toId = message.userUid //ep.13 22mins updated to this is if I reply, it wont create another cell in the MessagesController
-                    self.messagesDictionary[chatPartnerId] = message //ep.10 23mins //we will only contain inside messagesDictionaryArr one message per toId or userId. Meaning if the same user sends us another message, it will update the toId key's value to that new message
-                    
-                    self.messages = Array (self.messagesDictionary.values) //ep.10 equal or put messagesDictionary's values to messages
-                    self.messages.sort(by: { (message1, message2) -> Bool in
-                        
-                        return (message1.timeStamp?.intValue)! > (message2.timeStamp?.intValue)! //ep.10 26mins //to sort in descending order
-                    })
-                    
-                    self.timer?.invalidate() //ep.14 25mins invalidate() Stops the timer from ever firing again and requests its removal from its run loop. //ep.14 26mins because we are looping and observing so many messages, we just invalidate the timer everytime we get a new one. Finally in the end, call handleReloadTable on the last one
-                    self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.handleReloadTable), userInfo: nil, repeats: false) //ep.14 23mins this will prevent reloading the table too much which can cause minor bugs
-                    
-                }
+                let messageId = snapshoot.key //ep.16 12mins
+                
+                self.fetchMessageWithMessageId(messageId: messageId) //ep.16 22mins refactored
+                
             }, withCancel: nil)
         }, withCancel: nil) //ep.11
     }
     
+    private func fetchMessageWithMessageId(messageId: String) { //ep.16 22mins refactored and created a private function for it
+        let messagesReference = Database.database().reference().child("messages").child(messageId)
+        messagesReference.observeSingleEvent(of: .value, with: { (snapshooot) in //ep.16 13mins
+            
+            if let dictionary = snapshooot.value as? [String: AnyObject] { //ep.9
+                //print(snapshoot)
+                let message = ChatMessage(dictionary: dictionary) //ep.9
+                //print("\(String(describing: message.text))") //ep.9
+                
+                //                self.messages.append(message) //ep.9 APPEND //commented out to be equal to messagesDictionary instead
+                let chatPartnerId = message.chatPartnerId() //ep.10 if let toId = message.userUid //ep.13 22mins updated to this is if I reply, it wont create another cell in the MessagesController
+                self.messagesDictionary[chatPartnerId] = message //ep.10 23mins //we will only contain inside messagesDictionaryArr one message per toId or userId. Meaning if the same user sends us another message, it will update the toId key's value to that new message
+                
+                
+                self.attemptReloadOfTable() //ep.16 18mins
+            }
+        }, withCancel: nil)
+
+    }
+    
+    func attemptReloadOfTable() { //ep.16 18mins
+        self.timer?.invalidate() //ep.14 25mins invalidate() Stops the timer from ever firing again and requests its removal from its run loop. //ep.14 26mins because we are looping and observing so many messages, we just invalidate the timer everytime we get a new one. Finally in the end, call handleReloadTable on the last one
+        self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.handleReloadTable), userInfo: nil, repeats: false) //ep.14 23mins this will prevent reloading the table too much which can cause minor bugs
+    }
     
     @objc func handleReloadTable() { //ep.14 22mins this is a good work around to reduce flickers and minor bugs and the amount of time to reload the table
+        
+        self.messages = Array (self.messagesDictionary.values) //ep.10 equal or put messagesDictionary's values to messages //ep.16 20mins moved here from observeUserMessages
+        self.messages.sort(by: { (message1, message2) -> Bool in //moved here on ep.16 20mins because we dont need to reconstruct our messages array everytime we get a new message. All we have to do is reconstruct it everytime we reload the table.
+            
+            return (message1.timeStamp?.intValue)! > (message2.timeStamp?.intValue)! //ep.10 26mins //to sort in descending order
+        })
+        
     //ep.10
         DispatchQueue.main.async {
             print("we reloaded the table") //ep.14 21mins we're loading the entire table everytime a message is being observe so this prints out a lot of times which can cause some error in our profileImage //22mins we fix that by reloading it once using a delay with NSTimer

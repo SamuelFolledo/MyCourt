@@ -32,6 +32,7 @@ class ChatMessageCell: UICollectionViewCell { //ep.12 21mins
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.backgroundColor = .clear //ep.13 5mins so we can see the bubbleview
         tv.textColor = .white //ep.13
+        tv.isEditable = false //ep.18 24mins added so we cant edit the textView
         return tv
     }()
     
@@ -43,6 +44,17 @@ class ChatMessageCell: UICollectionViewCell { //ep.12 21mins
         imageView.contentMode = .scaleAspectFill //ep.14 9mins
         imageView.layer.cornerRadius = 16 //ep.14 11mins to make it rounded
         imageView.layer.masksToBounds = true //ep.14 11mins
+        return imageView
+    }()
+    
+    
+    let messageImageView: UIImageView = { //ep.17 23mins
+        let imageView = UIImageView() //ep.17 23mins
+        imageView.image = UIImage(named: "apple") //ep.17 23mins
+        imageView.translatesAutoresizingMaskIntoConstraints = false //ep.17 23mins
+        imageView.contentMode = .scaleAspectFill //ep.17 23mins
+//        imageView.layer.cornerRadius = 16
+//        imageView.layer.masksToBounds = true
         return imageView
     }()
     
@@ -71,7 +83,7 @@ class ChatMessageCell: UICollectionViewCell { //ep.12 21mins
         textView.leftAnchor.constraint(equalTo: bubbleView.leftAnchor, constant: 8).isActive = true //ep13 12mins //constraint them inside the bubble
         textView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         textView.rightAnchor.constraint(equalTo: bubbleView.rightAnchor).isActive = true //ep.13 12mins
-        textView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+//        textView.widthAnchor.constraint(equalToConstant: 200).isActive = true
         textView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         
         
@@ -81,6 +93,12 @@ class ChatMessageCell: UICollectionViewCell { //ep.12 21mins
         profileImageView.widthAnchor.constraint(equalToConstant: 32).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: 32).isActive = true //ep.14 10mins
         
+        
+        bubbleView.addSubview(messageImageView) //ep.17 23mins
+        messageImageView.leftAnchor.constraint(equalTo: bubbleView.leftAnchor).isActive = true //ep.17 23mins
+        messageImageView.topAnchor.constraint(equalTo: bubbleView.topAnchor).isActive = true
+        messageImageView.widthAnchor.constraint(equalTo: bubbleView.widthAnchor).isActive = true
+        messageImageView.heightAnchor.constraint(equalTo: bubbleView.heightAnchor).isActive = true //ep.17 23mins
         
     }
     

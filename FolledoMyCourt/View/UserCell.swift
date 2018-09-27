@@ -82,7 +82,7 @@ class UserCell: UITableViewCell { //is the UserCell we registered to our TableVi
     }()
     
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         
         //add it to the view and constraint

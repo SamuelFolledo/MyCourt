@@ -16,11 +16,18 @@ class ChatMessage: NSObject { //ep.9
     var timeStamp: NSNumber? //ep.9
     var userUid: String? //ep.9
     
-    init(dictionary: [String: Any]) { //ep.9
+    var imageUrl: String? //ep.17 21mins
+    var imageHeight: NSNumber? //ep.18 5mins
+    var imageWidth: NSNumber? //ep.18 5mins
+    
+    init(dictionary: [String: Any]) { //ep.9 constructor
         self.fromId = dictionary["fromId"] as? String //ep.9
         self.text = dictionary["text"] as? String //ep.9
         self.userUid = dictionary["userUid"] as? String //ep.9
         self.timeStamp = dictionary["timeStamp"] as? NSNumber //ep.9
+        self.imageUrl = dictionary["imageUrl"] as? String //ep.17 21mins
+        self.imageHeight = dictionary["imageHeight"] as? NSNumber //ep.18 5mins
+        self.imageWidth = dictionary["imageWidth"] as? NSNumber //ep.18 5mins
     }
     
     

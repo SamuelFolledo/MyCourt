@@ -19,7 +19,7 @@ class Service {
     static let buttonCornerRadius: CGFloat = 7
     
 //showAlert
-    static func showAlert(on: UIViewController, style: UIAlertControllerStyle, title: String?, message: String?, actions: [UIAlertAction] = [UIAlertAction(title: "OK", style: .default, handler: nil)], completion: (() -> Swift.Void)? = nil ) -> UIAlertController { //Signin Anonymously //30mins
+    static func showAlert(on: UIViewController, style: UIAlertController.Style, title: String?, message: String?, actions: [UIAlertAction] = [UIAlertAction(title: "OK", style: .default, handler: nil)], completion: (() -> Swift.Void)? = nil ) -> UIAlertController { //Signin Anonymously //30mins
         let alert = UIAlertController(title: title, message: message, preferredStyle: style)
         //        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil) //dismiss action
         //        alert.addAction(action)

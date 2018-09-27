@@ -49,9 +49,12 @@ class SelectPictureViewController: UIViewController, UIImagePickerControllerDele
     }
     
 //method ran after not canceling the imagePicker
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        if let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
             imageView.image = image
             imageAdded = true
         }
@@ -73,7 +76,7 @@ class SelectPictureViewController: UIViewController, UIImagePickerControllerDele
             //Upload image
                 let imagesFolder = Storage.storage().reference().child("images") //3 //3mins //where we gonna store all of our images in our app
                 if let image = imageView.image {
-                    if let imageData = UIImageJPEGRepresentation(image, 0.1) {//3 //4mins compress the image stored to 0.1 so it doesnt take too much space
+                    if let imageData = image.jpegData(compressionQuality: 0.1) {//3 //4mins compress the image stored to 0.1 so it doesnt take too much space
                         
                     //***then now we upload***
                         //let imageName: String = "FolledoCourtImages1_\(NSUUID().uuidString).jpg" //3 //5mins add a child to our imagesFolder // 'NSUUID.init(uuidString: String )' we need a unique id to represent our image, Apple has a great class for that, "will create a unique string that is guaranteed to not equal to anything else" //removed at //SC4 //30mins
@@ -150,3 +153,13 @@ class SelectPictureViewController: UIViewController, UIImagePickerControllerDele
 }
 
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
+}

@@ -95,7 +95,7 @@ class NewMessageController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { //ep.9
         
         dismiss(animated: true) { //dismiss vc //ep.9
-            print("Dismiss completed")
+//            print("Dismiss completed")
             let user = self.users[indexPath.row] //ep.9 will be used for showing the name of the selected user from newMessagesController to the C
             self.messagesController?.showChatControllerForUser(user: user) //ep.9 //making messagesController.messagesController = self in MessagesController allows us to call its showChatController method //user parameter is added so we have a reference on who we selected
             
