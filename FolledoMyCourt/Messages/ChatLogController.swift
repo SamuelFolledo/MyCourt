@@ -69,7 +69,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         separatorLineView.heightAnchor.constraint(equalToConstant: 0.8).isActive = true
         
         return containerView //ep.15 18mins
-    }()
+    }() //end of inputContainerView
     
     var user: MyCourtUser? { //ep.9 added so we can give it a value from the newMessagesController
         didSet {
@@ -129,6 +129,8 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ChatMessageCell //ep.12 //as! ChatMessageCell is added at 22mins
 //        cell.backgroundColor = .blue
         
+        cell.chatLogController = self //ep.19 6mins have to create a variable in our cell class
+        
         let message = messages[indexPath.item] //ep.12 26mins
         cell.textView.text = message.text //ep12 26mins
         
@@ -138,9 +140,11 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         //cell.bubbleWidthAnchor?.constant = 50 //ep.13 16mins grab the cell's bubbleWidthAnchor optional var
         if let text = message.text { //ep.17 22mins added to avoid crash when sending image instead of just a a text
             cell.bubbleWidthAnchor?.constant = estimateFrameForText(text: text).width + 32 //ep.13 16mins with the estimateFrameForText(text: String) method, we can even use it and equal it to a cell's bubbleWidthAnchor.constant *** MIND BLOWN!!! ***
-        } else if message.imageUrl != nil { //ep.18 9mins call code block if its an iamge message
+            cell.textView.isHidden = false //ep.19 5mins
+        } else if message.imageUrl != nil { //ep.18 9mins call code block if its an image message
             cell.bubbleWidthAnchor?.constant = 200 //ep.18 10mins
-            
+            cell.bubbleView.backgroundColor = .clear
+            cell.textView.isHidden = true //ep.19 5mins hide textView so we can activate our image's tap gesture recognizer
         }
         
         return cell //ep.12
@@ -378,7 +382,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     @objc func handleUploadTap() { //ep.17 7mins handles tap gestures the uploading images
         print("We tapped upload")
         let imagePickerController = UIImagePickerController() //ep.17 8mins
-        imagePickerController.allowsEditing = true //ep.17 10mins
+//        imagePickerController.allowsEditing = true //ep.17 10mins
         imagePickerController.delegate = self //ep.17 9mins
 
         self.present(imagePickerController, animated: true, completion: nil) //ep.17 8mins
@@ -514,10 +518,103 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
             let recipientUserMessagesRef = Database.database().reference().child("user-messages").child(userUid!).child(fromId) //ep.17 18mins
             recipientUserMessagesRef.updateChildValues([messageId: 1]) //ep.17 18mins
         }
-        
         //self.inputTextField.resignFirstResponder() //put keyboard away
-        
         print("image uploaded to firebase successfully")
+    }
+    
+    
+    
+    
+    var startingFrame: CGRect? //ep.19 23mins //our reference to where the image we tapped came from
+    var blackBackgroundView: UIView? //ep.19 26mins
+    var startingImageView: UIImageView? //ep.19 31mins
+    
+//THIS METHOD IS CALLED IN THE ChatMessageCell VIEW AS A TAP GESTURE
+    func performZoomInForStartingImageView(startingImageView: UIImageView) { //ep.19 7mins, a customed imageView zooming method.
+        //print("Zooming to a pic") //ep.19 9mins
+        self.startingImageView = startingImageView //ep.19 31mins equal startingImageView to the parameter
+        self.startingImageView?.isHidden = true //ep.19 32mins hide the startingImageView
+        
+        self.startingFrame = startingImageView.superview?.convert(startingImageView.frame, to: nil) //ep.19 10mins this frame is what we will need to put a frame on top of our imageView //SUPERVIEW = The receiver’s superview, or nil if it has none //
+/*
+        ==============================  .CONVERT     ==========================
+        SUMMARY
+            Converts a rectangle from the receiver’s coordinate system to that of another view
+        
+        PARAMETERS
+        
+         rect
+            A rectangle specified in the local coordinate system (bounds) of the receiver.
+        
+         view
+            The view that is the target of the conversion operation. If view is nil, this method instead converts to window base coordinates. Otherwise, both view and the receiver must belong to the same UIWindow object.
+        
+         RETURNS
+            The converted rectangle.
+ */
+        //print("\(String(describing: startingFrame))") //ep.19 11mins //SUPERVIEW The receiver’s superview, or nil if it has none. //Prints... Optional((167.0, 408.5, 200.0, 200.5)) //(x: , y: , width: , height: )
+        
+        let zoomingImageView = UIImageView(frame: startingFrame!) //ep.19 12mins create an imageView with our startingFrame's
+        zoomingImageView.backgroundColor = .red
+        zoomingImageView.image = startingImageView.image //ep.19 16mins put the startingImageView:'s iamge to our zoomingImageView
+        
+        zoomingImageView.isUserInteractionEnabled = true //ep.19 22mins
+        zoomingImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomOut(tapGesture:)))) //ep.19 21mins use to zoom out
+        
+        
+        if let keyWindow = UIApplication.shared.keyWindow { //ep.19 12mins add the view to our application //KEYWINDOW = The app's key window. This property holds the UIWindow object in the windows array that is most recently sent the makeKeyAndVisible() message. //this way of adding an image remains through different Controllers, so remember to remove it
+            
+            self.blackBackgroundView = UIView(frame: keyWindow.frame) //ep.19 19mins
+            blackBackgroundView?.backgroundColor = .black //ep.19 19mins
+            blackBackgroundView?.alpha = 0 //ep.19 19mins make it invisible at start and make it visible in the ANIMATION
+            
+            blackBackgroundView?.isUserInteractionEnabled = true
+            blackBackgroundView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomOut(tapGesture:))))
+            keyWindow.addSubview(blackBackgroundView!) //ep.19 19mins add it before zoomingImageView
+            
+            
+            keyWindow.addSubview(zoomingImageView) //ep.19 13mins add the zoomingImageView to our keyWindow with an animation...
+        ////now make a zooming animation
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: { //ep.19 14mins the animation with 0.5 duration, no delay, .curveEaseOut, with its own animation, and a completion block //ep.19 29mins animation is updated to have some acceleration.
+                self.blackBackgroundView?.alpha = 1 //ep.19 20mins make blackBackgroundView visible
+                self.inputContainerView.alpha = 0 //ep.19 20mins hide the inputContainerView with the textField and Button
+                
+            //equation we need for getting the right height
+                // h2 / w2 = h1 / w1
+                // h2 = h1 / w1 * w2
+                let height = self.startingFrame!.height / self.startingFrame!.width * keyWindow.frame.width //ep.19 17mins //keyWindow.frame.height / keyWindow.frame.width = startingFrame!.height / startingFrame!.width
+                
+                zoomingImageView.frame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: height) //ep.19 14mins create its frame //ep.19 17mins height was changed from keyWindow.frame.height
+                zoomingImageView.center = keyWindow.center //ep.19 15mins center it
+                
+            }, completion: nil) //ep.19 14mins
+        }
+    }
+    
+    @objc func handleZoomOut(tapGesture: UITapGestureRecognizer) { //ep.19 21mins //to have a proper zoom out animation, we need our initial startingFrame so we know where the final destination is.
+        print("Zooming out...") //ep.19 22mins
+        
+        if let zoomOutImageView = tapGesture.view { //ep.19 24mins
+            //need to animate back to the controller
+            
+            zoomOutImageView.layer.cornerRadius = 16 //ep.19 33mins to remove that rectangle imageView snapping to the startingImageView's cornerRadius
+            zoomOutImageView.clipsToBounds = true //ep.19 33mins needed for cornerRadius
+            
+            
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: { //ep.19 28mins this changes the zoom out animation with a little accceleration on zooming out, instead of a linear speed of zooming out
+                
+            
+            //UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: { //ep.19 24mins //ep.19 28mins updated with an animate method with usingSprintWithDamping
+                
+                zoomOutImageView.frame = self.startingFrame! //ep.19 25mins reset our imageView back to where it's from
+                self.blackBackgroundView?.alpha = 0 //ep.19 26mins
+                self.inputContainerView.alpha = 1 //ep.19 30mins
+                
+            }) { (completed: Bool) in //ep.19 24mins the completion block is where we'll erase the views
+                zoomOutImageView.removeFromSuperview() //ep.19 27mins remove our imageView completely so it wont persist through other controllers
+                self.startingImageView?.isHidden = false
+            }
+        }
     }
     
 }

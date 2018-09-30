@@ -13,8 +13,11 @@ class ChatMessageCell: UICollectionViewCell { //ep.12 21mins
     var bubbleWidthAnchor: NSLayoutConstraint? //ep.13 15mins
     var bubbleViewRightAnchor: NSLayoutConstraint? //ep.14 12mins //now that we have reference to both bubbleView's right and left anchor, we can now set which one is active or not 
     var bubbleViewLeftAnchor: NSLayoutConstraint? //ep.14 13mins
-    
+
     static let blueColor = UIColor(r: 0, g: 137, b: 249) //ep.14
+    
+    var chatLogController: ChatLogController? //ep.19 7mins reference to ChatLogController that we will equal to self in cellForItemAt indexPath
+    
     
     let bubbleView: UIView = { //ep.13 4mins
         let view = UIView()
@@ -48,15 +51,26 @@ class ChatMessageCell: UICollectionViewCell { //ep.12 21mins
     }()
     
     
-    let messageImageView: UIImageView = { //ep.17 23mins
+    lazy var messageImageView: UIImageView = { //ep.17 23mins //ep.19 3mins changed to lazy var in order to access self and its method
         let imageView = UIImageView() //ep.17 23mins
         imageView.image = UIImage(named: "apple") //ep.17 23mins
         imageView.translatesAutoresizingMaskIntoConstraints = false //ep.17 23mins
         imageView.contentMode = .scaleAspectFill //ep.17 23mins
 //        imageView.layer.cornerRadius = 16
 //        imageView.layer.masksToBounds = true
+        imageView.isUserInteractionEnabled = true //ep.19 3mins
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomTap))) //ep.19 3mins
         return imageView
     }()
+    
+    
+    @objc func handleZoomTap(tapGesture: UITapGestureRecognizer) { //ep.19 4mins
+        if let imageView = tapGesture.view as? UIImageView { //ep.19 8mins unwrap the imageView before we call the performZoom method, so it wont crash if the image is not a UIImageView
+            
+            //PRO TIP: dont perform a lot of custom logic inside of a view class //ep.19 6mins. Delegate the zooming animations to the controller class.
+            self.chatLogController?.performZoomInForStartingImageView(startingImageView: imageView) //ep.19 7mins this is how you put a tap gesture to a view and have the function in the view controller
+        }
+    }
     
     
     override init(frame: CGRect) {
