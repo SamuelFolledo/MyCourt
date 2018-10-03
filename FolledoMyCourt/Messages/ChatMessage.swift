@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class ChatMessage: NSObject { //ep.9
+class ChatMessage: NSObject { //ep.9 a model
     
     var fromId: String? //ep.9
     var text: String? //ep.9
@@ -20,6 +20,8 @@ class ChatMessage: NSObject { //ep.9
     var imageHeight: NSNumber? //ep.18 5mins
     var imageWidth: NSNumber? //ep.18 5mins
     
+    var videoUrl: String? //ep.21 9mins
+    
     init(dictionary: [String: Any]) { //ep.9 constructor
         self.fromId = dictionary["fromId"] as? String //ep.9
         self.text = dictionary["text"] as? String //ep.9
@@ -28,6 +30,8 @@ class ChatMessage: NSObject { //ep.9
         self.imageUrl = dictionary["imageUrl"] as? String //ep.17 21mins
         self.imageHeight = dictionary["imageHeight"] as? NSNumber //ep.18 5mins
         self.imageWidth = dictionary["imageWidth"] as? NSNumber //ep.18 5mins
+        
+        self.videoUrl = dictionary["videoUrl"] as? String //ep.21 9mins now we have a handle/reference for our videoUrl, which we didnt have but still worked from previous video, but now we needed a reference
     }
     
     

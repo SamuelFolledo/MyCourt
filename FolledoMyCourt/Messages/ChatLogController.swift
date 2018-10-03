@@ -10,6 +10,8 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorage //ep.17 12mins
+import MobileCoreServices //ep.20 4mins for videos
+import AVFoundation //ep.20 4mins
 
 
 class ChatLogController: UICollectionViewController, UITextFieldDelegate, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate { //ep.8 dont forget to call ChatLogController(collectionViewLayout: UICollectionViewFlowLayout()) //ep.12 UICollectionViewDelegateFlowLayout is added //ep.17 8mins imagePicker an uiNavPicker are added
@@ -134,6 +136,8 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         let message = messages[indexPath.item] //ep.12 26mins
         cell.textView.text = message.text //ep12 26mins
         
+        cell.message = message //ep.21 14mins for our video reference. Dont forget to add the optional property from ChatMessageCell or it wont work
+        
         setupCell(cell: cell, message: message) //ep.14 6mins //setup the bubbleView's background color to blue or gray
         
     //ep.13 14mins before returning, make sure bubbleView's width is modified properly
@@ -146,6 +150,8 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
             cell.bubbleView.backgroundColor = .clear
             cell.textView.isHidden = true //ep.19 5mins hide textView so we can activate our image's tap gesture recognizer
         }
+        
+        cell.playButton.isHidden = message.videoUrl == nil //ep.21 11mins hide cell's playButton if message's videoUrl is nil //better than 5 line if-else
         
         return cell //ep.12
     }
@@ -384,13 +390,92 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         let imagePickerController = UIImagePickerController() //ep.17 8mins
 //        imagePickerController.allowsEditing = true //ep.17 10mins
         imagePickerController.delegate = self //ep.17 9mins
-
+        imagePickerController.mediaTypes = [kUTTypeImage, kUTTypeMovie] as [String] //ep.20 4mins so we can also have video in our imagePickerController
+        
         self.present(imagePickerController, animated: true, completion: nil) //ep.17 8mins
     }
     
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) { //ep.17 10mins if successfully picked an image
         
+        if let videoUrl = info[UIImagePickerController.InfoKey.mediaURL] as? URL { //ep.20 6mins grab and equal videoUrl to info dictionary with the infoKey of mediaURL, which contains our videoUrl from our device //with this url, we can upload this to firebase //dont forget to cast it as NSURL
+//            print(videoUrl)file:///private/var/mobile/Containers/Data/Application/A45977E5-0DF2-425F-86EA-A2D42DCEB4E1/tmp/2B0B9D7B-9DA9-438E-8334-D1B3BD7209AC.MOV
+            
+            handleVideoSelectedForUrl(videoUrl) //ep.20 12mins
+            
+        } else { //ep.20 11mins runs when user selected an image instead of a video
+            handleImageSelectedForInfo(info: info) //ep.20 11 mins then run this method
+        }
+        
+        dismiss(animated: true, completion: nil) //ep17 11mins //after image is picked, dismiss vc
+    }
+    
+    
+    private func handleVideoSelectedForUrl(_ url: URL) {
+        
+        let filename = NSUUID().uuidString //ep.20 7mins create a random video name
+        let fileReference = Storage.storage().reference().child("message_movies").child("0000\(filename).mov") //ep.17 14mins our file storage reference
+        
+        let uploadTask = fileReference.putFile(from: url, metadata: nil) { (metadata, error) in //ep.20 8mins putFile in our file storage reference
+            if let error = error { //ep.20 8mins
+                Service.presentAlert(on: self, title: "Error in Putting Video File", message: error.localizedDescription) //ep.20 8mins
+            }
+            
+            //if no error put file to Firebase
+            fileReference.downloadURL(completion: { (downloadedUrl, error) in //ep.20 9mins //if no erro rthen we can downloadUrl
+                if let error = error { //ep.20 9mins //error check
+                    Service.presentAlert(on: self, title: "Error in Downloading Video File", message: error.localizedDescription)
+                }
+            
+            //if no error downloading movie file url
+                //if let messageVideoUrl = videoUrl?.absoluteString { //unwrap the videoUrl as an absoluteString
+                guard let videoUrl = downloadedUrl?.absoluteString else { return } //unwrap
+                
+                if let thumbnailImage = self.thumbnailImageForFileUrl(fileUrl: url) { //ep.20 26mins unwrap sice thumbnailImageForFileUrl method can return a nil
+                    
+                    self.uploadToFirebaseStorageUsingImage(image: thumbnailImage, completion: { (imageUrl) in //ep.20 31mins with the completion block, we can now upload our thumbnailImage with out imageUrl
+                        
+                        //print(videoUrl) //ep.20 9mins
+                        let properties: [String: AnyObject] = ["imageUrl": imageUrl, "imageWidth": thumbnailImage.size.width, "imageHeight": thumbnailImage.size.height, "videoUrl": videoUrl] as [String: AnyObject] //ep.20 18mins dictionary of videoUrl properties we will include in our method //ep.20 27mins now we have the videoUrl, imageWidth and imageHeight from our thumbnailImage, but there is no image because we are missing our imageUrl
+                        
+                        self.sendMessageWithProperties(properties: properties) //ep.20 19mins like with our messages, this will take care of the message referencing and properties for which the file is from and sent to, timeStamp. Then the method will updateChildValues, clear the textField, and control which viewers can view the right videos //But this will only create the bubble for it without an image. We will get this image by grabbing the first frame of the movie file using an asset generator 20mins
+                    }) //ep.20 31mins
+                
+                }
+            })
+        }
+
+        uploadTask.observe(StorageTaskStatus.progress) { (snapshot) in //ep.20 13mins we cant tell if we're really uploading or the progress of it, so we create a reference for the task which is uploadTask
+//            print(snapshot.progress?.completedUnitCount) //ep.20 14mins
+            if let completedUnitCount = snapshot.progress?.completedUnitCount { //ep.20 15mins
+                self.navigationItem.title = String(completedUnitCount) //ep.20 15mins
+            }
+            
+        }
+        
+        uploadTask.observe(.success) { (snapshot) in //ep.20 16mins observe method which is called once uploadTask is finished
+            self.navigationItem.title = self.user?.name //ep.20 16mins return the title back to the user's name
+        }
+    }
+    
+    
+    private func thumbnailImageForFileUrl(fileUrl: URL) -> UIImage? { //ep.20 21mins generate a thumbnail image //ep.20 25mins returned UIImage is optional
+        let asset = AVAsset(url: fileUrl) //ep.20 22mins create an AVAsset with the url // AVAsset = The abstract class used to model timed audiovisual media such as videos and sounds.
+        let imageGenerator = AVAssetImageGenerator(asset: asset) //ep.20 22mins AVAssetImageGenerator = An object that provides thumbnail or preview images of assets independently of playback
+        
+        do { //ep.20 24mins do-try-catch is needed for imageGenerator.copyCGImage
+            let thumbnailCGImage = try imageGenerator.copyCGImage(at: CMTimeMake(value: 1, timescale: 60), actualTime: nil) //ep.20 23mins basically this gives us the first frame of the video file for this url. //copyCGImage = Returns a CGImage for the asset at or near a specified time. //CMTimeMake = Makes a valid CMTime with value and timescale. Epoch is implied to be 0. "value" parameters Initializes the value field of the resulting CMTime. "timescale" = Initializes the timescale field of the resulting CMTime.
+            return UIImage(cgImage: thumbnailCGImage) //ep.20 26mins if successful, then return our thumbnailCGImage
+            
+        } catch let error { //ep.20 24mins
+            Service.presentAlert(on: self, title: "Error Generating thumbnail", message: error as! String) //ep.20 24mins
+        }
+        
+        return nil //ep.20 23mins returns a nil if we cant get a frame from movie
+    }
+    
+    
+    private func handleImageSelectedForInfo(info: [UIImagePickerController.InfoKey : Any]) { //ep.20 11mins
         var selectedImageFromPicker: UIImage? //ep17 11mins
         //info was updated in Swift 4
         if let editedImage = info[.editedImage] as? UIImage { //ep17 11mins
@@ -401,19 +486,19 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         } //ep17 11mins
         
         if let selectedImage = selectedImageFromPicker { //ep17 11mins //if image is successfully unwrapped...
-            uploadToFirebaseStorageUsingImage(image: selectedImage) //ep17 11mins
+            uploadToFirebaseStorageUsingImage(image: selectedImage) { (imageUrl) in //ep.17 11mins //ep.20 30mins updated to this as we added a completion block to the method
+                self.sendMessageWithImageUrl(imageUrl: imageUrl, image: selectedImage) //ep.17 18mins //ep.20 31mins moved here from uploadToFirebaseStorageUsingImage
+                
+            }
         }
-        
-        dismiss(animated: true, completion: nil) //ep17 11mins //after image is picked, dismiss vc
-        
-        
     }
     
+
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) { //ep.17 10mins if canceled then dismiss imagePickerController
         dismiss(animated: true, completion: nil) //ep.17 10mins
     }
     
-    private func uploadToFirebaseStorageUsingImage(image: UIImage) { //ep.17 12mins
+    private func uploadToFirebaseStorageUsingImage(image: UIImage, completion: @escaping (_ imageUrl: String) ->() ) { //ep.17 12mins //ep.20 30mins completion block gets executed on completion
         print("image uploading to firebase...") //ep.17
         let imageName = NSUUID().uuidString //ep.17 13mins create a random image name
         let imageReference = Storage.storage().reference().child("message_images").child("0000\(imageName).jpg") //ep.17 14mins
@@ -434,8 +519,9 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                     //if no error on downloadUrl
                     if let messageImageUrl = imageUrl?.absoluteString { //ep.17 17mins //now with messageImageUrl we want to upload this image as a message object inside of firebase database under this "messages". We will put the messageImageUrl inside the "messages" text: node
                         
-                        self.sendMessageWithImageUrl(imageUrl: messageImageUrl, image: image) //ep.17 18mins
+                        completion(messageImageUrl)
                         
+//                        self.sendMessageWithImageUrl(imageUrl: messageImageUrl, image: image) //ep.17 18mins //ep.20 31mins moved to handleImageSelectedForInfo method in the completion block
                     }
                 })
             }
@@ -568,10 +654,9 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
             blackBackgroundView?.backgroundColor = .black //ep.19 19mins
             blackBackgroundView?.alpha = 0 //ep.19 19mins make it invisible at start and make it visible in the ANIMATION
             
-            blackBackgroundView?.isUserInteractionEnabled = true
-            blackBackgroundView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomOut(tapGesture:))))
+//            blackBackgroundView?.isUserInteractionEnabled = true
+//            blackBackgroundView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomOut(tapGesture:))))
             keyWindow.addSubview(blackBackgroundView!) //ep.19 19mins add it before zoomingImageView
-            
             
             keyWindow.addSubview(zoomingImageView) //ep.19 13mins add the zoomingImageView to our keyWindow with an animation...
         ////now make a zooming animation
@@ -593,17 +678,16 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     
     @objc func handleZoomOut(tapGesture: UITapGestureRecognizer) { //ep.19 21mins //to have a proper zoom out animation, we need our initial startingFrame so we know where the final destination is.
         print("Zooming out...") //ep.19 22mins
+        guard tapGesture.view != nil else { return } //check first
         
-        if let zoomOutImageView = tapGesture.view { //ep.19 24mins
+        
+        if let zoomOutImageView = tapGesture.view { //ep.19 24mins The view the gesture recognizer is attached to.
             //need to animate back to the controller
-            
             zoomOutImageView.layer.cornerRadius = 16 //ep.19 33mins to remove that rectangle imageView snapping to the startingImageView's cornerRadius
             zoomOutImageView.clipsToBounds = true //ep.19 33mins needed for cornerRadius
             
             
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: { //ep.19 28mins this changes the zoom out animation with a little accceleration on zooming out, instead of a linear speed of zooming out
-                
-            
             //UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: { //ep.19 24mins //ep.19 28mins updated with an animate method with usingSprintWithDamping
                 
                 zoomOutImageView.frame = self.startingFrame! //ep.19 25mins reset our imageView back to where it's from
