@@ -72,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate { //Fir
         
         
     //now load the main View Controller
-        //let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "KobeVC") as UIViewController
+//        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "KobeVC") as UIViewController
         let viewController: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabBarController") //instatiate/call the Main.storyboard's initial VC
         window = UIWindow(frame: UIScreen.main.bounds) //
         window?.makeKeyAndVisible() //makes the window visible
@@ -152,3 +152,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate { //Fir
 
 }
 
+
+
+extension AppDelegate { //shared and rootViewController will be used for RootViewController's transitions
+    static var shared: AppDelegate {
+        return UIApplication.shared.delegate as! AppDelegate
+    }
+    var rootViewController: RootViewController {
+        return window!.rootViewController as! RootViewController //Force-unwrap is totally reasonable here as long as you don’t change the RootViewController //Having that, we can easily get the reference to the current RootViewController from anywhere in the app with let rootViewController = AppDelegate.shared.rootViewController
+    }
+}

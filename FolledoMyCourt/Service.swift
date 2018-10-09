@@ -41,6 +41,16 @@ class Service {
     }
     
     
+    static func returnHomeTabController(on: UIViewController) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
+        on.present(vc, animated: true, completion: nil)
+    }
+    
+    static func clearUserDefaults() {
+        UserDefaults.standard.set(nil, forKey: "name")
+    }
+    
 }
 
 extension UIView {

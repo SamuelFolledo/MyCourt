@@ -25,7 +25,6 @@
 		CD06A90D210C23090086954A /* SelectRecipientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06A90C210C23090086954A /* SelectRecipientTableViewController.swift */; };
 		CD06FC7620F965D80033CB6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06FC7520F965D80033CB6F /* AppDelegate.swift */; };
 		CD06FC7D20F965DA0033CB6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD06FC7C20F965DA0033CB6F /* Assets.xcassets */; };
-		CD06FC8020F965DA0033CB6F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD06FC7E20F965DA0033CB6F /* LaunchScreen.storyboard */; };
 		CD06FC8B20F965DA0033CB6F /* FolledoMyCourtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06FC8A20F965DA0033CB6F /* FolledoMyCourtTests.swift */; };
 		CD06FC9620F965DA0033CB6F /* FolledoMyCourtUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06FC9520F965DA0033CB6F /* FolledoMyCourtUITests.swift */; };
 		CD06FCA620F966000033CB6F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD06FCA520F966000033CB6F /* MapKit.framework */; };
@@ -38,11 +37,15 @@
 		CD08FD42213E3DFA0000050C /* UserProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08FD41213E3DF90000050C /* UserProfileTableViewCell.swift */; };
 		CD0A9AB5213F27A3009B62F5 /* LoginController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0A9AB4213F27A3009B62F5 /* LoginController+handlers.swift */; };
 		CD0C8F3E214AACA3009756C1 /* MachineLearningController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0C8F3D214AACA3009756C1 /* MachineLearningController.swift */; };
+		CD0D063A2168FA0E002A7174 /* LaunchScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0D06392168FA0E002A7174 /* LaunchScreenController.swift */; };
 		CD3F175321263AFA00939ED8 /* BluetoothViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F175221263AFA00939ED8 /* BluetoothViewController.swift */; };
 		CD3F175521263E2800939ED8 /* BluetoothTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F175421263E2800939ED8 /* BluetoothTableViewCell.swift */; };
 		CD979E422138C8DB00033C98 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD979E412138C8DB00033C98 /* LoginController.swift */; };
 		CDA48C00214950DF00C1E527 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA48BFF214950DF00C1E527 /* UserCell.swift */; };
 		CDB0E79F21042C9200194DD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDB0E79E21042C9200194DD0 /* GoogleService-Info.plist */; };
+		CDB98D302168522400D90BE3 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB98D2F2168522400D90BE3 /* RootViewController.swift */; };
+		CDB98D322168623900D90BE3 /* CircleProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB98D312168623900D90BE3 /* CircleProgressBarView.swift */; };
+		CDE4C2F62166B9120096FB2C /* ChatInputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE4C2F52166B9120096FB2C /* ChatInputContainerView.swift */; };
 		CDE55926212DA06B00314EDD /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDE55925212DA06B00314EDD /* Chat.storyboard */; };
 		CDFEA38E20FE6D5D000824A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDFEA38D20FE6D5D000824A6 /* Main.storyboard */; };
 		CDFEA39020FE6D75000824A6 /* HomeMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDFEA38F20FE6D75000824A6 /* HomeMap.storyboard */; };
@@ -91,7 +94,6 @@
 		CD06FC7220F965D80033CB6F /* FolledoMyCourt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FolledoMyCourt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD06FC7520F965D80033CB6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD06FC7C20F965DA0033CB6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CD06FC7F20F965DA0033CB6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD06FC8120F965DA0033CB6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD06FC8620F965DA0033CB6F /* FolledoMyCourtTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FolledoMyCourtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD06FC8A20F965DA0033CB6F /* FolledoMyCourtTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolledoMyCourtTests.swift; sourceTree = "<group>"; };
@@ -110,11 +112,15 @@
 		CD08FD41213E3DF90000050C /* UserProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewCell.swift; sourceTree = "<group>"; };
 		CD0A9AB4213F27A3009B62F5 /* LoginController+handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginController+handlers.swift"; sourceTree = "<group>"; };
 		CD0C8F3D214AACA3009756C1 /* MachineLearningController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachineLearningController.swift; sourceTree = "<group>"; };
+		CD0D06392168FA0E002A7174 /* LaunchScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenController.swift; sourceTree = "<group>"; };
 		CD3F175221263AFA00939ED8 /* BluetoothViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothViewController.swift; sourceTree = "<group>"; };
 		CD3F175421263E2800939ED8 /* BluetoothTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothTableViewCell.swift; sourceTree = "<group>"; };
 		CD979E412138C8DB00033C98 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		CDA48BFF214950DF00C1E527 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		CDB0E79E21042C9200194DD0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CDB98D2F2168522400D90BE3 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		CDB98D312168623900D90BE3 /* CircleProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressBarView.swift; sourceTree = "<group>"; };
+		CDE4C2F52166B9120096FB2C /* ChatInputContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputContainerView.swift; sourceTree = "<group>"; };
 		CDE55925212DA06B00314EDD /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		CDFEA38D20FE6D5D000824A6 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CDFEA38F20FE6D75000824A6 /* HomeMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeMap.storyboard; sourceTree = "<group>"; };
@@ -208,6 +214,8 @@
 				CD06FCA320F965F20033CB6F /* FolledoMyCourt.entitlements */,
 				CD06FC7520F965D80033CB6F /* AppDelegate.swift */,
 				CD02E52C20FA91BA00A6ECC3 /* Service.swift */,
+				CDB98D2F2168522400D90BE3 /* RootViewController.swift */,
+				CDB98D312168623900D90BE3 /* CircleProgressBarView.swift */,
 				CDE55925212DA06B00314EDD /* Chat.storyboard */,
 				CDA48BFE214950BC00C1E527 /* View */,
 				CD0454262146BF9500C9E83D /* Messages */,
@@ -266,7 +274,7 @@
 		CD08AD962108EDAE00F008D2 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				CD06FC7E20F965DA0033CB6F /* LaunchScreen.storyboard */,
+				CD0D06392168FA0E002A7174 /* LaunchScreenController.swift */,
 				CD037D8820F9A4F40008EB97 /* MainTabBarController.swift */,
 				CDFEA38D20FE6D5D000824A6 /* Main.storyboard */,
 				CD04B19420FEA3B200FB8161 /* LoginViewController.swift */,
@@ -315,6 +323,7 @@
 			children = (
 				CDA48BFF214950DF00C1E527 /* UserCell.swift */,
 				CD040EDE214F648E005310C8 /* ChatMessageCell.swift */,
+				CDE4C2F52166B9120096FB2C /* ChatInputContainerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -458,7 +467,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDE55926212DA06B00314EDD /* Chat.storyboard in Resources */,
-				CD06FC8020F965DA0033CB6F /* LaunchScreen.storyboard in Resources */,
 				CDB0E79F21042C9200194DD0 /* GoogleService-Info.plist in Resources */,
 				CDFEA39420FE741C000824A6 /* SwipeUsers.storyboard in Resources */,
 				CDFEA39020FE6D75000824A6 /* HomeMap.storyboard in Resources */,
@@ -590,6 +598,8 @@
 				CD06A90D210C23090086954A /* SelectRecipientTableViewController.swift in Sources */,
 				CD0C8F3E214AACA3009756C1 /* MachineLearningController.swift in Sources */,
 				CD3F175321263AFA00939ED8 /* BluetoothViewController.swift in Sources */,
+				CDB98D302168522400D90BE3 /* RootViewController.swift in Sources */,
+				CDE4C2F62166B9120096FB2C /* ChatInputContainerView.swift in Sources */,
 				CD08FD42213E3DFA0000050C /* UserProfileTableViewCell.swift in Sources */,
 				CD040EDF214F648E005310C8 /* ChatMessageCell.swift in Sources */,
 				CD037D8B20F9A5B50008EB97 /* HomeMapViewController.swift in Sources */,
@@ -600,6 +610,7 @@
 				CD3F175521263E2800939ED8 /* BluetoothTableViewCell.swift in Sources */,
 				CD06FC7620F965D80033CB6F /* AppDelegate.swift in Sources */,
 				CD02E52D20FA91BA00A6ECC3 /* Service.swift in Sources */,
+				CDB98D322168623900D90BE3 /* CircleProgressBarView.swift in Sources */,
 				CDA48C00214950DF00C1E527 /* UserCell.swift in Sources */,
 				CD08AD9B2108F10800F008D2 /* SnapsTableViewController.swift in Sources */,
 				CD04B19520FEA3B200FB8161 /* LoginViewController.swift in Sources */,
@@ -609,6 +620,7 @@
 				CD979E422138C8DB00033C98 /* LoginController.swift in Sources */,
 				CD037D8F20F9A6120008EB97 /* SwipeUsersViewController.swift in Sources */,
 				CD037D8920F9A4F40008EB97 /* MainTabBarController.swift in Sources */,
+				CD0D063A2168FA0E002A7174 /* LaunchScreenController.swift in Sources */,
 				CD08FD3C213CF4BF0000050C /* NewMessageController.swift in Sources */,
 				CD08FD36213CD9AA0000050C /* MessagesController.swift in Sources */,
 				CD0A9AB5213F27A3009B62F5 /* LoginController+handlers.swift in Sources */,
@@ -645,17 +657,6 @@
 			targetProxy = CD06FC9220F965DA0033CB6F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		CD06FC7E20F965DA0033CB6F /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CD06FC7F20F965DA0033CB6F /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		CD06FC9820F965DA0033CB6F /* Debug */ = {

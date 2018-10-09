@@ -24,7 +24,7 @@ class UserProfileTableViewController: UITableViewController {
     
     var data = [CellData]()
     let cellId: String = "cellId"
-    
+    var rows = 0
     
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var saveButton: UIBarButtonItem!
@@ -53,17 +53,39 @@ class UserProfileTableViewController: UITableViewController {
     }
     
     
+   
+    
+    func insertRowMode3(row: Int, cell: CellData, completion: @escaping ()-> Void) {
+        let indexPath = IndexPath(row: row, section: 0)
+        print("cell \(row) is appending at \(indexPath)")
+        data.append(cell)
+        tableView.insertRows(at: [indexPath], with: .right)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            completion()
+        }
+    }
+    
+    
     func createDataCell() {
          
         let data1 = CellData.init(image: #imageLiteral(resourceName: "updateProfilePicture"), message: "Update Profile Picture")
         let data2 = CellData.init(image: #imageLiteral(resourceName: "exit"), message: "Logout")
         let data3 = CellData.init(image: #imageLiteral(resourceName: "apple"), message: "About")
-
         
+        insertRowMode3(row: 0, cell: data1) {
+            self.insertRowMode3(row: 1, cell: data2, completion: {
+                self.insertRowMode3(row: 2, cell: data3, completion: {
+                    print("Done inserting rows")
+                })
+            })
+        }
         
-        data.append(data1)
-        data.append(data2)
-        data.append(data3)
+//        data.append(data1)
+//        data.append(data2)
+//        data.append(data3)
+        
+//        insertRowMode3(row: 0, cell: <#T##CellData#>, completion: <#T##() -> Void#>)
         
     }
     

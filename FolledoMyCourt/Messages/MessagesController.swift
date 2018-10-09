@@ -32,8 +32,8 @@ class MessagesController: UITableViewController {
         
         checkCurrentUser()
         
-//        observeMessages() //ep.9 //ep.11 removed
-//        observeUserMessages() //ep.11
+
+        tableView.allowsMultipleSelectionDuringEditing = true //ep.22 1min first thing you need to swipe delete messages
         
         
     }
@@ -60,6 +60,14 @@ class MessagesController: UITableViewController {
                 
             }, withCancel: nil)
         }, withCancel: nil) //ep.11
+        
+        
+        ref.observe(.childRemoved, with: { (snapshot) in //ep.22 14mins this observe removed child when for example, we deleted it from the Databse cleanly
+            print(snapshot.key) //ep.22 14mins
+            print(self.messagesDictionary) //ep.22 14mins
+            self.messagesDictionary.removeValue(forKey: snapshot.key) //ep.22 15mins
+            self.attemptReloadOfTable() //ep.22 16mins this will delete and update everything when we delete it from an outside source
+        }, withCancel: nil)
     }
     
     private func fetchMessageWithMessageId(messageId: String) { //ep.16 22mins refactored and created a private function for it
@@ -173,15 +181,35 @@ class MessagesController: UITableViewController {
             
         }, withCancel: nil) //ep.12
         
-        
-        
-        
-        
-        
 //         print("\(message.text! + message.userUid! + message.fromId!)") //ep.12since we have a userUid (toId) and a fromId, we cant really guarantee which is who
         
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool { //ep.22 2mins canEditRowAt method
+        return true //ep.22 2mins
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) { //ep.22 3mins commit editingStyle method, here is what the deletion will perform
+//        print(indexPath.row) //ep.22 3mins //to delete, we need to go to "user-messages" then logged in userId, then the chatPartnerId
+        guard let uid = Auth.auth().currentUser?.uid else { return } //ep.22 5mins
+        
+        let message = self.messages[indexPath.row] //ep.22 6mins get the message so we can access its chatPartnerId that was selected indexPath.row
+        let chatPartnerId = message.chatPartnerId() //ep.22 6mins now get the chatPartnerId of that indexPath.row
+        
+        Database.database().reference().child("user-messages").child(uid).child(chatPartnerId).removeValue { (error, ref) in //ep.22 4mins //ep.22 7mins once we have the selected message, we ca now removeValue
+            if let error = error { //ep.22 7mins
+                Service.presentAlert(on: self, title: "Error deleting message", message: error.localizedDescription) //ep.22 7mins
+            } //if no error, then we can update the table
+/*          //a way to delete and update the table, but not safe
+            self.messages.remove(at: indexPath.row) //ep.22 8mins //ep.22 10mins cuz we had our reference in messagesDictionary
+            self.tableView.deleteRows(at: [indexPath], with: .automatic) //ep.22 8mins //ep.22 12mins this is not safe because you can have a bunch of messages coming in your app, and through various updates, we wont have a reliable indexPath to know which message we are trying to delete
+*/
+            self.messagesDictionary.removeValue(forKey: chatPartnerId) //ep.22 11mins Removes the given key and its associated value from the dictionary.
+            self.attemptReloadOfTable() //ep.22 12mins update table with the correct indexPath
+        }
+        
+        
+    }
     
     @objc func handleNewMessage() {
         let newMessageController = NewMessageController()

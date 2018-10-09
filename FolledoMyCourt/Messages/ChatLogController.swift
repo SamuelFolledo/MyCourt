@@ -20,76 +20,20 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     var messages = [ChatMessage]()
     var containerViewBottomAnchor: NSLayoutConstraint? //ep.15 6mins
     
-    lazy var inputContainerView: UIView = { //ep.15 18:40mins //you cant access self unless it's a lazy var, not let/var
-        let containerView = UIView() //ep.15 16mins
-        containerView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50) //ep.15mins
-        containerView.backgroundColor = .white
+    lazy var inputContainerView: ChatInputContainerView = { //ep.15 18:40mins //you cant access self unless it's a lazy var, not let/var //ep.23 8mins changed the UIView class to ChatInputContainerView class
         
-        
-        let uploadImageView = UIImageView() //ep.17 4mins
-        uploadImageView.image = UIImage(named: "photoAlbum") //ep.17 4mins
-        uploadImageView.translatesAutoresizingMaskIntoConstraints = false //ep.17 5mins
-        uploadImageView.isUserInteractionEnabled = true //ep.17 8mins
-        uploadImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.handleUploadTap))) //ep.17 6mins
-        containerView.addSubview(uploadImageView) //ep.17 4mins
-        
-        uploadImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 5).isActive = true //ep.17 5mins
-        uploadImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true //ep.17 5mins
-        uploadImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true //ep.17 5mins
-        uploadImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        
-        
-        //sendButton
-        let sendButton = UIButton(type: .system) //type: .system makes the button look more clickable //ep.8
-        sendButton.setTitle("Send", for: .normal)
-        sendButton.translatesAutoresizingMaskIntoConstraints = false
-        sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
-        containerView.addSubview(sendButton)
-        
-        sendButton.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
-        sendButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
-        sendButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        sendButton.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
-        
-        //inputTextField //sendButton, input textField, and separator line is copy pasted from setupInputComponents at ep.15 21mins
-        containerView.addSubview(self.inputTextField)
-        
-        self.inputTextField.leftAnchor.constraint(equalTo: uploadImageView.rightAnchor, constant: 5).isActive = true //ep.17 6mins updated to constraint it to the uploadImage
-        self.inputTextField.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
-        self.inputTextField.rightAnchor.constraint(equalTo: sendButton.leftAnchor).isActive = true
-        self.inputTextField.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
-        
-        //separatorLineView
-        let separatorLineView = UIView() //ep.8
-        separatorLineView.backgroundColor = .gray
-        separatorLineView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(separatorLineView)
-        
-        separatorLineView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
-        separatorLineView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
-        separatorLineView.widthAnchor.constraint(equalTo: containerView.widthAnchor).isActive = true
-        separatorLineView.heightAnchor.constraint(equalToConstant: 0.8).isActive = true
-        
-        return containerView //ep.15 18mins
+        let chatInputContainerView = ChatInputContainerView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50)) //ep.23 4mins
+        chatInputContainerView.chatLogController = self //ep.23 12mins this is needed so we have proper reference of chatLogController
+        return chatInputContainerView //ep.23 5mins
     }() //end of inputContainerView
+    
     
     var user: MyCourtUser? { //ep.9 added so we can give it a value from the newMessagesController
         didSet {
             navigationItem.title = user?.name //ep.9 7mins
-            
             observeMessages() //ep.12 12mins
         }
     }
-    
-    let inputTextField: UITextField = { //ep.8
-        let tf = UITextField() //ep.8
-        tf.keyboardType = UIKeyboardType.default
-        tf.clearButtonMode = UITextField.ViewMode.unlessEditing
-        tf.placeholder = "Enter message..."
-        tf.translatesAutoresizingMaskIntoConstraints = false
-//        tf.delegate = self //gotta declare it at viewDidLoad
-        return tf
-    }()
     
     
 //VIEW DID LOAD
@@ -105,7 +49,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         collectionView?.alwaysBounceVertical = true //ep.12 27mins will make our collection view have a scrollable feel
         collectionView?.register(ChatMessageCell.self, forCellWithReuseIdentifier: cellId) //ep.12 register the cell
         
-        inputTextField.delegate = self //ep.8
+        inputContainerView.inputTextField.delegate = self //ep.8
         
         handleKeyboardObservers() //ep.15 3mins
     }
@@ -113,11 +57,9 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     
     override var inputAccessoryView: UIView? { //ep.15 15mins since this is a property  on UIViewController, u override this by specifying a get
         get { //ep.15 15mins inside this getter you have to return a UIView type
-            
             return inputContainerView //ep.15 19mins
         }
     }
-    
     override var canBecomeFirstResponder: Bool { return true } //ep.15 20mins
     
     
@@ -310,20 +252,20 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     
     
 //textFieldShouldReturn called //ep.8
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool { //ep.8
-        handleSend()
-//        textField.resignFirstResponder()
-        
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool { //ep.8 //ep.23 18mins refactored and was moved to ChatInputContainerView class
+//        handleSend()
+////        textField.resignFirstResponder()
 //
-//        switch textField {
-//        case inputTextField:
-//            textField.resignFirstResponder()
-//        default:
-//            textField.resignFirstResponder()
-//        }
-        
-        return true
-    }
+////
+////        switch textField {
+////        case inputTextField:
+////            textField.resignFirstResponder()
+////        default:
+////            textField.resignFirstResponder()
+////        }
+//
+//        return true
+//    }
     
 
     deinit {
@@ -539,7 +481,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
 //sending message
     @objc func handleSend() { //ep.8 20mins
         
-        let properties: [String: AnyObject] = ["text": inputTextField.text!] as [String : AnyObject] //ep.9 //ep.18 changed from values to properties that we will pass to our sendMessageWithProperties()
+        let properties: [String: AnyObject] = ["text": inputContainerView.inputTextField.text!] as [String : AnyObject] //ep.9 //ep.18 changed from values to properties that we will pass to our sendMessageWithProperties()
         sendMessageWithProperties(properties: properties)
         
 //        let ref = Database.database().reference().child("messages")
@@ -595,7 +537,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                 return
             } //ep.17 18mins
             
-            self.inputTextField.text = nil
+            self.inputContainerView.inputTextField.text = nil
             
             let userMessagesRef = Database.database().reference().child("user-messages").child(fromId).child(userUid!) //ep.17 18mins
             

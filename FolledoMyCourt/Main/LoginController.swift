@@ -270,11 +270,11 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
                 return
             } else { //if no error unwrapped = signInAnonymously successfuly
                 print("Successfully signed in anoynmously with: \(String(describing: user?.user))")
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(3), execute: { //Dispatch Queue after 3 seconds
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let vc = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
                     self.present(vc, animated: true, completion: nil)
-                }
+                })
             }
         }
         
@@ -312,11 +312,11 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
                         self.present(alert, animated: true, completion: nil)
                     } else { //login was successful
                         self.messagesController?.fetchCurrentUserAndSetupNavBarTitle() //ep.7 bug fix
-                        DispatchQueue.main.async {
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(3), execute: { //Dispatch Queue after 3 seconds
                             let storyboard = UIStoryboard(name: "Main", bundle: nil)
                             let vc = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
                             self.present(vc, animated: true, completion: nil)
-                        }
+                        })
                     }
                 }
             }
@@ -478,48 +478,189 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
     
     
 // ---------------------- Facebook methods ------------------------------
-    //Facebook loginButtonDidLogOut delegate method //handles Facebook Log out Button
+//Facebook loginButtonDidLogOut delegate method //handles Facebook Log out Button
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) { //FBLogin //17mins
         print("Did logout of Facebook...") //FBLogin //17mins
     } //FBLogin //17mins
     
-    //Facebook didCompleteWith delegate method
+//Facebook didCompleteWith delegate method
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) { //FBLogin //17mins
+    //spinner
+        let spinner: UIActivityIndicatorView = UIActivityIndicatorView() as UIActivityIndicatorView
+        spinner.style = .whiteLarge
+        spinner.center = view.center
+        self.view.addSubview(spinner)
+        spinner.startAnimating()
+        
         if error != nil { //FBLogin //17mins
             //            print(error) //FBLogin //17mins
             let alert:UIAlertController = Service.showAlert(on: self, style: .alert, title: "Facebook Login Error", message: "\(error.localizedDescription)\nPlease try again")
+//            spinner.stopAnimating()
             self.present(alert, animated: true, completion: nil)
             return //FBLogin //17mins
+            
         } else if result.isCancelled { //FBLogin //17mins if user canceled login
             print("User has canceled login")
             let alert:UIAlertController = Service.showAlert(on: self, style: .alert, title: "Facebook Login Error", message: "User has cancelled Login\nPlease try again")
+//            spinner.stopAnimating()
             self.present(alert, animated: true, completion: nil)
         } else { //FBLogin //if successful, meaning no error, and login didnt cancel log in
-            
+            spinner.stopAnimating()
             if result.grantedPermissions.contains("email"){ //FBLogin //18minsmake sure they gave us permissions
-                if let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"email,name"]) { //FBLogin //19mins //FBSDKGraohRequest - represents a request to the Facebook Graph API. //we're looking for "me" only because we dont want anything to do with user's friends. //' parameters: ["fields":"email,name"] ' gives us the email and name
-                    graphRequest.start { (connection, result, error) in //FBLogin //20mins, give us connection, result, and error
+
+                if let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id, email, name, first_name, last_name, picture.type(large)"]) { //FBLogin //19mins //FBSDKGraohRequest - represents a request to the Facebook Graph API. //we're looking for "me" only because we dont want anything to do with user's friends. //' parameters: ["fields":"email,name"] ' gives us the email and name
+                    graphRequest.start { (connection, graphResult, error) in //FBLogin //20mins, give us connection, result, and error
                         if error != nil { //FBLogin //20mins
                             print(error!) //FBLogin //20mins
                             let alert:UIAlertController = Service.showAlert(on: self, style: .alert, title: "Facebook Login Error", message: "\(error!.localizedDescription)")
                             self.present(alert, animated: true, completion: nil)
                             
                         } else { //FBLogin //20mins if everything worked out...
-                            if let userDetails = result { //FBLogin //21mins if no error then we should get the results
-                                //print(userDetails)
+                            
+                            if let userDetails = graphResult as? [String: AnyObject] { //FBLogin //21mins if no error then we should get the results
                                 print("Successfuly Log in Facebook: ", userDetails)
+/*  PRINTS                      Successfuly Log in Facebook:  ["first_name": MyCourt, "picture": {
+                                data =     {
+                                    height = 200;
+                                    "is_silhouette" = 0;
+                                    url = "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=147771559517905&height=200&width=200&ext=1541356243&hash=AeTMpO1u9dBgSIWO";
+                                    width = 200;
+                                };
+                            },
+ */
+                                self.fetchFacebookUserWithUserDetails(userDetails: userDetails)
+                                
                             }
-                        }
-                    }
+                        } //end of graphRequest.start else statement
+                    } //enf of graphRequest.start
+                } else { //FBGraphRequest cant be completed
+                    Service.presentAlert(on: self, title: "Facebook Path Request Error", message: error.localizedDescription)
                 }
             } else { //result.grantedPermissions = false
+                spinner.stopAnimating()
                 let alert:UIAlertController = Service.showAlert(on: self, style: .alert, title: "Facebook Error", message: "Facebook failed to grant access")
                 self.present(alert, animated: true, completion: nil)
             }
         }
+        print("Successfully logged in Facebook")
     }
     
     
+    fileprivate func fetchFacebookUserWithUserDetails(userDetails: [String: AnyObject]) {
+        print("Fetching Facebook User Details")
+        //spinner
+        let spinner: UIActivityIndicatorView = UIActivityIndicatorView() as UIActivityIndicatorView
+        spinner.style = .whiteLarge
+        spinner.center = view.center
+        self.view.addSubview(spinner)
+        spinner.startAnimating()
+        
+        if let id = userDetails["id"] as? String {
+//            let firstName = userDetails["first_name"] as? String
+//            let lastName = userDetails["last_name"] as? String
+//            let userName = userDetails["name"] as? String
+            
+            
+            
+        //unwrap the user's profile picture
+            if let profilePictureObj: [String: AnyObject] = userDetails["picture"] as? [String: AnyObject]  {
+                guard let data: [String: AnyObject] = profilePictureObj["data"] as? [String: AnyObject] else { return }
+                guard let profilePicUrlString = data["url"]?.absoluteString else { return }
+                guard let profilePicUrl = URL(string: profilePicUrlString!) else{ return }
+                
+                
+                do { //catch any errors
+                    let imageData = try Data(contentsOf: profilePicUrl) //create imageData from the pic's url
+//                    print("User's details are... \(userName, profilePicUrlString)")
+                    
+                //if no error present the image
+                    DispatchQueue.main.async {
+                        let userProfileImage = UIImage(data: imageData) //turn imageData to a UIImage
+                        self.loginLogoImageView.image = userProfileImage
+                        self.loginLogoImageView.contentMode = .scaleAspectFit
+                    }
+                } catch let error {
+                    Service.presentAlert(on: self, title: "Error fetching image", message: error.localizedDescription)
+                }
+                
+                
+                
+            //what to do with profile pic
+                let imageName = NSUUID().uuidString
+                let imageReference = Storage.storage().reference().child("profile_images").child("00FB\(imageName).png") //create the reference
+                guard let uploadData = loginLogoImageView.image!.jpegData(compressionQuality: 0.8) else { return }
+                imageReference.putData(uploadData, metadata: nil, completion: { (metadata, error) in //put the data to the imageReference
+                    if let error = error {
+                        Service.presentAlert(on: self, title: "Image to databse error", message: error.localizedDescription)
+                    } else { //if no error putting data to the database...
+                        
+                        let userName:String = userDetails["name"] as! String
+                        let email:String = userDetails["email"] as! String
+                        
+                        let values: [String: AnyObject] = ["name": userName, "email": email, "profileImageUrl": profilePicUrlString, "userUid": id] as [String: AnyObject]
+                        
+                        
+                        self.registerUserIntoDatabaseWithUID(uid: id, values: values) //register with Facebook
+                        
+                        
+                        
+                    //dataTask
+//                        URLSession.shared.dataTask(with: profilePicUrl, completionHandler: { (data, response, error) in
+//                            if let error = error {
+//                                Service.presentAlert(on: self, title: "Error", message: error.localizedDescription)
+//                            }
+//                            guard let fbCurrentUserTokenString = FBSDKAccessToken.current()?.tokenString else { return }
+//                            let credential = FacebookAuthProvider.credential(withAccessToken: fbCurrentUserTokenString) //our facebook token //After a user successfully signs in, in your implementation of didCompleteWithResult:error:, get an access token for the signed-in user and exchange it for a Firebase credential:
+//                            Auth.auth().signInAndRetrieveData(with: credential, completion: { (result, error) in //Finally, authenticate with Firebase using the Firebase credential:
+//                                if let error = error {
+//                                    Service.presentAlert(on: self, title: "Facebook Signin Error", message: error.localizedDescription)
+//                                }
+//                            //user is signed in
+//
+//                            })
+//
+//                        })
+                    }
+                }) //end of putData, already error checked
+            } else { //cant unwrap profilePictureObj
+                Service.presentAlert(on: self, title: "Facebook Error", message: "Failed to Get Profile Picture")
+            }
+        } else { //cant get userDetails["id"]
+            Service.presentAlert(on: self, title: "Facebook Error", message: "Failed to get User's Identification")
+            return
+        }
+        spinner.stopAnimating()
+    }
+    
+//    fileprivate func signinToFirebaseUsingFacebook() { //FB ep.5 30mins
+//        guard let authToken = FBSDKAccessToken.current()?.tokenString else { return } //FB ep.5 31mins
+//        let credential = FacebookAuthProvider.credential(withAccessToken: authToken) //.credential Creates an `FIRAuthCredential` for a Facebook sign in. //FB ep.5 31mins
+//        Auth.auth().signInAndRetrieveData(with: credential) { (user, error) in
+//            if let error = error { //FB ep.5 32mins
+//                Service.presentAlert(on: self, title: "Facebook Sigin Error", message: error.localizedDescription) //FB ep.5 32mins
+//                return
+//            }
+//            print("Facebook account successfully signed in")
+//
+//
+    
+//            guard let fbName = user?.user.displayName else { return }
+//            guard let fbEmail = user?.user.email else { return }
+//            guard let fbPhotoUrl = user?.user.photoURL?.absoluteString else { return }
+//            guard let fbProviderId = user?.user.providerID else { return }
+//            guard let fbPhoneNumber = user?.user.phoneNumber else{ return }
+//            print("\(fbName) + \(fbEmail) + \(fbPhotoUrl) + \(fbProviderId) + \(fbPhoneNumber)")
+            
+//        }
+//    }
+    
+//    fileprivate func fetchFacebookUser() {
+//        if let grap
+//        let graphRequestConnection = FBSDKGraphRequestConnection()
+//        let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, email, name, picture.type(large)"], tokenString: FBSDKAccessToken.current()?.tokenString, version:  , httpMethod: <#T##String!#>)
+//
+//    }
+
     
 // ----------------- HANDLE Select Profile ImageView ---------------
     @objc func handleSelectLoginLogoImageView() {
@@ -544,17 +685,16 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
         //info was updated in Swift 4
         if let editedImage = info[.editedImage] as? UIImage {
             selectedImageFromPicker = editedImage
-            
         } else if let originalImage = info[.originalImage] as? UIImage {
             selectedImageFromPicker = originalImage
-            
-            
         }
         
         if let myCourtProfilePictureImage = selectedImageFromPicker { //if image is successfully unwrapped...
             print("putting image to login logo")
             loginLogoImageView.image = myCourtProfilePictureImage
         }
+        
+        dismiss(animated: true, completion: nil)
         
 // These are pre Swift 4.2
 //        //print(info)
@@ -619,8 +759,6 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
 //                                    self.userInfo.uid = String(user.user.uid)
             
         })
-        
-        
     }
     
     
@@ -638,6 +776,10 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
                     self.view.addSubview(spinner)
                     spinner.startAnimating()
                     
+                    //func createUser(withEmail: email, passwor)
+                    
+                    
+                    
                     //create the user
                     Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
                         spinner.stopAnimating()
@@ -649,23 +791,20 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
                             if let userUid = user?.user.uid { //3 //24mins
                                 
                                 
-                                
-                                
-                                
 //BEGINNING OF STORING IMAGE TO FIREBASE STORAGE
                                 let imageName = NSUUID().uuidString //create a random generated string
                                 let imageReference = Storage.storage().reference().child("profile_images").child("0000\(imageName).png")
 //                                if let uploadData = UIImagePNGRepresentation(self.loginLogoImageView.image!) { //removed and changed to JPEG in order to compress
                                 if let profileImage = self.loginLogoImageView.image, let uploadData = profileImage.jpegData(compressionQuality: 0.1) { //ep.7 compress the image uploaded to 10%
                                     
-                                    imageReference.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                                    imageReference.putData(uploadData, metadata: nil, completion: { (metadata, error) in //putData = Asynchronously uploads data to the currently specified FIRStorageReference. This is not recommended for large files, and one should instead upload a file from disk.
                                         if let error = error { //error in putting image to Storage
                                             Service.presentAlert(on: self, title: "Error Putting Data To Server", message: (error.localizedDescription))
                                             return
                                         } else { //if no error then downloadURL of metadata
                                         
 //                                            if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
-                                            imageReference.downloadURL(completion: { (imageUrl, error) in
+                                            imageReference.downloadURL(completion: { (imageUrl, error) in //downloadURL = Asynchronously retrieves a long lived download URL with a revokable token. This can be used to share the file with others, but can be revoked by a developer in the Firebase Console if desired.
                                                 if let error = error {
                                                     Service.presentAlert(on: self, title: "Error in downloading image URL", message: error.localizedDescription)
                                                 } else { //no error on downloading metadata URL
