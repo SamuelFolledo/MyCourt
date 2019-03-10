@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class SwipeUsersViewController: UIViewController {
     
@@ -17,6 +19,8 @@ class SwipeUsersViewController: UIViewController {
     var heightArray:[String] = Array()
     var distanceArray:[String] = Array()
     var specialArray:[String] = Array()
+    
+//    var fullName: String?
     
     @IBOutlet weak var opponentImageView: UIImageView!
     
@@ -55,7 +59,7 @@ class SwipeUsersViewController: UIViewController {
 //            self.navItem.title = "Hi \(username)"
 //        }
         
-        
+        setupViews()
         
     }
     
@@ -162,4 +166,32 @@ extension SwipeUsersViewController: UIPickerViewDelegate, UIPickerViewDataSource
         
         return label
     }
+    
+    
+    func setupViews() {
+        
+        if let uid = Auth.auth().currentUser?.uid { //unwrap the currentUser's uid
+            
+//            print("UID = \(uid)")
+            Database.database().reference().child("users").child(uid).observe(.value, with: { (snapshot) in //listen for a single value, which is the current user
+                print("observed")
+                if let dictionary = snapshot.value as? [String: AnyObject] {
+                    //                    if let userName:String = dictionary["name"] as? String {
+                    //                        print(userName)
+                    //                        self.navigationItem.title = userName //set the title as the name from the snapshot //changed
+                    
+                    let user = MyCourtUser(dictionary: dictionary) //ep.7
+                    self.nameLabel.text = user.name
+                    
+                    if let profileImageUrl = user.profileImageUrl { //ep.7
+                        self.opponentImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
+                    }
+                    
+                }
+                
+            }, withCancel: nil) //withCancel nil is safer and less error
+        }
+        
+    }
+    
 }

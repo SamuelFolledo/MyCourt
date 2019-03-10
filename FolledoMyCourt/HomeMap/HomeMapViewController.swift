@@ -68,6 +68,7 @@ class HomeMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         annotation.title = "C-Court of Lincoln Park"
         annotation.subtitle = "Jersey City, NJ 07304"
         let courtType:Int = 3
+        
         annotation.courtType = courtType
         annotation.imageName = annotation.getImageName(courtType: courtType)
         return annotation
@@ -109,6 +110,8 @@ class HomeMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         mapView.addAnnotation(court4)
         mapView.addAnnotation(court5)
         mapView.addAnnotation(court6)
+        
+        
         
         
         
@@ -164,26 +167,26 @@ class HomeMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
 //    }
     
 //didUpdateLocations
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) { //3 //12mins
-        if let coord = manager.location?.coordinate { //3 //12mins
-            let center = CLLocationCoordinate2D(latitude: coord.latitude, longitude: coord.longitude) //3 //12mins
-            userLocation = center //3 //23mins
-            
-            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)) //3 //13mins how big you want the region to be
-            mapView.setRegion(region, animated: true) //3 //13mins set region
-            
-//            mapView.removeAnnotations(mapView.annotations) //3 //16mins removes all the annotations everytime we change our location
-//            //13mins now the map shows our location on the mapView. Now we need an annotation to show exactly where our user is and add it to our map
-////            let annotation = MKPointAnnotation() //3 //14mins
-//            var annotation = MKMarkerAnnotationView()
-
-//            annotation.coordinateSpace = center //3 //15mins put it on the center
-//            annotation.title = "Your location" //3 //15mins
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) { //3 //12mins
+//        if let coord = manager.location?.coordinate { //3 //12mins
+//            let center = CLLocationCoordinate2D(latitude: coord.latitude, longitude: coord.longitude) //3 //12mins
+//            userLocation = center //3 //23mins
 //
+//            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)) //3 //13mins how big you want the region to be
+//            mapView.setRegion(region, animated: true) //3 //13mins set region
 //
-//            mapView.addAnnotation(annotation) //3 //16mins now time to start saving our location to firebase
-        }
-    }
+////            mapView.removeAnnotations(mapView.annotations) //3 //16mins removes all the annotations everytime we change our location
+////            //13mins now the map shows our location on the mapView. Now we need an annotation to show exactly where our user is and add it to our map
+//////            let annotation = MKPointAnnotation() //3 //14mins
+////            var annotation = MKMarkerAnnotationView()
+//
+////            annotation.coordinateSpace = center //3 //15mins put it on the center
+////            annotation.title = "Your location" //3 //15mins
+////
+////
+////            mapView.addAnnotation(annotation) //3 //16mins now time to start saving our location to firebase
+//        }
+//    }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if !(annotation is CustomPointAnnotation) { //if annotation is not our custom class
@@ -205,7 +208,7 @@ class HomeMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         return anView
     }
     
-    /*
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let userLocation: CLLocation = locations[0] as CLLocation
@@ -213,10 +216,11 @@ class HomeMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         manager.stopUpdatingLocation()
         
         let location = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
-        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         let region = MKCoordinateRegion(center: location, span: span)
         mapView.setRegion(region, animated: true)
     }
+    /*
     @objc func directions(_ sender: Any) {
         //UIApplication.shared.open(URL(string: "http://maps.apple.com/maps?daddr=\(latitude),\(longitude)")!, options: [:], completionHandler: nil)
         
@@ -252,13 +256,13 @@ class CustomPointAnnotation: MKPointAnnotation {
         var imgName:String?
         switch courtType {
         case 1:
-            imgName = "basketball-court1"
+            imgName = "basketballCourt1"
         case 2:
-            imgName = "basketball-court2"
+            imgName = "basketballCourt2"
         case 3:
-            imgName = "basketball-court3"
+            imgName = "basketballCourt3"
         default:
-            imgName = "basketball-court3"
+            imgName = "basketballCourt3"
         }
         return imgName!
     }

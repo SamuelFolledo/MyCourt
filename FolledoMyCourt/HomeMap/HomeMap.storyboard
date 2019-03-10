@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rW3-VD-5AB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rW3-VD-5AB">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,18 +29,23 @@
                                 </constraints>
                             </view>
                             <stackView contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gbc-rk-S7h" userLabel="TopStackView">
-                                <rect key="frame" x="5" y="30.000000000000004" width="404" height="45.333333333333343"/>
+                                <rect key="frame" x="5" y="30" width="404" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5M7-Z4-Y4T">
-                                        <rect key="frame" x="0.0" y="5" width="53" height="35.333333333333336"/>
+                                        <rect key="frame" x="0.0" y="5" width="50" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="iAh-fh-hTw"/>
+                                        </constraints>
                                         <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" image="user" backgroundImage="boxButtonBG"/>
+                                        <state key="normal" title="User" backgroundImage="goldButton">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="profileButtonTapped" destination="rW3-VD-5AB" eventType="touchUpInside" id="a6i-xC-c2y"/>
                                         </connections>
                                     </button>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Nearby Courts" showsBookmarkButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TA9-q8-D9t">
-                                        <rect key="frame" x="58" y="2.6666666666666643" width="288" height="40"/>
+                                        <rect key="frame" x="55" y="2.6666666666666643" width="294" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="8up-dW-c1f"/>
                                         </constraints>
@@ -53,8 +58,10 @@
                                         </scopeButtonTitles>
                                     </searchBar>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NIC-kW-DQj">
-                                        <rect key="frame" x="351" y="5" width="53" height="35.333333333333336"/>
-                                        <state key="normal" backgroundImage="boxButtonBG"/>
+                                        <rect key="frame" x="354" y="5" width="50" height="35"/>
+                                        <state key="normal" title="SMS" backgroundImage="goldButton">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="chatButtonTapped:" destination="rW3-VD-5AB" eventType="touchUpInside" id="Za8-ka-aWN"/>
                                         </connections>
@@ -64,7 +71,6 @@
                                     <constraint firstAttribute="height" constant="45" id="7vW-ah-iv2"/>
                                     <constraint firstItem="TA9-q8-D9t" firstAttribute="centerY" secondItem="5M7-Z4-Y4T" secondAttribute="centerY" id="9a3-b5-L0i"/>
                                     <constraint firstItem="NIC-kW-DQj" firstAttribute="centerY" secondItem="TA9-q8-D9t" secondAttribute="centerY" id="OcT-FV-EOq"/>
-                                    <constraint firstItem="NIC-kW-DQj" firstAttribute="width" secondItem="5M7-Z4-Y4T" secondAttribute="width" id="VEU-R5-9mo"/>
                                     <constraint firstItem="NIC-kW-DQj" firstAttribute="height" secondItem="5M7-Z4-Y4T" secondAttribute="height" id="bLx-us-sT6"/>
                                     <constraint firstAttribute="bottom" secondItem="NIC-kW-DQj" secondAttribute="bottom" constant="5" id="ebn-5u-F0B"/>
                                     <constraint firstItem="5M7-Z4-Y4T" firstAttribute="centerY" secondItem="gbc-rk-S7h" secondAttribute="centerY" id="l3v-QR-Mti"/>
@@ -133,7 +139,7 @@
                             </connections>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="EOP-7R-LUL">
-                            <rect key="frame" x="154" y="6" width="106" height="32"/>
+                            <rect key="frame" x="67" y="0.0" width="284" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                             <state key="normal" title="   Logout" image="exit">
@@ -179,8 +185,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="boxButtonBG" width="44" height="44"/>
-        <image name="exit" width="32" height="32"/>
-        <image name="user" width="32" height="32"/>
+        <image name="exit" width="418.90908813476562" height="418.90908813476562"/>
+        <image name="goldButton" width="764" height="196"/>
     </resources>
 </document>

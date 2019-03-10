@@ -63,8 +63,8 @@ class MessagesController: UITableViewController {
         
         
         ref.observe(.childRemoved, with: { (snapshot) in //ep.22 14mins this observe removed child when for example, we deleted it from the Databse cleanly
-            print(snapshot.key) //ep.22 14mins
-            print(self.messagesDictionary) //ep.22 14mins
+//            print(snapshot.key) //ep.22 14mins
+//            print(self.messagesDictionary) //ep.22 14mins
             self.messagesDictionary.removeValue(forKey: snapshot.key) //ep.22 15mins
             self.attemptReloadOfTable() //ep.22 16mins this will delete and update everything when we delete it from an outside source
         }, withCancel: nil)

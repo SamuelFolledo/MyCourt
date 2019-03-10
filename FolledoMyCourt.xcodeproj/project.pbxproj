@@ -28,16 +28,18 @@
 		CD06FC8B20F965DA0033CB6F /* FolledoMyCourtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06FC8A20F965DA0033CB6F /* FolledoMyCourtTests.swift */; };
 		CD06FC9620F965DA0033CB6F /* FolledoMyCourtUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD06FC9520F965DA0033CB6F /* FolledoMyCourtUITests.swift */; };
 		CD06FCA620F966000033CB6F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD06FCA520F966000033CB6F /* MapKit.framework */; };
+		CD0728E321804153004BB231 /* MCCurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0728E221804153004BB231 /* MCCurrentUser.swift */; };
 		CD08AD9B2108F10800F008D2 /* SnapsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08AD9A2108F10800F008D2 /* SnapsTableViewController.swift */; };
 		CD08AD9D2108F35200F008D2 /* SelectPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08AD9C2108F35200F008D2 /* SelectPictureViewController.swift */; };
-		CD08FD30213C49680000050C /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = CD08FD2F213C49680000050C /* Resnet50.mlmodel */; };
 		CD08FD36213CD9AA0000050C /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08FD35213CD9AA0000050C /* MessagesController.swift */; };
 		CD08FD3C213CF4BF0000050C /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08FD3B213CF4BF0000050C /* NewMessageController.swift */; };
 		CD08FD40213DC1460000050C /* MyCourtUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08FD3F213DC1460000050C /* MyCourtUser.swift */; };
 		CD08FD42213E3DFA0000050C /* UserProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD08FD41213E3DF90000050C /* UserProfileTableViewCell.swift */; };
 		CD0A9AB5213F27A3009B62F5 /* LoginController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0A9AB4213F27A3009B62F5 /* LoginController+handlers.swift */; };
+		CD0BC347217A582200193C23 /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = CD0BC346217A582200193C23 /* Resnet50.mlmodel */; };
 		CD0C8F3E214AACA3009756C1 /* MachineLearningController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0C8F3D214AACA3009756C1 /* MachineLearningController.swift */; };
 		CD0D063A2168FA0E002A7174 /* LaunchScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0D06392168FA0E002A7174 /* LaunchScreenController.swift */; };
+		CD12861C2183DC9F00DD4BB8 /* BasketballCourts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD12861B2183DC9F00DD4BB8 /* BasketballCourts.swift */; };
 		CD3F175321263AFA00939ED8 /* BluetoothViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F175221263AFA00939ED8 /* BluetoothViewController.swift */; };
 		CD3F175521263E2800939ED8 /* BluetoothTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F175421263E2800939ED8 /* BluetoothTableViewCell.swift */; };
 		CD979E422138C8DB00033C98 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD979E412138C8DB00033C98 /* LoginController.swift */; };
@@ -103,16 +105,18 @@
 		CD06FC9720F965DA0033CB6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD06FCA320F965F20033CB6F /* FolledoMyCourt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FolledoMyCourt.entitlements; sourceTree = "<group>"; };
 		CD06FCA520F966000033CB6F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		CD0728E221804153004BB231 /* MCCurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCCurrentUser.swift; sourceTree = "<group>"; };
 		CD08AD9A2108F10800F008D2 /* SnapsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapsTableViewController.swift; sourceTree = "<group>"; };
 		CD08AD9C2108F35200F008D2 /* SelectPictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPictureViewController.swift; sourceTree = "<group>"; };
-		CD08FD2F213C49680000050C /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50.mlmodel; sourceTree = "<group>"; };
 		CD08FD35213CD9AA0000050C /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		CD08FD3B213CF4BF0000050C /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
 		CD08FD3F213DC1460000050C /* MyCourtUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCourtUser.swift; sourceTree = "<group>"; };
 		CD08FD41213E3DF90000050C /* UserProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewCell.swift; sourceTree = "<group>"; };
 		CD0A9AB4213F27A3009B62F5 /* LoginController+handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginController+handlers.swift"; sourceTree = "<group>"; };
+		CD0BC346217A582200193C23 /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50.mlmodel; sourceTree = "<group>"; };
 		CD0C8F3D214AACA3009756C1 /* MachineLearningController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachineLearningController.swift; sourceTree = "<group>"; };
 		CD0D06392168FA0E002A7174 /* LaunchScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenController.swift; sourceTree = "<group>"; };
+		CD12861B2183DC9F00DD4BB8 /* BasketballCourts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketballCourts.swift; sourceTree = "<group>"; };
 		CD3F175221263AFA00939ED8 /* BluetoothViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothViewController.swift; sourceTree = "<group>"; };
 		CD3F175421263E2800939ED8 /* BluetoothTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothTableViewCell.swift; sourceTree = "<group>"; };
 		CD979E412138C8DB00033C98 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -215,6 +219,7 @@
 				CD06FC7520F965D80033CB6F /* AppDelegate.swift */,
 				CD02E52C20FA91BA00A6ECC3 /* Service.swift */,
 				CDB98D2F2168522400D90BE3 /* RootViewController.swift */,
+				CD0728E221804153004BB231 /* MCCurrentUser.swift */,
 				CDB98D312168623900D90BE3 /* CircleProgressBarView.swift */,
 				CDE55925212DA06B00314EDD /* Chat.storyboard */,
 				CDA48BFE214950BC00C1E527 /* View */,
@@ -287,6 +292,7 @@
 		CD08AD972108EDD400F008D2 /* HomeMap */ = {
 			isa = PBXGroup;
 			children = (
+				CD12861B2183DC9F00DD4BB8 /* BasketballCourts.swift */,
 				CD037D8A20F9A5B50008EB97 /* HomeMapViewController.swift */,
 				CDFEA38F20FE6D75000824A6 /* HomeMap.storyboard */,
 				CD037D8C20F9A5FB0008EB97 /* UserProfileTableViewController.swift */,
@@ -312,8 +318,8 @@
 				CDFEA39120FE7406000824A6 /* CreateGame.storyboard */,
 				CD3F175221263AFA00939ED8 /* BluetoothViewController.swift */,
 				CD3F175421263E2800939ED8 /* BluetoothTableViewCell.swift */,
+				CD0BC346217A582200193C23 /* Resnet50.mlmodel */,
 				CD0C8F3D214AACA3009756C1 /* MachineLearningController.swift */,
-				CD08FD2F213C49680000050C /* Resnet50.mlmodel */,
 			);
 			path = CreateGame;
 			sourceTree = "<group>";
@@ -593,6 +599,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD0728E321804153004BB231 /* MCCurrentUser.swift in Sources */,
 				CD055F13210E937800936FAF /* ViewSnapViewController.swift in Sources */,
 				CD037D9120F9A9AA0008EB97 /* CreateGameViewController.swift in Sources */,
 				CD06A90D210C23090086954A /* SelectRecipientTableViewController.swift in Sources */,
@@ -605,7 +612,6 @@
 				CD037D8B20F9A5B50008EB97 /* HomeMapViewController.swift in Sources */,
 				CD037D8D20F9A5FB0008EB97 /* UserProfileTableViewController.swift in Sources */,
 				CD08FD40213DC1460000050C /* MyCourtUser.swift in Sources */,
-				CD08FD30213C49680000050C /* Resnet50.mlmodel in Sources */,
 				CD04542A21474AB000C9E83D /* ChatMessage.swift in Sources */,
 				CD3F175521263E2800939ED8 /* BluetoothTableViewCell.swift in Sources */,
 				CD06FC7620F965D80033CB6F /* AppDelegate.swift in Sources */,
@@ -619,6 +625,8 @@
 				CD08AD9D2108F35200F008D2 /* SelectPictureViewController.swift in Sources */,
 				CD979E422138C8DB00033C98 /* LoginController.swift in Sources */,
 				CD037D8F20F9A6120008EB97 /* SwipeUsersViewController.swift in Sources */,
+				CD12861C2183DC9F00DD4BB8 /* BasketballCourts.swift in Sources */,
+				CD0BC347217A582200193C23 /* Resnet50.mlmodel in Sources */,
 				CD037D8920F9A4F40008EB97 /* MainTabBarController.swift in Sources */,
 				CD0D063A2168FA0E002A7174 /* LaunchScreenController.swift in Sources */,
 				CD08FD3C213CF4BF0000050C /* NewMessageController.swift in Sources */,

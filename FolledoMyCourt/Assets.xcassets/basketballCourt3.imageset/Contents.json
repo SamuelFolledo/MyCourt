@@ -2,12 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "basketball-court2.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "basketball-court2-1.png",
+      "filename" : "basketballCourt3.png",
       "scale" : "2x"
     },
     {

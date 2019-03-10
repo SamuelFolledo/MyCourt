@@ -8,8 +8,8 @@
 
 import UIKit
 import Firebase
-import FirebaseDatabase
-import FirebaseAuth
+//import FirebaseDatabase
+//import FirebaseAuth
 
 class Service {
     

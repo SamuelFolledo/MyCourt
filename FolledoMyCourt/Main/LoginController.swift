@@ -127,7 +127,7 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
 //logo
     let loginLogoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "apple")
+        imageView.image = UIImage(named: "myCourtLogo")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         return imageView

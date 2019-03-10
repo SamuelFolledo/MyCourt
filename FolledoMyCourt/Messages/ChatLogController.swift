@@ -390,7 +390,10 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         uploadTask.observe(StorageTaskStatus.progress) { (snapshot) in //ep.20 13mins we cant tell if we're really uploading or the progress of it, so we create a reference for the task which is uploadTask
 //            print(snapshot.progress?.completedUnitCount) //ep.20 14mins
             if let completedUnitCount = snapshot.progress?.completedUnitCount { //ep.20 15mins
-                self.navigationItem.title = String(completedUnitCount) //ep.20 15mins
+                let percentComplete = 100.0 * Double(completedUnitCount)
+                    / Double(snapshot.progress!.totalUnitCount)
+                self.navigationItem.title = String(percentComplete)
+                //self.navigationItem.title = String(completedUnitCount) //ep.20 15mins
             }
             
         }
@@ -617,6 +620,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
             }, completion: nil) //ep.19 14mins
         }
     }
+    
     
     @objc func handleZoomOut(tapGesture: UITapGestureRecognizer) { //ep.19 21mins //to have a proper zoom out animation, we need our initial startingFrame so we know where the final destination is.
         print("Zooming out...") //ep.19 22mins
