@@ -12,6 +12,8 @@ import GoogleMobileAds
 
 class HomeMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate { //mkMapViewDelegate for the annotation imagees
     
+    let client = SODAClient(domain: "https://www.data.act.gov.au/resource/igti-4f4a.json", token: "eGDfQZ3XLoYZM-cpGTQpzydo21T55e77XThD")
+    
     let court1: CustomPointAnnotation = {
         let annotation = CustomPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2DMake(40.735075, -74.070643)
@@ -90,6 +92,8 @@ class HomeMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
     
     @IBOutlet weak var adBannerView: GADBannerView!
     
+    var mappAnnotations:[CustomPointAnnotation]?
+    
 //++++++++++++++++++++++ viewDidLoad ++++++++++++++++++++++
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,7 +115,46 @@ class HomeMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         mapView.addAnnotation(court5)
         mapView.addAnnotation(court6)
         
+        let zip = "07306"
+        if let url = URL(string: "https://www.data.act.gov.au/resource/igti-4f4a.json?") {
+            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if let error = error {
+                    Service.presentAlert(on: self, title: "URL Error", message: error.localizedDescription)
+                    return
+                } else {
+                    if let urlContent = data {
+                        do {
+                            let jsonResult = try JSONSerialization.jsonObject(with: urlContent, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
+                            print("\n\n\n\nJSON RESULT = \(jsonResult["latitude"])\n\n\n\n")
+//                            for annotDic in jsonResult["location_1"] {
+//
+//                            }
+                            if let location_1Array = jsonResult["location_1"] as? NSArray {
+                                print("We got location_1Array")
+                                
+                                if let latitudeArray = location_1Array.firstObject as? NSDictionary {
+                                    print("we got the latitude array")
+                                    print(latitudeArray)
+                                    if let latitudeValue = latitudeArray.object(forKey: "latitude") as? String {
+                                        print("LATITUDE IS \(latitudeValue)")
+                                    }
+                                }
+                            }
+//                            if let description = ((jsonResult["location_1"] as? NSArray)?[0] as? NSDictionary)?["latitude"] as? String {
+//
+//                                print(description)
+//
+//
+//                            }
+                            
+                        } catch { print("JSON Processing failed") }
+                    }
+                }
+            }
+            task.resume()
+        }
         
+        let courtLocations = client.query(dataset: "location_1_zip=07306")
         
         
         

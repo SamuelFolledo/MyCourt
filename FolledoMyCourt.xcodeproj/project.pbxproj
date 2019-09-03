@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4A1CFDD250283CDFA7BCA09A /* Pods_FolledoMyCourtTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56B92F3BD135D294B0F8305 /* Pods_FolledoMyCourtTests.framework */; };
+		7EFBB1C022B71889007E1B28 /* SODAClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EFBB1BF22B71889007E1B28 /* SODAClient.swift */; };
 		98B7EA0B563F71BF4D725AF5 /* Pods_FolledoMyCourt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5805FE4B9A211E702C18945C /* Pods_FolledoMyCourt.framework */; };
 		BE6443B9A03BA5CEF016FE57 /* Pods_FolledoMyCourtUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D1C4BB92692AAA67DAF136 /* Pods_FolledoMyCourtUITests.framework */; };
 		CD02E52D20FA91BA00A6ECC3 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD02E52C20FA91BA00A6ECC3 /* Service.swift */; };
@@ -78,6 +79,7 @@
 		2515FD696902D00A242FE3A6 /* Pods-FolledoMyCourtTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FolledoMyCourtTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FolledoMyCourtTests/Pods-FolledoMyCourtTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5805FE4B9A211E702C18945C /* Pods_FolledoMyCourt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FolledoMyCourt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E3D0092BF9E150BE3BF0726 /* Pods-FolledoMyCourtTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FolledoMyCourtTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FolledoMyCourtTests/Pods-FolledoMyCourtTests.release.xcconfig"; sourceTree = "<group>"; };
+		7EFBB1BF22B71889007E1B28 /* SODAClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SODAClient.swift; sourceTree = "<group>"; };
 		8E5B92B9AFB4866225072873 /* Pods-FolledoMyCourt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FolledoMyCourt.release.xcconfig"; path = "Pods/Target Support Files/Pods-FolledoMyCourt/Pods-FolledoMyCourt.release.xcconfig"; sourceTree = "<group>"; };
 		B56B92F3BD135D294B0F8305 /* Pods_FolledoMyCourtTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FolledoMyCourtTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD02E52C20FA91BA00A6ECC3 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 			children = (
 				CD06FCA320F965F20033CB6F /* FolledoMyCourt.entitlements */,
 				CD06FC7520F965D80033CB6F /* AppDelegate.swift */,
+				7EFBB1BF22B71889007E1B28 /* SODAClient.swift */,
 				CD02E52C20FA91BA00A6ECC3 /* Service.swift */,
 				CDB98D2F2168522400D90BE3 /* RootViewController.swift */,
 				CD0728E221804153004BB231 /* MCCurrentUser.swift */,
@@ -628,6 +631,7 @@
 				CD12861C2183DC9F00DD4BB8 /* BasketballCourts.swift in Sources */,
 				CD0BC347217A582200193C23 /* Resnet50.mlmodel in Sources */,
 				CD037D8920F9A4F40008EB97 /* MainTabBarController.swift in Sources */,
+				7EFBB1C022B71889007E1B28 /* SODAClient.swift in Sources */,
 				CD0D063A2168FA0E002A7174 /* LaunchScreenController.swift in Sources */,
 				CD08FD3C213CF4BF0000050C /* NewMessageController.swift in Sources */,
 				CD08FD36213CD9AA0000050C /* MessagesController.swift in Sources */,
@@ -788,14 +792,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FolledoMyCourt/FolledoMyCourt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8KSKUH7X29;
+				DEVELOPMENT_TEAM = 9NY68F4K3P;
 				INFOPLIST_FILE = FolledoMyCourt/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.FolledoSwag.FolledoMyCourt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SamuelFolledo.FolledoMyCourt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -809,14 +813,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FolledoMyCourt/FolledoMyCourt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8KSKUH7X29;
+				DEVELOPMENT_TEAM = 9NY68F4K3P;
 				INFOPLIST_FILE = FolledoMyCourt/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.FolledoSwag.FolledoMyCourt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SamuelFolledo.FolledoMyCourt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
